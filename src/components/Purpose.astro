@@ -1,0 +1,50 @@
+---
+const points = [
+  {
+    title: 'A shelf you can query',
+    body: 'One list of what the household actually has — quantity, unit, where it lives — editable in seconds and readable at a glance on your own phone.',
+  },
+  {
+    title: 'Warnings you can act on',
+    body: 'Low stock and expiry are shown as days and units, with the reason beside them. No red badge that means something different every week.',
+  },
+  {
+    title: 'A shopping list with a memory',
+    body: 'Things you run out of land on the list because they ran out. You can add to it by hand, and you can see why anything on it is there.',
+  },
+  {
+    title: 'Receipts, if you want them',
+    body: 'A photographed receipt can fill in the detail. It is optional by design: the app must stay useful to someone who never takes a picture.',
+  },
+];
+---
+
+<section class="section" id="purpose" aria-labelledby="purpose-title">
+  <div class="shell stack">
+    <header class="section__head">
+      <p class="t-overline">What it is for</p>
+      <h2 class="t-title" id="purpose-title">Household inventory, minus the guilt</h2>
+      <p class="t-lead measure">
+        HomeMind is aimed at one specific annoyance: buying something you already have three of, and
+        discovering the fourth one the week after it expired. It keeps a plain record and does the
+        small arithmetic on top of it.
+      </p>
+    </header>
+
+    <div class="grid">
+      {
+        points.map((point) => (
+          <article class="card">
+            <h3 class="t-card-title">{point.title}</h3>
+            <p class="t-secondary">{point.body}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="t-caption measure">
+      All four are being built, not shipped — the honest status of each is in
+      <a href="#status">Where the build stands</a>.
+    </p>
+  </div>
+</section>

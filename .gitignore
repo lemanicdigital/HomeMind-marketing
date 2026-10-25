@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+coverage/
+
+# local overrides — never committed
+.env
+.env.*
+!.env.example
+
+.DS_Store
+*.log

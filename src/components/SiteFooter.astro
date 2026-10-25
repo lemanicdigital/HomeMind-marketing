@@ -1,0 +1,23 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="shell stack stack--tight">
+    <p class="t-label">HomeMind</p>
+    <p class="t-caption measure">
+      A household inventory app for iPhone, in private development. This page states the state of the
+      project rather than promising a date, and it sets no cookies, loads no third-party fonts and runs
+      no analytics.
+    </p>
+    <p class="t-caption">© {year} HomeMind · Design system and app: iOS repository.</p>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    padding-block: var(--hm-space-section);
+    background: var(--hm-surface-secondary);
+    border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  }
+</style>

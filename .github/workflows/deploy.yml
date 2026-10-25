@@ -1,0 +1,64 @@
+name: Build and deploy
+
+# One workflow does both jobs this repository has: verify a pull request, and publish `main` to
+# GitHub Pages. There is nothing to keep secret — the site is static HTML/CSS with no third-party
+# requests — so `permissions: contents: read` is the whole story.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Typecheck, format, style audit, token check, build, build audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install from the lockfile
+        run: npm ci
+
+      # `tokens:check` regenerates the stylesheet from the committed vendor/design-system/tokens.md
+      # and fails on any difference — a real gate, because CI cannot read the private app repository
+      # the document came from. See README → Design tokens.
+      - name: Verify
+        run: npm run verify
+
+      - name: Upload Pages artefact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Publish to GitHub Pages
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    environment:
+      name: github-pages
+      url: ${{ steps.output.outputs.page_url }}
+
+    steps:
+      - id: output
+        uses: actions/deploy-pages@v4

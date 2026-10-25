@@ -1,0 +1,102 @@
+---
+const links = [
+  { href: '#purpose', label: 'What it does' },
+  { href: '#design', label: 'Design' },
+  { href: '#status', label: 'Status' },
+  { href: '#faq', label: 'Questions' },
+];
+---
+
+<header class="bar">
+  <div class="shell row bar__inner">
+    <a class="brand" href="#top" aria-label="HomeMind — back to the top">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">HomeMind</span>
+    </a>
+    <nav aria-label="Sections of this page">
+      <ul class="row nav">
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--hm-header-background);
+    border-bottom: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    /* A sticky bar needs its own air; the app's header is 44pt tall plus safe area. */
+    min-height: var(--hm-touch-target);
+  }
+
+  .bar__inner {
+    justify-content: space-between;
+    padding-block: var(--hm-space-inline);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--hm-space-inline);
+    color: var(--hm-header-text, var(--hm-text-primary));
+    text-decoration: none;
+  }
+
+  .brand__mark {
+    inline-size: 22px;
+    block-size: 22px;
+    border-radius: 7px;
+    background: var(--hm-primary);
+    box-shadow: inset 0 0 0 2px var(--hm-primary-subtle);
+  }
+
+  .brand__name {
+    font-size: var(--hm-type-card-title-size);
+    font-weight: var(--hm-type-card-title-weight);
+    letter-spacing: -0.01em;
+  }
+
+  .nav {
+    gap: var(--hm-space-compact);
+  }
+
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--hm-touch-target);
+    padding-inline: var(--hm-space-inline);
+    border-radius: var(--hm-radius-field);
+    color: var(--hm-text-secondary);
+    font-size: var(--hm-type-label-size);
+    font-weight: var(--hm-type-label-weight);
+    text-decoration: none;
+  }
+
+  .nav a:hover {
+    background: var(--hm-surface-secondary);
+    color: var(--hm-text-primary);
+  }
+
+  @media (max-width: 35rem) {
+    .bar__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .nav {
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+  }
+</style>

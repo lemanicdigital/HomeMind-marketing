@@ -1,0 +1,26 @@
+---
+import Page from '../layouts/Page.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteHero from '../components/SiteHero.astro';
+import Purpose from '../components/Purpose.astro';
+import DesignSpecimen from '../components/DesignSpecimen.astro';
+import StatusSection from '../components/StatusSection.astro';
+import Faq from '../components/Faq.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const title = 'HomeMind — household inventory for iPhone';
+const description =
+  'HomeMind keeps track of what your household has, what is running low and what expires soon. An offline-first iPhone app, currently in private development.';
+---
+
+<Page title={title} description={description}>
+  <SiteHeader />
+  <main id="main">
+    <SiteHero />
+    <Purpose />
+    <DesignSpecimen />
+    <StatusSection />
+    <Faq />
+  </main>
+  <SiteFooter />
+</Page>

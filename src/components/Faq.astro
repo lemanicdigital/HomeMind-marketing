@@ -1,0 +1,103 @@
+---
+const items = [
+  {
+    q: 'Why iPhone first?',
+    a: 'The habit we are designing for happens in a shop and in a cupboard, and a phone is what people have with them. Android is a documented follow-up, not an afterthought: the components are React Native and the design tokens already carry platform differences.',
+  },
+  {
+    q: 'Do I need smart shelves, a scanner or a hub?',
+    a: 'No. Typing is the baseline path, and everything must remain usable that way. Camera-assisted entry is an accelerator, never a requirement.',
+  },
+  {
+    q: 'Where does my data live?',
+    a: 'That is a design constraint, not a policy footnote: the device holds the working copy so the app works on a train, and sync exists for backup and second devices. Where the server copy is stored, and for how long, is being decided as the service is built — and this page will be updated when it is settled rather than guessed at now.',
+  },
+  {
+    q: 'Will it cost money?',
+    a: 'Not announced. What is decided is that the app will not be funded by showing you other people’s products: no ads, no data resale, no analytics on your shopping.',
+  },
+  {
+    q: 'Can I try the beta?',
+    a: 'There is no beta to join yet. When there is one, this page is where it will be announced.',
+  },
+  {
+    q: 'Why does this site have no cookies, fonts or analytics?',
+    a: 'A page about a household inventory app should not itself inventory its visitors. This is static HTML and CSS — nothing third-party loads, and nothing is measured.',
+  },
+];
+---
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="shell stack">
+    <header class="section__head">
+      <p class="t-overline">Questions</p>
+      <h2 class="t-title" id="faq-title">Asked before we were ready to answer</h2>
+    </header>
+
+    <div class="faq">
+      {
+        items.map((item) => (
+          <details>
+            <summary>
+              <span class="t-label">{item.q}</span>
+              <span class="chev" aria-hidden="true">
+                +
+              </span>
+            </summary>
+            <p class="t-secondary measure">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    display: grid;
+    gap: 0;
+    border-block: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  }
+
+  details {
+    border-bottom: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  }
+
+  details:last-child {
+    border-bottom: 0;
+  }
+
+  summary {
+    display: flex;
+    gap: var(--hm-space-card);
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: var(--hm-space-card) 0;
+    list-style: none;
+    min-block-size: var(--hm-touch-target);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .chev {
+    display: grid;
+    place-items: center;
+    inline-size: 28px;
+    block-size: 28px;
+    border-radius: var(--hm-radius-pill);
+    background: var(--hm-surface-secondary);
+    color: var(--hm-text-secondary);
+  }
+
+  details[open] .chev {
+    background: var(--hm-primary-subtle);
+    color: var(--hm-on-primary-subtle);
+  }
+
+  details p {
+    padding-bottom: var(--hm-space-card);
+  }
+</style>
