@@ -1,0 +1,32 @@
+{
+  "name": "homemind-marketing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "HomeMind's landing page — a static Astro site styled by a generated snapshot of the design system's tokens.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/sync-design-tokens.mjs && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "tokens:sync": "node scripts/sync-design-tokens.mjs",
+    "tokens:check": "node scripts/sync-design-tokens.mjs --check",
+    "lint": "node scripts/audit-styles.mjs",
+    "audit:build": "node scripts/check-build.mjs",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "verify": "npm run check && npm run format && node scripts/audit-styles.mjs && node scripts/sync-design-tokens.mjs --check && astro build && npm run audit:build"
+  },
+  "dependencies": {
+    "astro": "^7.4.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.2",
+    "typescript": "^6.0.3"
+  }
+}

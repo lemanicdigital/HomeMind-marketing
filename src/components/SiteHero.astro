@@ -1,0 +1,159 @@
+---
+/**
+ * The hero says what HomeMind is and, just as importantly, that it is not out yet. A landing page for
+ * an unlaunched product should read like a statement of intent, not a waitlist funnel.
+ */
+const tracks = [
+  { label: 'What is running low', note: 'by the size of your household, not a fixed number' },
+  { label: 'What expires soon', note: 'in days you can act on' },
+  { label: 'What to buy next', note: 'a list you can see the reasoning behind' },
+];
+---
+
+<section class="hero" id="top">
+  <div class="shell hero__grid">
+    <div class="stack">
+      <span class="badge">
+        <span class="badge__dot" aria-hidden="true"></span>
+        In private development — no release date announced
+      </span>
+
+      <h1 class="t-display">The household’s stock, kept straight without a spreadsheet.</h1>
+
+      <p class="t-lead measure">
+        HomeMind is an iPhone app for the things you run out of: what you have, where it lives, when it
+        goes off, and what to buy next. It is being built to work offline first, to need no smart
+        hardware, and to explain any number it shows you.
+      </p>
+
+      <ul class="list measure">
+        {
+          tracks.map((item) => (
+            <li>
+              <span class="list__mark" aria-hidden="true">
+                ✓
+              </span>
+              <span>
+                <strong class="t-label">{item.label}</strong>
+                <br />
+                <span class="t-secondary">{item.note}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="row">
+        <a class="button button--primary" href="#status">Where the build stands</a>
+        <a class="button" href="#design">See the design system</a>
+      </p>
+    </div>
+
+    <figure class="specimen card card--tinted">
+      <figcaption class="t-overline">Design system specimen — not the shipped app</figcaption>
+      <p class="t-caption">
+        Everything below is drawn from the tokens HomeMind is built with, so the page and the product
+        cannot drift apart.
+      </p>
+
+      <div class="specimen__row">
+        <div>
+          <p class="t-numeric">2 / 4</p>
+          <p class="t-label">bags of coffee</p>
+          <p class="t-caption">Running low · typical 4</p>
+        </div>
+        <span class="badge badge--primary">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Expiring in 3 days
+        </span>
+      </div>
+
+      <div class="specimen__row">
+        <div>
+          <p class="t-secondary">Basmati rice 1&nbsp;kg</p>
+          <p class="t-caption">Pantry · 5 packs · best before 12 Mar 2027</p>
+        </div>
+        <span class="badge badge--success">
+          <span class="badge__dot" aria-hidden="true"></span>
+          In stock
+        </span>
+      </div>
+
+      <div class="specimen__row">
+        <div>
+          <p class="t-secondary">Laundry detergent</p>
+          <p class="t-caption">Utility shelf · quantity not recorded</p>
+        </div>
+        <span class="badge badge--danger">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Out of stock
+        </span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(36px, 8vw, 80px) clamp(40px, 8vw, 72px);
+    background: var(--hm-background);
+  }
+
+  .hero__grid {
+    display: grid;
+    gap: var(--hm-space-section);
+    align-items: start;
+  }
+
+  @media (min-width: 60rem) {
+    .hero__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 48px;
+    padding-inline: var(--hm-space-card);
+    border-radius: var(--hm-radius-field);
+    border: 1px solid var(--hm-border-input);
+    background: var(--hm-surface);
+    color: var(--hm-text-primary);
+    font-size: var(--hm-type-button-size);
+    font-weight: var(--hm-type-button-weight);
+    text-decoration: none;
+    transition: background var(--hm-duration) var(--hm-ease-out);
+  }
+
+  .button:hover {
+    background: var(--hm-surface-secondary);
+  }
+
+  .button--primary {
+    background: var(--hm-primary);
+    border-color: var(--hm-primary);
+    color: var(--hm-on-primary);
+  }
+
+  .button--primary:hover {
+    background: var(--hm-primary-pressed);
+    border-color: var(--hm-primary-pressed);
+    color: var(--hm-on-primary);
+  }
+
+  .specimen {
+    gap: var(--hm-space-card);
+  }
+
+  .specimen__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--hm-space-inline);
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--hm-space-card);
+    border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  }
+</style>

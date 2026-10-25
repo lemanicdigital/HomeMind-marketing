@@ -1,0 +1,299 @@
+/*
+ * The site's stylesheet, written against the generated token snapshot only.
+ * No hex value and no magic font size appears in this file: that is the same rule the app's
+ * components follow, and it is what keeps the landing page looking like HomeMind.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--hm-background);
+  color: var(--hm-text-primary);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  font-size: var(--hm-type-body-size);
+  line-height: 1.6;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+}
+
+:where(a) {
+  color: var(--hm-text-link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+:where(a:hover) {
+  text-decoration: none;
+}
+
+:where(a, button, summary):focus-visible {
+  outline: 3px solid var(--hm-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--hm-radius-field);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--hm-space-compact);
+  top: -200px;
+  z-index: 10;
+  padding: var(--hm-space-inline) var(--hm-space-card);
+  background: var(--hm-primary);
+  color: var(--hm-on-primary);
+  border-radius: var(--hm-radius-field);
+  font-weight: var(--hm-type-label-weight);
+  transition: top var(--hm-duration) var(--hm-ease-out);
+}
+
+.skip-link:focus {
+  top: var(--hm-space-compact);
+}
+
+.shell {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--hm-gutter);
+}
+
+.measure {
+  max-width: var(--hm-measure);
+}
+
+/* ---- type ramp: the documented roles, fluid inside their own ceilings ---- */
+
+.t-display {
+  font-size: clamp(26px, 7vw, calc(var(--hm-type-display-size) * var(--hm-type-display-ceiling)));
+  line-height: calc(var(--hm-type-display-line) / 1);
+  font-weight: var(--hm-type-display-weight);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.t-title {
+  font-size: clamp(20px, 4.5vw, var(--hm-type-title-size));
+  line-height: 1.25;
+  font-weight: var(--hm-type-title-weight);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.t-section {
+  font-size: var(--hm-type-section-title-size);
+  line-height: 1.35;
+  font-weight: var(--hm-type-section-title-weight);
+  letter-spacing: -0.01em;
+}
+
+.t-card-title {
+  font-size: var(--hm-type-card-title-size);
+  line-height: 1.35;
+  font-weight: var(--hm-type-card-title-weight);
+}
+
+.t-lead {
+  font-size: clamp(16px, 2.6vw, 20px);
+  line-height: 1.5;
+  color: var(--hm-text-secondary);
+  text-wrap: pretty;
+}
+
+.t-body {
+  font-size: var(--hm-type-body-size);
+  line-height: 1.6;
+}
+
+.t-secondary {
+  font-size: var(--hm-type-body-secondary-size);
+  line-height: 1.45;
+  color: var(--hm-text-secondary);
+}
+
+.t-label {
+  font-size: var(--hm-type-label-size);
+  line-height: 1.35;
+  font-weight: var(--hm-type-label-weight);
+}
+
+.t-caption {
+  font-size: var(--hm-type-caption-size);
+  line-height: 1.4;
+  color: var(--hm-text-tertiary);
+}
+
+.t-overline {
+  font-size: var(--hm-type-overline-size);
+  line-height: 1.35;
+  font-weight: var(--hm-type-overline-weight);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hm-text-tertiary);
+}
+
+.t-numeric {
+  font-size: var(--hm-type-numeric-size);
+  line-height: 1.2;
+  font-weight: var(--hm-type-numeric-weight);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- structure ---- */
+
+.section {
+  padding-block: clamp(40px, 8vw, 72px);
+  border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+}
+
+.section__head {
+  display: grid;
+  gap: var(--hm-space-between-text);
+  margin-bottom: var(--hm-space-section);
+}
+
+.grid {
+  display: grid;
+  gap: var(--hm-space-screen-gutter);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+.card {
+  display: grid;
+  gap: var(--hm-space-inline);
+  align-content: start;
+  padding: var(--hm-space-card);
+  background: var(--hm-surface);
+  border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  border-radius: var(--hm-radius-card);
+}
+
+.card--tinted {
+  background: var(--hm-surface-secondary);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hm-space-inline);
+  min-block-size: 28px;
+  padding: 0 var(--hm-space-component);
+  border-radius: var(--hm-radius-pill);
+  background: var(--hm-neutral-subtle);
+  color: var(--hm-on-neutral-subtle);
+  font-size: var(--hm-type-badge-size);
+  font-weight: var(--hm-type-badge-weight);
+  letter-spacing: 0.02em;
+}
+
+.badge__dot {
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background: var(--hm-warning);
+}
+
+.badge--primary {
+  background: var(--hm-primary-subtle);
+  color: var(--hm-on-primary-subtle);
+}
+
+.badge--primary .badge__dot {
+  background: var(--hm-primary);
+}
+
+.badge--success {
+  background: var(--hm-success-subtle);
+  color: var(--hm-on-success-subtle);
+}
+
+.badge--success .badge__dot {
+  background: var(--hm-success);
+}
+
+.badge--danger {
+  background: var(--hm-danger-subtle);
+  color: var(--hm-on-danger-subtle);
+}
+
+.badge--danger .badge__dot {
+  background: var(--hm-danger);
+}
+
+.list {
+  display: grid;
+  gap: var(--hm-space-inline);
+}
+
+.list li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: var(--hm-space-inline);
+  align-items: start;
+}
+
+.list__mark {
+  display: grid;
+  place-items: center;
+  block-size: 22px;
+  color: var(--hm-success);
+  font-weight: 700;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hm-space-inline);
+  align-items: center;
+}
+
+.stack {
+  display: grid;
+  gap: var(--hm-space-section);
+}
+
+.stack--tight {
+  gap: var(--hm-space-inline);
+}
+
+/* Tinted surfaces raise the floor: `textTertiary` is documented for background and surface only,
+   so copy on `surfaceSecondary` / `neutralSubtle` uses the secondary role to stay above 4.5:1. */
+.card--tinted .t-caption,
+.card--tinted .badge {
+  color: var(--hm-text-secondary);
+}

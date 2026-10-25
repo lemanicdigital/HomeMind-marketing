@@ -1,0 +1,43 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+// `Astro.url.pathname` already carries the site's base segment on a GitHub project page, so the
+// canonical URL is that path against the configured origin — joining BASE_URL in again would double it.
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+// Asset hrefs are joined by hand: `Astro.baseUrl` is relative (`/HomeMind-marketing/`), which
+// `new URL` rejects, and `import.meta.env.BASE_URL` has no trailing slash to rely on.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const asset = (name: string) => `${base}/${name}`.replace(/\/{2,}/g, '/');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="HomeMind" />
+    <!-- token-exempt: the browser chrome colour cannot read a CSS custom property, so these two
+         values are the documented `background` roles spelled out for each appearance. -->
+    <meta name="theme-color" content="#F8F7F2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0C1210" media="(prefers-color-scheme: dark)" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>

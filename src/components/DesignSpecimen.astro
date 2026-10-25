@@ -1,0 +1,151 @@
+---
+/**
+ * The one part of HomeMind that is finished. This section is rendered *from* the token snapshot, so
+ * it cannot quietly become a marketing picture of a design the product does not have.
+ */
+const roles = [
+  { name: 'Text on surface', fg: 'var(--hm-text-primary)', bg: 'var(--hm-surface)' },
+  { name: 'Secondary text', fg: 'var(--hm-text-secondary)', bg: 'var(--hm-surface)' },
+  { name: 'On primary', fg: 'var(--hm-on-primary)', bg: 'var(--hm-primary)' },
+  { name: 'Primary on subtle', fg: 'var(--hm-on-primary-subtle)', bg: 'var(--hm-primary-subtle)' },
+  { name: 'Success', fg: 'var(--hm-on-success-subtle)', bg: 'var(--hm-success-subtle)' },
+  { name: 'Warning', fg: 'var(--hm-on-warning-subtle)', bg: 'var(--hm-warning-subtle)' },
+  { name: 'Danger', fg: 'var(--hm-on-danger-subtle)', bg: 'var(--hm-danger-subtle)' },
+  { name: 'Info', fg: 'var(--hm-on-info-subtle)', bg: 'var(--hm-info-subtle)' },
+];
+
+const ramp = [
+  { label: 'Page title', cls: 't-title', text: 'Pantry' },
+  { label: 'Section title', cls: 't-section', text: 'Running low' },
+  { label: 'Card title', cls: 't-card-title', text: 'Coffee beans — medium roast' },
+  { label: 'Body', cls: 't-body', text: 'Two bags left; this household gets through four.' },
+  { label: 'Label', cls: 't-label', text: 'Quantity' },
+  { label: 'Caption', cls: 't-caption', text: 'Updated this morning, on your phone' },
+];
+---
+
+<section class="section" id="design" aria-labelledby="design-title">
+  <div class="shell stack">
+    <header class="section__head">
+      <p class="t-overline">Design</p>
+      <h2 class="t-title" id="design-title">The design system is finished; the app is being built on it</h2>
+      <p class="t-lead measure">
+        Before any feature, HomeMind got a documented visual system: colour roles, an 18-step type
+        ramp with accessibility ceilings, a 4-point spacing scale, one icon family, restrained motion,
+        and 42 components — each with behaviour tests and an accessibility contract. Contrast is
+        measured, not asserted, and CI fails when a change drops a pair below the requirement.
+      </p>
+    </header>
+
+    <div class="grid">
+      <article class="card">
+        <h3 class="t-card-title">Colour, as roles</h3>
+        <p class="t-secondary">
+          Nothing here is “the green”. Every swatch is a named role that also has a dark value and a
+          measured contrast pair.
+        </p>
+        <ul class="swatches">
+          {
+            roles.map((role) => (
+              <li>
+                <span class="swatch" style={`background:${role.bg};color:${role.fg}`}>
+                  Aa {role.name}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3 class="t-card-title">Type ramp</h3>
+        <p class="t-secondary">
+          System fonts, documented sizes, and a maximum growth factor per role — so Large Text makes
+          the app easier to read without breaking it apart.
+        </p>
+        <div class="stack stack--tight">
+          {
+            ramp.map((entry) => (
+              <div class="ramp-row">
+                <span class="ramp-label t-caption">{entry.label}</span>
+                <span class={entry.cls}>{entry.text}</span>
+              </div>
+            ))
+          }
+        </div>
+      </article>
+    </div>
+
+    <article class="card card--tinted principles">
+      <h3 class="t-card-title">What the system is accountable to</h3>
+      <ul class="grid four">
+        <li class="t-secondary">
+          <span class="t-label">Contrast</span>
+          <br />98 measured pairs pass in both appearances
+        </li>
+        <li class="t-secondary">
+          <span class="t-label">Touch</span>
+          <br />44pt minimum target on every control
+        </li>
+        <li class="t-secondary">
+          <span class="t-label">Status</span>
+          <br />icon and word, never colour alone
+        </li>
+        <li class="t-secondary">
+          <span class="t-label">Motion</span>
+          <br />restrained, and switched off when asked
+        </li>
+      </ul>
+      <p class="t-caption">
+        The specification lives with the code — <code>docs/design-system/</code> in the iOS
+        repository — and this page reads its tokens from a generated snapshot of that document.
+      </p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .swatches {
+    display: grid;
+    gap: var(--hm-space-compact);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  }
+
+  .swatch {
+    display: block;
+    padding: var(--hm-space-inline) var(--hm-space-card);
+    border-radius: var(--hm-radius-field);
+    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    font-size: var(--hm-type-label-size);
+    font-weight: var(--hm-type-label-weight);
+  }
+
+  .ramp-row {
+    display: grid;
+    gap: var(--hm-space-compact);
+    grid-template-columns: 96px 1fr;
+    align-items: baseline;
+    padding-block: var(--hm-space-inline);
+    border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  }
+
+  .ramp-label {
+    text-align: right;
+  }
+
+  .principles {
+    gap: var(--hm-space-card);
+  }
+
+  .four {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.92em;
+    background: var(--hm-surface-tertiary);
+    padding: 1px 5px;
+    border-radius: 6px;
+  }
+</style>
