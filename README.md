@@ -100,12 +100,20 @@ It deliberately inspects tags rather than prose: the page is _allowed_ to contai
 
 `main` publishes to GitHub Pages through `.github/workflows/deploy.yml`: verify → build → upload
 `dist/` → deploy. One settings click is required per repository, because Pages defaults to a `docs/`
-folder rather than to Actions: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+folder rather than to Actions: **Settings → Pages → Build and deployment → Source: GitHub Actions** —
+already done here (the Pages API reports `build_type: workflow`), which retires the internal
+`pages-build-deployment` runs the legacy pipeline fires on every push. The repository briefly carried
+the stock Jekyll workflow the settings page offers (`jekyll-gh-pages.yml`); it was removed so that
+only the Astro pipeline can publish.
 
 The site is configured for a project page (`site: https://lemanicdigital.github.io`,
 `base: /HomeMind-marketing`); if it moves to a custom domain, update both in `astro.config.mjs`, adjust
 `isOwnSite()` in `scripts/check-build.mjs`, and add `public/CNAME`. There is deliberately **no sitemap
 and no RSS feed**: the site is one page plus a 404 that says so.
+
+An `og:image` is the one deliberate absence in the page's metadata: when one is added, it should be a
+rendered design-system card, not a stock image. Like the custom domain above, that is an open owner
+decision rather than an oversight.
 
 ## Accessibility
 
