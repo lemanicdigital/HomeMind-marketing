@@ -8,7 +8,7 @@
  * colour as a `var(--hm-*)` role, so the page cannot quietly invent an off-system hue.
  */
 import { readFileSync, readdirSync, statSync } from "node:fs";
-import { dirname, join, relative, resolve } from "node:path";
+import { dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -17,7 +17,8 @@ const OFF_SYSTEM = /#[0-9a-fA-F]{3,8}\b|\brgba?\s*\(|\bhsla?\s*\(|\bhwb?\s*\(|\b
 
 const files = walk(join(repoRoot, "src"))
   .filter((file) => /\.(css|astro)$/.test(file))
-  .map((file) => relative(repoRoot, file))
+  // POSIX separators, so ALLOWED matches on Windows too (relative() returns `src\styles\…` there).
+  .map((file) => relative(repoRoot, file).split(sep).join("/"))
   .filter((file) => !ALLOWED.includes(file));
 
 const problems = [];
