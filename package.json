@@ -5,7 +5,7 @@
   "type": "module",
   "description": "HomeMind's landing page — a static Astro site styled by a generated snapshot of the design system's tokens.",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.22.0"
   },
   "scripts": {
     "dev": "astro dev",

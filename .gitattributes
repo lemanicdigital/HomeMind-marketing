@@ -1,0 +1,16 @@
+# Text is LF in the repository and in every working tree, on every OS. Prettier and the CI checks
+# assume LF; without this, Windows' core.autocrlf=true checks files out as CRLF and
+# `prettier --check` fails on a clean clone.
+* text=auto eol=lf
+
+# Binary: never normalised, never diffed as text.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.ttf  binary
+*.otf  binary
+*.woff binary
+*.woff2 binary
