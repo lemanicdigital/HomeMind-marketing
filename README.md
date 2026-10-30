@@ -36,7 +36,7 @@ npm run verify       # the whole gate, in order:
 | `astro build`                    | the static output compiles.                                                              |
 | `scripts/check-build.mjs`        | the _built_ page keeps the promises its copy makes — see Promises the build enforces.    |
 
-Node 22 or newer.
+Node 22.22 or newer — Astro's minimum; `.nvmrc` names it for nvm, fnm and Volta.
 
 ## Layout
 
