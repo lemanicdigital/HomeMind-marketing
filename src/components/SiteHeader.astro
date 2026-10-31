@@ -1,25 +1,41 @@
 ---
 import Logo from './ui/Logo.astro';
-import { href } from '../site';
+import { LANGS, LANG_NAMES, type Lang, copyFor, englishPage, home } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+  /** This page in each language; a language without its own version links to its home page. */
+  alternates?: Partial<Record<Lang, string>>;
+}
+
+const { lang = 'en', alternates = {} } = Astro.props;
+const c = copyFor(lang).nav;
 
 const links = [
   // Every link names the home page: this header is on /privacy/ and /support/ too.
-  { href: href('#features'), label: 'Features' },
-  { href: href('#app'), label: 'Screens' },
-  { href: href('#pricing'), label: 'Pricing' },
-  { href: href('#privacy'), label: 'Privacy' },
-  { href: href('#faq'), label: 'FAQ' },
-  { href: href('support/'), label: 'Support' },
+  { href: home(lang, '#features'), label: c.features },
+  { href: home(lang, '#app'), label: c.screens },
+  { href: home(lang, '#pricing'), label: c.pricing },
+  { href: home(lang, '#privacy'), label: c.privacy },
+  { href: home(lang, '#faq'), label: c.faq },
+  { href: englishPage('support/'), label: c.support },
 ];
+
+const languages = LANGS.map((code) => ({
+  code,
+  name: LANG_NAMES[code],
+  href: alternates[code] ?? home(code),
+  current: code === lang,
+}));
 ---
 
 <header class="bar">
   <div class="shell bar__inner">
-    <a class="brand" href={href('')} aria-label="HomeMind home page">
+    <a class="brand" href={home(lang)} aria-label={c.home}>
       <Logo size={28} />
       <span class="brand__name">HomeMind</span>
     </a>
-    <nav class="bar__nav" aria-label="Sections of this page">
+    <nav class="bar__nav" aria-label={c.sections}>
       <ul class="nav">
         {
           links.map((link) => (
@@ -30,7 +46,27 @@ const links = [
         }
       </ul>
     </nav>
-    <a class="bar__cta" href={href('#launch')}>Coming soon</a>
+    <nav class="langs" aria-label={c.language}>
+      <ul>
+        {
+          languages.map((language) => (
+            <li>
+              <a
+                href={language.href}
+                hreflang={language.code}
+                lang={language.code}
+                aria-current={language.current ? 'true' : undefined}
+                title={language.name}
+              >
+                <span aria-hidden="true">{language.code.toUpperCase()}</span>
+                <span class="visually-hidden">{language.name}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a class="bar__cta" href={home(lang, '#launch')}>{c.soon}</a>
   </div>
 </header>
 
@@ -90,6 +126,36 @@ const links = [
     color: var(--hm-text-primary);
   }
 
+  /* The language switcher: four short codes, the current one filled. Stays on a phone too. */
+  .langs ul {
+    display: flex;
+    gap: 2px;
+  }
+
+  .langs a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: var(--hm-touch-target);
+    min-inline-size: 36px;
+    border-radius: var(--hm-radius-pill);
+    color: var(--hm-text-secondary);
+    font-size: var(--hm-type-caption-size);
+    font-weight: var(--hm-type-label-weight);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .langs a:hover {
+    background: var(--hm-surface-secondary);
+    color: var(--hm-text-primary);
+  }
+
+  .langs a[aria-current='true'] {
+    background: var(--hm-surface-secondary);
+    color: var(--hm-text-primary);
+  }
+
   .bar__cta {
     display: inline-flex;
     align-items: center;
@@ -113,8 +179,15 @@ const links = [
       display: none;
     }
 
-    .bar__cta {
+    .langs {
       margin-inline-start: auto;
+    }
+  }
+
+  /* The narrowest phones keep the languages and drop the button: the page itself says "coming soon". */
+  @media (max-width: 26rem) {
+    .bar__cta {
+      display: none;
     }
   }
 </style>

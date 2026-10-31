@@ -20,7 +20,17 @@ if (!existsSync(join(dist, "index.html"))) {
 
 // Every page the site publishes. Checks below run on all of them, so a new page is covered by
 // adding it here (and to PAGES in src/site.ts, which feeds the sitemap).
-const pages = ["index.html", "404.html", "privacy/index.html", "support/index.html"];
+const pages = [
+  "index.html",
+  "fr/index.html",
+  "de/index.html",
+  "it/index.html",
+  "404.html",
+  "privacy/index.html",
+  "support/index.html",
+];
+// The language each page is written in; the home page's versions must also name each other.
+const LANG_OF = { "fr/index.html": "fr", "de/index.html": "de", "it/index.html": "it" };
 
 for (const page of pages) {
   if (!existsSync(join(dist, page))) {
@@ -47,7 +57,15 @@ for (const [name, doc] of docs) one(`${name} <h1> count`, count(doc, /<h1[\s>]/g
 if (count(html, /<h2[\s>]/g) < 3) fail("index.html should have several <h2> section headings");
 
 for (const [name, doc] of docs) {
-  if (!/<html lang="en">/.test(doc)) fail(`${name}: <html> needs an explicit lang`);
+  const lang = LANG_OF[name] ?? "en";
+  if (!new RegExp(`<html lang="${lang}">`).test(doc)) fail(`${name}: <html> needs lang="${lang}"`);
+  if ((name.endsWith("index.html") && !name.includes("/")) || lang !== "en") {
+    for (const code of ["en", "fr", "de", "it", "x-default"]) {
+      if (!new RegExp(`rel="alternate" hreflang="${code}"`).test(doc)) {
+        fail(`${name}: missing its hreflang="${code}" alternate`);
+      }
+    }
+  }
   if (!/<title>[^<]+<\/title>/.test(doc)) fail(`${name}: missing a <title>`);
   if (!/name="description" content="[^"]{40,}/.test(doc)) {
     fail(`${name}: the meta description is missing or too thin to be useful`);

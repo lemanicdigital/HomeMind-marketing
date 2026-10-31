@@ -1,31 +1,23 @@
 ---
+import { type Lang, copyFor } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const c = copyFor(lang).privacy;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const points = [
-  {
-    title: 'Yours without an account',
-    body: 'The whole app works on your phone alone. Signing in only adds sync and sharing.',
-  },
-  {
-    title: 'No ads, no tracking',
-    body: 'No advertising, no analytics on your shopping, and nothing sold to anyone.',
-  },
-  {
-    title: 'Gone when you say so',
-    body: 'Delete your account in Settings and it is erased from the server and every phone.',
-  },
-];
+const points = c.points;
 ---
 
 <section class="section" id="privacy" aria-labelledby="privacy-title">
   <div class="shell privacy">
     <header class="section__head">
-      <p class="t-overline">Privacy</p>
-      <h2 class="t-headline" id="privacy-title">Your kitchen is nobody’s business</h2>
-      <p class="t-lead">
-        A household inventory knows a lot about a home. HomeMind keeps it on your phone first and
-        collects only what sync needs.
-      </p>
-      <p><a href={`${base}/privacy/`}>Read the privacy policy</a></p>
+      <p class="t-overline">{c.overline}</p>
+      <h2 class="t-headline" id="privacy-title">{c.title}</h2>
+      <p class="t-lead">{c.lead}</p>
+      <p><a href={`${base}/privacy/`} hreflang={lang === 'en' ? undefined : 'en'}>{c.policy}</a></p>
     </header>
 
     <ul class="privacy__points" role="list">

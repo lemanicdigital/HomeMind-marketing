@@ -11,7 +11,7 @@
 export const CONTACT = "";
 
 /** Pages listed in the sitemap, as paths under the site's base. */
-export const PAGES = ["", "support/", "privacy/"];
+export const PAGES = ["", "fr/", "de/", "it/", "support/", "privacy/"];
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 

@@ -1,0 +1,13 @@
+---
+import Home from '../../components/Home.astro';
+import { LANGS } from '../../i18n';
+
+/** /fr/, /de/, /it/: the home page in every language but English, which lives at the root. */
+export function getStaticPaths() {
+  return LANGS.filter((lang) => lang !== 'en').map((lang) => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props;
+---
+
+<Home lang={lang} />

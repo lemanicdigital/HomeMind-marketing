@@ -41,7 +41,10 @@ Node 22.22 or newer — Astro's minimum; `.nvmrc` names it for nvm, fnm and Volt
 ## Layout
 
 ```
-src/pages/index.astro              the page
+src/pages/index.astro              the page, in English (src/components/Home.astro)
+src/pages/[lang]/index.astro       the same page in French, German and Italian: /fr/, /de/, /it/
+src/copy/*.ts                      the page's words per language; en.ts defines the shape (Copy)
+src/i18n.ts                        languages, their URLs, French spacing, copyFor()
 src/pages/privacy.astro            the app's privacy policy, written from what the code keeps
 src/pages/support.astro            the App Store support URL, in the app's own words
 src/pages/sitemap.xml.ts           sitemap, from PAGES in src/site.ts
@@ -60,6 +63,16 @@ scripts/screens.py                 iPhone screenshots → public/screens/*.webp
 scripts/og.py                      draws public/og.png, the link-preview card
 astro.config.mjs                   static output, Pages base path
 ```
+
+## Languages
+
+The home page is in English, French, German and Italian, the same four languages as the app. Each
+is written for its readers rather than translated line by line, with prices in local form
+("14,99 €"). Every version names the others with `hreflang` (in the page and the sitemap), and the
+header switches between them with plain links. The site never guesses a language from the browser,
+because that would need JavaScript or a redirect. The support page and the privacy policy are still
+English only, and the other languages say so where they link to them. To add a sentence, add it to
+`src/copy/en.ts`; `astro check` then fails until the other three have it too.
 
 ## Design tokens
 
