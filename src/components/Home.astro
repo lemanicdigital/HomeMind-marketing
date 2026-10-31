@@ -1,0 +1,39 @@
+---
+import Page from '../layouts/Page.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteHero from './SiteHero.astro';
+import Features from './Features.astro';
+import Screens from './Screens.astro';
+import HowItWorks from './HowItWorks.astro';
+import Pricing from './Pricing.astro';
+import Privacy from './Privacy.astro';
+import Faq from './Faq.astro';
+import Launch from './Launch.astro';
+import SiteFooter from './SiteFooter.astro';
+
+import { LANGS, type Lang, copyFor, home } from '../i18n';
+
+/** The home page in one language; `pages/index.astro` is English, `pages/[lang]/` the others. */
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { meta } = copyFor(lang);
+const alternates = Object.fromEntries(LANGS.map((code) => [code, home(code)]));
+---
+
+<Page title={meta.title} description={meta.description} lang={lang} alternates={alternates}>
+  <SiteHeader lang={lang} alternates={alternates} />
+  <main id="main">
+    <SiteHero lang={lang} />
+    <Features lang={lang} />
+    <Screens lang={lang} />
+    <HowItWorks lang={lang} />
+    <Pricing lang={lang} />
+    <Privacy lang={lang} />
+    <Faq lang={lang} />
+    <Launch lang={lang} />
+  </main>
+  <SiteFooter lang={lang} />
+</Page>

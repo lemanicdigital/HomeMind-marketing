@@ -1,45 +1,20 @@
 ---
-const items = [
-  {
-    q: 'Why iPhone first?',
-    a: 'We would rather do one phone well than two halfway. Android is planned, and the app is built so it can follow without starting over.',
-  },
-  {
-    q: 'Do I need smart shelves, a scanner or a hub?',
-    a: 'No. Your iPhone’s camera reads barcodes, and typing always works too. A scanned code is used to look up the product’s name and nothing else.',
-  },
-  {
-    q: 'Where does my data live?',
-    a: 'On your phone, so the app works in a basement shop with no signal. Signing in is optional and adds a backup, a second phone and sharing. Synced data is kept on servers in the EU (Frankfurt).',
-  },
-  {
-    q: 'What happens if I delete my account?',
-    a: 'It is deleted on the server, every phone is signed out, and this phone’s copy is erased. A household you shared with someone stays with them; one you used alone goes with your account.',
-  },
-  {
-    q: 'How does sharing work?',
-    a: 'One person invites, the other enters a code. The code works once and expires after two days. Members can leave whenever they like; the owner can remove anyone.',
-  },
-  {
-    q: 'Will it cost money?',
-    a: 'Not on one phone: the whole app is free there, with no limits. Sync and sharing need our server, so they are HomeMind Household, €14.99 a year or €1.99 a month after a free month. One plan covers everyone in the household. No ads, no data resale, no analytics on your shopping.',
-  },
-  {
-    q: 'Can I try the beta?',
-    a: 'Not yet. The beta will open on TestFlight, and this page is where it will be announced.',
-  },
-  {
-    q: 'Why does this site have no cookies, fonts or analytics?',
-    a: 'A site about keeping track of your kitchen should not keep track of you. Nothing third-party loads here, and nothing is measured.',
-  },
-];
+import { type Lang, copyFor } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const c = copyFor(lang).faq;
+const items = c.items;
 ---
 
 <section class="section" id="faq" aria-labelledby="faq-title">
   <div class="shell stack">
     <header class="section__head section__head--center">
-      <p class="t-overline">FAQ</p>
-      <h2 class="t-headline" id="faq-title">Questions, answered</h2>
+      <p class="t-overline">{c.overline}</p>
+      <h2 class="t-headline" id="faq-title">{c.title}</h2>
     </header>
 
     <div class="faq faq--narrow">

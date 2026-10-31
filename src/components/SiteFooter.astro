@@ -1,31 +1,37 @@
 ---
 import Logo from './ui/Logo.astro';
-import { href } from '../site';
+import { type Lang, copyFor, englishPage, home } from '../i18n';
 
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const c = copyFor(lang).footer;
 const year = new Date().getFullYear();
 // Every link names its page: the footer is on /privacy/ and /support/ too.
 const columns = [
   {
-    title: 'Product',
+    title: c.product,
     links: [
-      { href: href('#features'), label: 'Features' },
-      { href: href('#how'), label: 'How it works' },
-      { href: href('#app'), label: 'Screens' },
+      { href: home(lang, '#features'), label: c.features },
+      { href: home(lang, '#how'), label: c.how },
+      { href: home(lang, '#app'), label: c.screens },
     ],
   },
   {
-    title: 'Help',
+    title: c.help,
     links: [
-      { href: href('support/'), label: 'Support' },
-      { href: href('#faq'), label: 'FAQ' },
-      { href: href('#launch'), label: 'Availability' },
+      { href: englishPage('support/'), label: `${c.support}${c.inEnglish}` },
+      { href: home(lang, '#faq'), label: c.faq },
+      { href: home(lang, '#launch'), label: c.availability },
     ],
   },
   {
-    title: 'Legal',
+    title: c.legal,
     links: [
-      { href: href('privacy/'), label: 'Privacy policy' },
-      { href: href('#privacy'), label: 'Our privacy promise' },
+      { href: englishPage('privacy/'), label: `${c.policy}${c.inEnglish}` },
+      { href: home(lang, '#privacy'), label: c.promise },
     ],
   },
 ];
@@ -35,9 +41,7 @@ const columns = [
   <div class="shell foot__grid">
     <div class="foot__brand">
       <p class="foot__name"><Logo size={28} /> HomeMind</p>
-      <p class="t-secondary">
-        The household inventory for iPhone. This site sets no cookies and runs no analytics.
-      </p>
+      <p class="t-secondary">{c.tagline}</p>
     </div>
     {
       columns.map((column) => (
@@ -55,7 +59,7 @@ const columns = [
     }
   </div>
   <div class="shell foot__base">
-    <p class="t-caption">© {year} HomeMind. All rights reserved.</p>
+    <p class="t-caption">© {year} HomeMind. {c.rights}</p>
   </div>
 </footer>
 

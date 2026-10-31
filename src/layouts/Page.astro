@@ -5,12 +5,21 @@ import '@fontsource-variable/inter/wght.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
 
+import { type Lang, OG_LOCALES, copyFor } from '../i18n';
+
 interface Props {
   title: string;
   description: string;
+  lang?: Lang;
+  /** This page in every language it exists in, for hreflang. English is also the x-default. */
+  alternates?: Partial<Record<Lang, string>>;
 }
 
 const { title, description } = Astro.props;
+const lang: Lang = Astro.props.lang ?? 'en';
+const alternates = Object.entries(Astro.props.alternates ?? {}) as [Lang, string][];
+const fallback = Astro.props.alternates?.en;
+const words = copyFor(lang).meta;
 // `Astro.url.pathname` already carries the site's base segment on a GitHub project page, so the
 // canonical URL is that path against the configured origin — joining BASE_URL in again would double it.
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
@@ -23,13 +32,23 @@ const ogImage = new URL(asset('og.png'), Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {
+      alternates.map(([code, path]) => (
+        <link rel="alternate" hreflang={code} href={new URL(path, Astro.site ?? Astro.url)} />
+      ))
+    }
+    {
+      fallback ? (
+        <link rel="alternate" hreflang="x-default" href={new URL(fallback, Astro.site ?? Astro.url)} />
+      ) : null
+    }
     <link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />
     <meta name="generator" content={Astro.generator} />
     <meta property="og:type" content="website" />
@@ -37,10 +56,8 @@ const ogImage = new URL(asset('og.png'), Astro.site ?? Astro.url);
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="HomeMind: know what’s at home before you shop. The app’s Home screen, listing what to use soon."
-    />
+    <meta property="og:image:alt" content={words.ogAlt} />
+    <meta property="og:locale" content={OG_LOCALES[lang]} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -51,7 +68,7 @@ const ogImage = new URL(asset('og.png'), Astro.site ?? Astro.url);
     <meta name="theme-color" content="#0C1210" media="(prefers-color-scheme: dark)" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{words.skip}</a>
     <slot />
   </body>
 </html>

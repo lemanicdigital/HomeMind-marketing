@@ -1,41 +1,35 @@
 ---
+import { type Lang, copyFor } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const c = copyFor(lang).pricing;
 /**
  * The two plans, matching the app (HomeMind-IOS: PlanScreen) and the server
  * (HomeMind-backend: domain/plan.ts, PLAN_PRODUCTS). Prices are App Store Connect's euro tier; the
  * App Store shows each country its own, which this page says rather than listing.
  */
-const free = [
-  'Everything on one iPhone, unlimited',
-  'Best-before dates, reminders and the shopping list',
-  'Barcode scanning with product names',
-  'Export all your data, any time',
-];
-const household = [
-  'Your items on all your phones, kept in step',
-  'Share the household: everyone you invite joins free',
-  'A copy off the phone, for a new or reset iPhone',
-];
 ---
 
 <section class="section" id="pricing" aria-labelledby="pricing-title">
   <div class="shell">
     <header class="section__head section__head--center">
-      <p class="t-overline">Pricing</p>
-      <h2 class="t-headline" id="pricing-title">Free on your phone. One plan for the household.</h2>
-      <p class="t-lead measure">
-        You pay only for what needs our server: sync and sharing. Everything else stays free, with no
-        limits and no ads.
-      </p>
+      <p class="t-overline">{c.overline}</p>
+      <h2 class="t-headline" id="pricing-title">{c.title}</h2>
+      <p class="t-lead measure">{c.lead}</p>
     </header>
 
     <div class="plans">
       <article class="plan" aria-labelledby="plan-free">
-        <h3 class="t-section" id="plan-free">Free</h3>
-        <p class="plan__price"><span class="t-numeric">€0</span></p>
-        <p class="t-secondary">For one phone, for good.</p>
+        <h3 class="t-section" id="plan-free">{c.free.name}</h3>
+        <p class="plan__price"><span class="t-numeric">{c.free.price}</span></p>
+        <p class="t-secondary">{c.free.tagline}</p>
         <ul class="list" role="list">
           {
-            free.map((line) => (
+            c.free.items.map((line) => (
               <li>
                 <span class="list__mark" aria-hidden="true">
                   ✓
@@ -49,21 +43,21 @@ const household = [
 
       <article class="plan plan--featured" aria-labelledby="plan-household">
         <div class="row">
-          <h3 class="t-section" id="plan-household">HomeMind Household</h3>
-          <span class="badge badge--primary">First month free</span>
+          <h3 class="t-section" id="plan-household">{c.household.name}</h3>
+          <span class="badge badge--primary">{c.household.badge}</span>
         </div>
         <p class="plan__price">
-          <span class="t-numeric">€14.99</span>
-          <span class="t-secondary">a year</span>
+          <span class="t-numeric">{c.household.price}</span>
+          <span class="t-secondary">{c.household.per}</span>
         </p>
-        <p class="t-secondary">Or €1.99 a month. One plan covers the whole household.</p>
+        <p class="t-secondary">{c.household.tagline}</p>
         <ul class="list" role="list">
           <li>
             <span class="list__mark" aria-hidden="true">✓</span>
-            <span class="t-body">Everything in Free</span>
+            <span class="t-body">{c.household.everything}</span>
           </li>
           {
-            household.map((line) => (
+            c.household.items.map((line) => (
               <li>
                 <span class="list__mark" aria-hidden="true">
                   ✓
@@ -76,11 +70,7 @@ const household = [
       </article>
     </div>
 
-    <p class="t-caption plans__note measure">
-      Bought in the app through the App Store, which shows the price in your currency. Cancel any
-      time in your Apple ID’s subscription settings. If a plan ends, sync pauses and nothing on your
-      phones is removed.
-    </p>
+    <p class="t-caption plans__note measure">{c.note}</p>
   </div>
 </section>
 
