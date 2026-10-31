@@ -1,20 +1,22 @@
 ---
+import Logo from './ui/Logo.astro';
+
 const links = [
-  { href: '#purpose', label: 'What it does' },
-  { href: '#design', label: 'Design' },
-  { href: '#status', label: 'Status' },
-  { href: '#faq', label: 'Questions' },
+  { href: '#features', label: 'Features' },
+  { href: '#app', label: 'Screens' },
+  { href: '#privacy', label: 'Privacy' },
+  { href: '#faq', label: 'FAQ' },
 ];
 ---
 
 <header class="bar">
-  <div class="shell row bar__inner">
+  <div class="shell bar__inner">
     <a class="brand" href="#top" aria-label="HomeMind — back to the top">
-      <span class="brand__mark" aria-hidden="true"></span>
+      <Logo size={28} />
       <span class="brand__name">HomeMind</span>
     </a>
-    <nav aria-label="Sections of this page">
-      <ul class="row nav">
+    <nav class="bar__nav" aria-label="Sections of this page">
+      <ul class="nav">
         {
           links.map((link) => (
             <li>
@@ -24,6 +26,7 @@ const links = [
         }
       </ul>
     </nav>
+    <a class="bar__cta" href="#launch">Coming soon</a>
   </div>
 </header>
 
@@ -34,47 +37,44 @@ const links = [
     z-index: 5;
     background: var(--hm-header-background);
     border-bottom: var(--hm-border-hairline) solid var(--hm-border-subtle);
-    /* A sticky bar needs its own air; the app's header is 44pt tall plus safe area. */
-    min-height: var(--hm-touch-target);
   }
 
   .bar__inner {
-    justify-content: space-between;
-    padding-block: var(--hm-space-inline);
+    display: flex;
+    align-items: center;
+    gap: var(--hm-space-card);
+    min-block-size: 64px;
   }
 
   .brand {
     display: inline-flex;
     align-items: center;
     gap: var(--hm-space-inline);
-    color: var(--hm-header-text, var(--hm-text-primary));
+    color: var(--hm-text-primary);
     text-decoration: none;
   }
 
-  .brand__mark {
-    inline-size: 22px;
-    block-size: 22px;
-    border-radius: 7px;
-    background: var(--hm-primary);
-    box-shadow: inset 0 0 0 2px var(--hm-primary-subtle);
+  .brand__name {
+    font-size: var(--hm-type-section-title-size);
+    font-weight: var(--hm-type-title-weight);
+    letter-spacing: -0.02em;
   }
 
-  .brand__name {
-    font-size: var(--hm-type-card-title-size);
-    font-weight: var(--hm-type-card-title-weight);
-    letter-spacing: -0.01em;
+  .bar__nav {
+    margin-inline-start: auto;
   }
 
   .nav {
-    gap: var(--hm-space-compact);
+    display: flex;
+    gap: var(--hm-space-micro);
   }
 
   .nav a {
     display: inline-flex;
     align-items: center;
     min-block-size: var(--hm-touch-target);
-    padding-inline: var(--hm-space-inline);
-    border-radius: var(--hm-radius-field);
+    padding-inline: var(--hm-space-component);
+    border-radius: var(--hm-radius-pill);
     color: var(--hm-text-secondary);
     font-size: var(--hm-type-label-size);
     font-weight: var(--hm-type-label-weight);
@@ -86,17 +86,31 @@ const links = [
     color: var(--hm-text-primary);
   }
 
-  @media (max-width: 35rem) {
-    .bar__inner {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
+  .bar__cta {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 40px;
+    padding-inline: var(--hm-space-card);
+    border-radius: var(--hm-radius-pill);
+    background: var(--hm-primary);
+    color: var(--hm-on-primary);
+    font-size: var(--hm-type-label-size);
+    font-weight: var(--hm-type-label-weight);
+    text-decoration: none;
+  }
+
+  .bar__cta:hover {
+    background: var(--hm-primary-pressed);
+  }
+
+  /* On a phone the section links go; the page is short enough to scroll, and the bar stays calm. */
+  @media (max-width: 48rem) {
+    .bar__nav {
+      display: none;
     }
 
-    .nav {
-      width: 100%;
-      overflow-x: auto;
-      scrollbar-width: none;
+    .bar__cta {
+      margin-inline-start: auto;
     }
   }
 </style>

@@ -1,0 +1,51 @@
+---
+import Logo from './ui/Logo.astro';
+---
+
+<section class="launch" id="launch" aria-labelledby="launch-title">
+  <div class="shell">
+    <div class="launch__panel">
+      <Logo size={64} />
+      <h2 class="t-headline" id="launch-title">Coming soon to iPhone</h2>
+      <p class="launch__body">
+        HomeMind is in testing now. A public beta through Apple’s TestFlight comes next, and it will
+        be announced right here. There is no mailing list to join.
+      </p>
+      <p class="launch__actions">
+        <a class="button button--primary" href="#faq">Questions and answers</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .launch {
+    padding-block: 0 clamp(48px, 8vw, 96px);
+  }
+
+  .launch__panel {
+    display: grid;
+    gap: var(--hm-space-card);
+    justify-items: center;
+    padding: clamp(40px, 7vw, 72px) var(--hm-space-card);
+    border-radius: var(--hm-radius-sheet);
+    background: var(--hm-primary-subtle);
+    color: var(--hm-on-primary-subtle);
+    text-align: center;
+  }
+
+  .launch__panel :global(.logo) {
+    border-radius: 14px;
+  }
+
+  .launch__body {
+    max-width: 36rem;
+    font-size: clamp(16px, 2.2vw, 19px);
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  .launch__actions {
+    margin-top: var(--hm-space-inline);
+  }
+</style>

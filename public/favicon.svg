@@ -1,8 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HomeMind mark">
-  <rect width="64" height="64" rx="16" fill="#245C4F" />
-  <g fill="none" stroke="#B9E4C9" stroke-width="4" stroke-linecap="round">
-    <path d="M16 26h32M16 38h32" />
-    <path d="M24 26v12M40 26v12" stroke-width="3" />
-  </g>
-  <circle cx="30" cy="20" r="3" fill="#B9E4C9" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HomeMind">
+  <rect width="64" height="64" rx="14" fill="#245C4F" />
+  <path d="M32 14.8 50 29.6V49.4H14V29.6Z" fill="#F8F7F2" stroke="#F8F7F2" stroke-width="4.5" stroke-linejoin="round" />
+  <path d="m24.5 37.4 5.4 5.4L40 32.6" fill="none" stroke="#245C4F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

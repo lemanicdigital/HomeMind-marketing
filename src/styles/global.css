@@ -116,6 +116,15 @@ svg {
   text-wrap: balance;
 }
 
+/* Home-page section headings: larger than the app's title role, as a product page needs. */
+.t-headline {
+  font-size: clamp(28px, 4.2vw, 42px);
+  line-height: 1.12;
+  font-weight: var(--hm-type-display-weight);
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
 .t-section {
   font-size: var(--hm-type-section-title-size);
   line-height: 1.35;
@@ -297,4 +306,51 @@ svg {
 .card--tinted .t-caption,
 .card--tinted .badge {
   color: var(--hm-text-secondary);
+}
+
+/* ---- buttons: shared by the hero and the closing call to action ---- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hm-space-inline);
+  min-block-size: 52px;
+  padding-inline: var(--hm-space-section);
+  border-radius: var(--hm-radius-pill);
+  border: 1px solid var(--hm-border-input);
+  background: var(--hm-surface);
+  color: var(--hm-text-primary);
+  font-size: var(--hm-type-button-size);
+  font-weight: var(--hm-type-button-weight);
+  text-decoration: none;
+  transition: background var(--hm-duration) var(--hm-ease-out);
+}
+
+.button:hover {
+  background: var(--hm-surface-secondary);
+}
+
+.button--primary {
+  background: var(--hm-primary);
+  border-color: var(--hm-primary);
+  color: var(--hm-on-primary);
+}
+
+.button--primary:hover {
+  background: var(--hm-primary-pressed);
+  border-color: var(--hm-primary-pressed);
+  color: var(--hm-on-primary);
+}
+
+/* A section heading block, centred: the product-page rhythm of overline, title, one line. */
+.section__head--center {
+  justify-items: center;
+  text-align: center;
+  margin-inline: auto;
+  max-width: 44rem;
+}
+
+.section--tinted {
+  background: var(--hm-surface-secondary);
 }

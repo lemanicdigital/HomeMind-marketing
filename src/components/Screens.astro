@@ -1,0 +1,124 @@
+---
+/**
+ * Real screenshots from the app, taken on an iPhone with the development "sample kitchen" loaded.
+ * Images come from scripts/screens.py: cropped below the status bar, 600 px wide (2x the size
+ * shown here), WebP. The page stays JavaScript-free: on a phone the row scrolls sideways with CSS
+ * scroll snapping.
+ */
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const screens = [
+  {
+    file: 'home',
+    title: 'Today, in one look',
+    body: 'What to use first and what is running out. Nothing else competes for attention.',
+    alt: 'The Home screen: a warning that three items need using or checking now, then a "Use soon" list with baby spinach expiring today, whole milk tomorrow, Greek yoghurt in three days and mature cheddar in nine.',
+  },
+  {
+    file: 'inventory',
+    title: 'Everything you have',
+    body: 'Grouped by kind, filtered to what is low or expiring, searchable, and scannable by barcode.',
+    alt: 'The Inventory screen in dark mode, filtered to expiring items: baby spinach, whole milk, Greek yoghurt, eggs and cheddar, each with where it is kept and when it expires.',
+  },
+  {
+    file: 'item',
+    title: 'One item, honestly',
+    body: 'How much is left, when you will need more and why, and each pack with its own date.',
+    alt: 'The detail screen for coffee beans: 250 grams on hand and marked running low, usually about 1000 grams every three weeks, needed again around 5 November, and one pack in the kitchen cupboard.',
+  },
+  {
+    file: 'shopping',
+    title: 'A list that fills itself',
+    body: 'Things that run out are added for you. Things running low are suggested, never forced.',
+    alt: 'The Shopping screen: bin bags, olive oil marked "Ran out", bananas and a sourdough loaf to buy, followed by suggestions for items that are running low.',
+  },
+];
+---
+
+<section class="section section--tinted" id="app" aria-labelledby="app-title">
+  <div class="shell">
+    <header class="section__head section__head--center">
+      <p class="t-overline">A look at the app</p>
+      <h2 class="t-headline" id="app-title">Calm screens for a chore nobody enjoys</h2>
+      <p class="t-lead">
+        Screenshots from the current build on an iPhone, with sample data. Light and dark follow your
+        phone.
+      </p>
+    </header>
+
+    <ul class="screens" role="list">
+      {
+        screens.map((screen) => (
+          <li class="screens__item">
+            <figure class="screens__figure">
+              <div class="screens__phone">
+                <img
+                  src={`${base}/screens/${screen.file}.webp`}
+                  alt={screen.alt}
+                  width="300"
+                  height="608"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="screens__caption">
+                <span class="t-card-title">{screen.title}</span>
+                <span class="t-secondary">{screen.body}</span>
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .screens {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 1fr);
+    gap: var(--hm-space-screen-gutter);
+    margin: 0;
+    padding: 0 0 var(--hm-space-component);
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+
+  /* On a phone, show one and a bit, so the row visibly continues. */
+  @media (max-width: 720px) {
+    .screens {
+      grid-auto-columns: 72%;
+    }
+  }
+
+  .screens__item {
+    scroll-snap-align: start;
+  }
+
+  .screens__figure {
+    display: grid;
+    gap: var(--hm-space-component);
+    margin: 0;
+  }
+
+  .screens__phone {
+    overflow: hidden;
+    border: 6px solid var(--hm-text-primary);
+    border-radius: 34px;
+    background: var(--hm-surface);
+  }
+
+  .screens__phone img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  .screens__caption {
+    display: grid;
+    gap: var(--hm-space-inline);
+  }
+</style>
