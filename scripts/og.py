@@ -3,16 +3,17 @@
     python scripts/og.py
 
 1200 x 630 (the size iMessage, Slack, WhatsApp and X all crop well), from the site's light tokens
-and the real Home screenshot in public/screens/home.webp. Re-run it when either changes. Uses
-Segoe UI from Windows; elsewhere pass font paths with --regular and --bold.
+and the real Home screenshot in public/screens/home.webp. Re-run it when either changes. Set in
+Inter, from the same variable font file the site serves (after `npm install`), so it draws the same
+on any machine.
 """
 
-import argparse
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1200, 630
+INTER = "node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2"
 # The light theme's roles in src/styles/tokens.css.
 BACKGROUND = "#F8F7F2"
 PRIMARY = "#245C4F"
@@ -44,12 +45,14 @@ def wrap(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, wid
     return lines + [line]
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--regular", default="C:/Windows/Fonts/segoeui.ttf")
-    parser.add_argument("--bold", default="C:/Windows/Fonts/segoeuib.ttf")
-    args = parser.parse_args()
+def inter(size: int, weight: int) -> ImageFont.FreeTypeFont:
+    """Inter at a weight on its variable axis (400 body, 700 the site's titles)."""
+    font = ImageFont.truetype(INTER, size)
+    font.set_variation_by_axes([weight])
+    return font
 
+
+def main() -> None:
     card = Image.new("RGB", (W, H), BACKGROUND)
     draw = ImageDraw.Draw(card)
 
@@ -69,21 +72,21 @@ def main() -> None:
 
     x = 80
     logo(draw, x, 84, 56)
-    draw.text((x + 76, 90), "HomeMind", font=ImageFont.truetype(args.bold, 38), fill=TEXT)
+    draw.text((x + 76, 90), "HomeMind", font=inter(38, 700), fill=TEXT)
 
-    title = ImageFont.truetype(args.bold, 60)
+    title = inter(60, 700)
     y = 196
     for line in wrap(draw, "Know what’s at home before you shop.", title, 700):
         draw.text((x, y), line, font=title, fill=TEXT)
         y += 72
 
-    body = ImageFont.truetype(args.regular, 28)
+    body = inter(28, 400)
     y += 18
     for line in wrap(draw, "What you have, what goes off first, and what to buy.", body, 720):
         draw.text((x, y), line, font=body, fill=TEXT_SECONDARY)
         y += 40
 
-    pill = ImageFont.truetype(args.bold, 24)
+    pill = inter(24, 600)
     label = "Coming soon to iPhone"
     pw = draw.textlength(label, font=pill) + 48
     draw.rounded_rectangle((x, 440, x + pw, 488), radius=24, fill=PRIMARY)

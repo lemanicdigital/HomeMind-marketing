@@ -18,9 +18,12 @@ body {
   margin: 0;
   background: var(--hm-background);
   color: var(--hm-text-primary);
+  /* Apple devices keep SF Pro, as in the app; everyone else gets Inter, which is close to it and
+     covers Latin (è à é ü ß ç œ), Greek and Cyrillic. Arabic gets its own face when an Arabic page
+     arrives. */
   font-family:
-    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    sans-serif;
+    -apple-system, BlinkMacSystemFont, "Inter Variable", "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   font-size: var(--hm-type-body-size);
   line-height: 1.6;
   letter-spacing: 0;

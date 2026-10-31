@@ -71,6 +71,12 @@ npm run tokens:sync   # → src/styles/tokens.css + vendor/design-system/tokens.
 npm run tokens:check  # fails if the stylesheet no longer matches the document it came from
 ```
 
+**Typeface.** Apple devices use their system font (SF Pro, as the app does); everything else gets
+**Inter**, self-hosted from `@fontsource-variable/inter` (SIL Open Font License): one variable file
+per script, each fetched only when a page uses its characters, so an Apple device fetches none.
+Arabic will need its own face (IBM Plex Sans Arabic or Noto Sans Arabic) when an Arabic page exists.
+`scripts/og.py` draws the link card in the same Inter file.
+
 - `src/styles/tokens.css` is **generated**, from `docs/design-system/tokens.md` in a HomeMind-IOS
   checkout (default `../HomeMind-IOS`; override with `--source <path>` or
   `HOMEMIND_DESIGN_SYSTEM_PATH`). Its header records the source commit and a content hash. Editing
