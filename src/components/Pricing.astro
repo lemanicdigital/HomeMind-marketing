@@ -1,0 +1,121 @@
+---
+/**
+ * The two plans, matching the app (HomeMind-IOS: PlanScreen) and the server
+ * (HomeMind-backend: domain/plan.ts, PLAN_PRODUCTS). Prices are App Store Connect's euro tier; the
+ * App Store shows each country its own, which this page says rather than listing.
+ */
+const free = [
+  'Everything on one iPhone, unlimited',
+  'Best-before dates, reminders and the shopping list',
+  'Barcode scanning with product names',
+  'Export all your data, any time',
+];
+const household = [
+  'Your items on all your phones, kept in step',
+  'Share the household: everyone you invite joins free',
+  'A copy off the phone, for a new or reset iPhone',
+];
+---
+
+<section class="section" id="pricing" aria-labelledby="pricing-title">
+  <div class="shell">
+    <header class="section__head section__head--center">
+      <p class="t-overline">Pricing</p>
+      <h2 class="t-headline" id="pricing-title">Free on your phone. One plan for the household.</h2>
+      <p class="t-lead measure">
+        You pay only for what needs our server: sync and sharing. Everything else stays free, with no
+        limits and no ads.
+      </p>
+    </header>
+
+    <div class="plans">
+      <article class="plan" aria-labelledby="plan-free">
+        <h3 class="t-section" id="plan-free">Free</h3>
+        <p class="plan__price"><span class="t-numeric">€0</span></p>
+        <p class="t-secondary">For one phone, for good.</p>
+        <ul class="list" role="list">
+          {
+            free.map((line) => (
+              <li>
+                <span class="list__mark" aria-hidden="true">
+                  ✓
+                </span>
+                <span class="t-body">{line}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="plan plan--featured" aria-labelledby="plan-household">
+        <div class="row">
+          <h3 class="t-section" id="plan-household">HomeMind Household</h3>
+          <span class="badge badge--primary">First month free</span>
+        </div>
+        <p class="plan__price">
+          <span class="t-numeric">€14.99</span>
+          <span class="t-secondary">a year</span>
+        </p>
+        <p class="t-secondary">Or €1.99 a month. One plan covers the whole household.</p>
+        <ul class="list" role="list">
+          <li>
+            <span class="list__mark" aria-hidden="true">✓</span>
+            <span class="t-body">Everything in Free</span>
+          </li>
+          {
+            household.map((line) => (
+              <li>
+                <span class="list__mark" aria-hidden="true">
+                  ✓
+                </span>
+                <span class="t-body">{line}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+
+    <p class="t-caption plans__note measure">
+      Bought in the app through the App Store, which shows the price in your currency. Cancel any
+      time in your Apple ID’s subscription settings. If a plan ends, sync pauses and nothing on your
+      phones is removed.
+    </p>
+  </div>
+</section>
+
+<style>
+  .plans {
+    display: grid;
+    gap: var(--hm-space-screen-gutter);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    max-inline-size: 52rem;
+    margin-inline: auto;
+  }
+
+  .plan {
+    display: grid;
+    gap: var(--hm-space-component);
+    align-content: start;
+    padding: var(--hm-space-section) var(--hm-space-card);
+    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    border-radius: var(--hm-radius-sheet);
+    background: var(--hm-surface);
+  }
+
+  .plan--featured {
+    border-color: var(--hm-primary);
+    box-shadow: inset 0 0 0 1px var(--hm-primary);
+  }
+
+  .plan__price {
+    display: flex;
+    gap: var(--hm-space-inline);
+    align-items: baseline;
+  }
+
+  .plans__note {
+    margin: var(--hm-space-section) auto 0;
+    text-align: center;
+  }
+</style>

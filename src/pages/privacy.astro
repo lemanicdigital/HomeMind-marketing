@@ -9,8 +9,8 @@ const home = `${base}/`;
 
 /**
  * The privacy policy for the TestFlight beta, written from what the code does (HomeMind-backend:
- * src/db/schema.ts, src/domain/retention.ts, the account deletion route; HomeMind-IOS: the sync
- * engine). If the code changes what it keeps, this page changes in the same pull request.
+ * src/db/schema.ts, src/domain/retention.ts, src/domain/plan.ts, the account deletion route;
+ * HomeMind-IOS: the sync engine, the plan screen). If the code changes what it keeps, this page changes in the same pull request.
  * The contact address is shared with the support page; see src/site.ts.
  */
 const UPDATED = '31 October 2026';
@@ -41,6 +41,15 @@ const sections = [
     body: [
       'Everyone in a household sees its contents and each other’s chosen names. Invite codes are stored only as a one-way hash, work once, expire after two days, and are deleted a week after that.',
       'A member can leave at any time, and the owner can remove a member. The household then disappears from their phone at its next sync.',
+    ],
+  },
+  {
+    id: 'subscription',
+    title: 'HomeMind Household (the subscription)',
+    body: [
+      'The plan is bought in the app through the App Store. Apple handles the payment; HomeMind never sees your card, your Apple ID or your billing address.',
+      'To know who has the plan, the server keeps what Apple signs for each subscription: its transaction identifier, which plan it is, when it was bought, when it runs out, and whether it was refunded. Apple also tells the server directly when a subscription renews, ends or is refunded.',
+      'A subscription is deleted a year after it runs out. If you delete your account first, the record stays without you, holding no personal details, because Apple keeps billing until you cancel it in your Apple ID’s settings; you can then restore it onto a new account.',
     ],
   },
   {
