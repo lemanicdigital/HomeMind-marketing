@@ -41,13 +41,14 @@ Node 22.22 or newer — Astro's minimum; `.nvmrc` names it for nvm, fnm and Volt
 ## Layout
 
 ```
-src/pages/index.astro              the page, in English (src/components/Home.astro)
-src/pages/[lang]/index.astro       the same page in French, German and Italian: /fr/, /de/, /it/
-src/copy/*.ts                      the page's words per language; en.ts defines the shape (Copy)
-src/i18n.ts                        languages, their URLs, French spacing, copyFor()
-src/pages/privacy.astro            the app's privacy policy, written from what the code keeps
-src/pages/support.astro            the App Store support URL, in the app's own words
-src/pages/sitemap.xml.ts           sitemap, from PAGES in src/site.ts
+src/pages/index.astro              the home page, in English (src/components/Home.astro)
+src/pages/support.astro            the App Store support URL, in the app's own words (SupportPage)
+src/pages/privacy.astro            the privacy policy, written from what the code keeps (PrivacyPage)
+src/pages/[lang]/*.astro           the same three pages in French, German and Italian: /fr/, /de/, /it/
+src/copy/*.ts                      the home page's words per language; en.ts defines the shape (Copy)
+src/copy/pages/*.ts                support and privacy words per language (PagesCopy)
+src/i18n.ts                        languages, their URLs, French spacing, copyFor(), pagesFor(), page()
+src/pages/sitemap.xml.ts           sitemap: every page in every language, with hreflang alternates
 src/pages/robots.txt.ts            robots.txt, pointing at the sitemap
 src/site.ts                        shared facts: CONTACT (owner to set), PAGES, href() for links
 src/pages/404.astro                served by GitHub Pages for unknown addresses
@@ -66,13 +67,18 @@ astro.config.mjs                   static output, Pages base path
 
 ## Languages
 
-The home page is in English, French, German and Italian, the same four languages as the app. Each
-is written for its readers rather than translated line by line, with prices in local form
-("14,99 €"). Every version names the others with `hreflang` (in the page and the sitemap), and the
-header switches between them with plain links. The site never guesses a language from the browser,
-because that would need JavaScript or a redirect. The support page and the privacy policy are still
-English only, and the other languages say so where they link to them. To add a sentence, add it to
-`src/copy/en.ts`; `astro check` then fails until the other three have it too.
+Every page is in English, French, German and Italian, the same four languages as the app. Each is
+written for its readers rather than translated line by line: prices in local form ("14,99 €"), _tu_
+in Italian and _du_ in German as in the app, French spacing before ? ! : ;. Every version names the
+others with `hreflang` (in the page and the sitemap), and the header switches between them with
+plain links. The site never guesses a language from the browser, because that would need JavaScript
+or a redirect. To add a sentence, add it to `src/copy/en.ts` or `src/copy/pages/en.ts`; `astro
+check` then fails until the other three have it too.
+
+The support page quotes the app's labels ("Settings → Sync → Sync now"), and each language quotes
+the app in that language (HomeMind-IOS `src/i18n/<lang>.ts`), so a renamed label in the app is a
+change here too. The privacy policy's English text is the original; the translations say so and
+link to it. A change to what the policy says is a change to all four files in the same PR.
 
 ## Design tokens
 

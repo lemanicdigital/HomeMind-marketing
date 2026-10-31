@@ -1,6 +1,6 @@
 ---
 import Logo from './ui/Logo.astro';
-import { LANGS, LANG_NAMES, type Lang, copyFor, englishPage, home } from '../i18n';
+import { LANGS, LANG_NAMES, type Lang, copyFor, home, page } from '../i18n';
 
 interface Props {
   lang?: Lang;
@@ -18,7 +18,7 @@ const links = [
   { href: home(lang, '#pricing'), label: c.pricing },
   { href: home(lang, '#privacy'), label: c.privacy },
   { href: home(lang, '#faq'), label: c.faq },
-  { href: englishPage('support/'), label: c.support },
+  { href: page(lang, 'support/'), label: c.support },
 ];
 
 const languages = LANGS.map((code) => ({

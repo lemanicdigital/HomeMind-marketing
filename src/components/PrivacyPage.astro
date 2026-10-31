@@ -1,0 +1,89 @@
+---
+import Page from '../layouts/Page.astro';
+import SiteFooter from './SiteFooter.astro';
+import SiteHeader from './SiteHeader.astro';
+import { LANGS, type Lang, OG_LOCALES, home, page, pagesFor } from '../i18n';
+import { CONTACT } from '../site';
+
+/**
+ * The privacy policy for the TestFlight beta, in each language, written from what the code does
+ * (HomeMind-backend: src/db/schema.ts, src/domain/retention.ts, src/domain/plan.ts, the account
+ * deletion route; HomeMind-IOS: the sync engine, the plan screen). If the code changes what it
+ * keeps, all four languages change in the same pull request (src/copy/pages/). The English text is
+ * the original, and the translations say so.
+ */
+interface Props {
+  lang: Lang;
+}
+
+const UPDATED = '2026-10-31';
+
+const lang: Lang = Astro.props.lang;
+const c = pagesFor(lang).privacy;
+const alternates = Object.fromEntries(LANGS.map((code) => [code, page(code, 'privacy/')]));
+const updated = new Intl.DateTimeFormat(OG_LOCALES[lang].replace('_', '-'), {
+  dateStyle: 'long',
+  timeZone: 'UTC',
+}).format(new Date(UPDATED));
+---
+
+<Page title={c.title} description={c.description} lang={lang} alternates={alternates}>
+  <SiteHeader lang={lang} alternates={alternates} />
+  <main id="main" class="policy">
+    <div class="shell stack">
+      <p class="t-overline">{c.overline} <time datetime={UPDATED}>{updated}</time></p>
+      <h1 class="t-display">{c.heading}</h1>
+      <p class="t-lead measure">{c.lead}</p>
+      {
+        c.original ? (
+          <p class="t-caption measure">
+            <a href={page('en', 'privacy/')} hreflang="en">
+              {c.original}
+            </a>
+          </p>
+        ) : null
+      }
+
+      {
+        c.sections.map((section) => (
+          <section class="stack stack--tight" id={section.id} aria-labelledby={`${section.id}-title`}>
+            <h2 class="t-title" id={`${section.id}-title`}>
+              {section.title}
+            </h2>
+            {section.body.map((paragraph) => (
+              <p class="t-secondary measure">{paragraph}</p>
+            ))}
+          </section>
+        ))
+      }
+
+      <section class="stack stack--tight" id="contact" aria-labelledby="contact-title">
+        <h2 class="t-title" id="contact-title">{c.questions}</h2>
+        {
+          CONTACT ? (
+            <p class="t-secondary measure">
+              {c.writeBefore}
+              <a href={`mailto:${CONTACT}`}>{CONTACT}</a>
+              {c.writeAfter}
+            </p>
+          ) : (
+            <p class="t-secondary measure">{c.noContact}</p>
+          )
+        }
+      </section>
+
+      <p><a class="button" href={home(lang)}>{c.back}</a></p>
+    </div>
+  </main>
+  <SiteFooter lang={lang} />
+</Page>
+
+<style>
+  .policy {
+    padding-block: clamp(36px, 8vw, 80px);
+  }
+
+  .policy section {
+    padding-top: var(--hm-space-card);
+  }
+</style>

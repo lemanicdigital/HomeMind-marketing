@@ -1,6 +1,6 @@
 ---
 import Logo from './ui/Logo.astro';
-import { type Lang, copyFor, englishPage, home } from '../i18n';
+import { type Lang, copyFor, home, page } from '../i18n';
 
 interface Props {
   lang?: Lang;
@@ -22,7 +22,7 @@ const columns = [
   {
     title: c.help,
     links: [
-      { href: englishPage('support/'), label: `${c.support}${c.inEnglish}` },
+      { href: page(lang, 'support/'), label: c.support },
       { href: home(lang, '#faq'), label: c.faq },
       { href: home(lang, '#launch'), label: c.availability },
     ],
@@ -30,7 +30,7 @@ const columns = [
   {
     title: c.legal,
     links: [
-      { href: englishPage('privacy/'), label: `${c.policy}${c.inEnglish}` },
+      { href: page(lang, 'privacy/'), label: c.policy },
       { href: home(lang, '#privacy'), label: c.promise },
     ],
   },
@@ -98,14 +98,21 @@ const columns = [
     letter-spacing: -0.02em;
   }
 
+  /* German compounds ("Datenschutzversprechen") are wider than a phone's column: let the column
+     shrink below its longest word, and break that word at a syllable in the page's language. */
   .foot__column {
     display: grid;
     gap: var(--hm-space-component);
+    grid-template-columns: minmax(0, 1fr);
     align-content: start;
+    min-width: 0;
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
 
   .foot__column ul {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--hm-space-inline);
   }
 

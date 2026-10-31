@@ -1,0 +1,13 @@
+---
+import SupportPage from '../../components/SupportPage.astro';
+import { LANGS } from '../../i18n';
+
+/** /fr/support/, /de/support/, /it/support/. */
+export function getStaticPaths() {
+  return LANGS.filter((lang) => lang !== 'en').map((lang) => ({ params: { lang }, props: { lang } }));
+}
+
+const { lang } = Astro.props;
+---
+
+<SupportPage lang={lang} />

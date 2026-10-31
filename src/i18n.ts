@@ -9,6 +9,10 @@ import { type Copy, en } from "./copy/en";
 import { de } from "./copy/de";
 import { fr } from "./copy/fr";
 import { it } from "./copy/it";
+import { type PagesCopy, en as pagesEn } from "./copy/pages/en";
+import { de as pagesDe } from "./copy/pages/de";
+import { fr as pagesFr } from "./copy/pages/fr";
+import { it as pagesIt } from "./copy/pages/it";
 import { href } from "./site";
 
 export const LANGS = ["en", "fr", "de", "it"] as const;
@@ -50,17 +54,29 @@ function mapStrings<T>(value: T, change: (text: string) => string): T {
 }
 
 const COPY: Record<Lang, Copy> = { en, fr: mapStrings(fr, typeset), de, it };
+const PAGES_COPY: Record<Lang, PagesCopy> = {
+  en: pagesEn,
+  fr: mapStrings(pagesFr, typeset),
+  de: pagesDe,
+  it: pagesIt,
+};
 
+/** The home page's words in `lang`. */
 export function copyFor(lang: Lang): Copy {
   return COPY[lang];
 }
 
-/** The home page in `lang`, plus an optional `#section`: "/", "/fr/", "/de/#pricing". */
-export function home(lang: Lang, hash = ""): string {
-  return href(lang === "en" ? hash : `${lang}/${hash}`);
+/** The support page's and privacy policy's words in `lang`. */
+export function pagesFor(lang: Lang): PagesCopy {
+  return PAGES_COPY[lang];
 }
 
-/** Pages that exist only in English so far; every language links to them. */
-export function englishPage(path: "support/" | "privacy/"): string {
-  return href(path);
+/** A page of the site in `lang`: page("fr", "support/") is "/fr/support/", English stays at the root. */
+export function page(lang: Lang, path: "" | "support/" | "privacy/", hash = ""): string {
+  return href(lang === "en" ? `${path}${hash}` : `${lang}/${path}${hash}`);
+}
+
+/** The home page in `lang`, plus an optional `#section`: "/", "/fr/", "/de/#pricing". */
+export function home(lang: Lang, hash = ""): string {
+  return page(lang, "", hash);
 }
