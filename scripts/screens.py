@@ -3,7 +3,8 @@
     python scripts/screens.py home=PATH item=PATH inventory=PATH shopping=PATH
 
 Each is cropped below the status bar (the clock and battery date a screenshot and say nothing
-about the app), scaled to 600 px wide, which is 2x the size the page shows it at, and saved as
+about the app), scaled to at most 600 px wide (2x the size the page shows it at; never enlarged,
+which would add size and no detail), and saved as
 WebP in public/screens/. The page sets width and height from these files' real size.
 """
 
@@ -22,12 +23,13 @@ def convert(name: str, source: Path) -> None:
     image = Image.open(source).convert("RGB")
     top = round(image.height * STATUS_BAR)
     image = image.crop((0, top, image.width, image.height))
-    height = round(image.height * WIDTH / image.width)
-    image = image.resize((WIDTH, height), Image.LANCZOS)
+    width = min(WIDTH, image.width)
+    height = round(image.height * width / image.width)
+    image = image.resize((width, height), Image.LANCZOS)
     OUT.mkdir(parents=True, exist_ok=True)
     target = OUT / f"{name}.webp"
     image.save(target, "WEBP", quality=80, method=6)
-    print(f"{target}  {WIDTH}x{height}  {target.stat().st_size // 1024} KB")
+    print(f"{target}  {width}x{height}  {target.stat().st_size // 1024} KB")
 
 
 if __name__ == "__main__":
