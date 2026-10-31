@@ -1,18 +1,24 @@
 ---
 import Logo from './ui/Logo.astro';
+
+import { type Lang, copyFor } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const c = copyFor(lang).launch;
 ---
 
 <section class="launch" id="launch" aria-labelledby="launch-title">
   <div class="shell">
     <div class="launch__panel">
       <Logo size={64} />
-      <h2 class="t-headline" id="launch-title">Coming soon to iPhone</h2>
-      <p class="launch__body">
-        HomeMind is in testing now. A public beta through Apple’s TestFlight comes next, and it will
-        be announced right here. There is no mailing list to join.
-      </p>
+      <h2 class="t-headline" id="launch-title">{c.title}</h2>
+      <p class="launch__body">{c.body}</p>
       <p class="launch__actions">
-        <a class="button button--primary" href="#faq">Questions and answers</a>
+        <a class="button button--primary" href="#faq">{c.action}</a>
       </p>
     </div>
   </div>

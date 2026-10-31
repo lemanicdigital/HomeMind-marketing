@@ -41,7 +41,10 @@ Node 22.22 or newer — Astro's minimum; `.nvmrc` names it for nvm, fnm and Volt
 ## Layout
 
 ```
-src/pages/index.astro              the page
+src/pages/index.astro              the page, in English (src/components/Home.astro)
+src/pages/[lang]/index.astro       the same page in French, German and Italian: /fr/, /de/, /it/
+src/copy/*.ts                      the page's words per language; en.ts defines the shape (Copy)
+src/i18n.ts                        languages, their URLs, French spacing, copyFor()
 src/pages/privacy.astro            the app's privacy policy, written from what the code keeps
 src/pages/support.astro            the App Store support URL, in the app's own words
 src/pages/sitemap.xml.ts           sitemap, from PAGES in src/site.ts
@@ -61,6 +64,16 @@ scripts/og.py                      draws public/og.png, the link-preview card
 astro.config.mjs                   static output, Pages base path
 ```
 
+## Languages
+
+The home page is in English, French, German and Italian, the same four languages as the app. Each
+is written for its readers rather than translated line by line, with prices in local form
+("14,99 €"). Every version names the others with `hreflang` (in the page and the sitemap), and the
+header switches between them with plain links. The site never guesses a language from the browser,
+because that would need JavaScript or a redirect. The support page and the privacy policy are still
+English only, and the other languages say so where they link to them. To add a sentence, add it to
+`src/copy/en.ts`; `astro check` then fails until the other three have it too.
+
 ## Design tokens
 
 Identity is owned by the design system in **HomeMind-IOS** — this site never defines a colour, a font
@@ -70,6 +83,12 @@ size or a spacing value of its own. Both generated files come from one command, 
 npm run tokens:sync   # → src/styles/tokens.css + vendor/design-system/tokens.md
 npm run tokens:check  # fails if the stylesheet no longer matches the document it came from
 ```
+
+**Typeface.** Apple devices use their system font (SF Pro, as the app does); everything else gets
+**Inter**, self-hosted from `@fontsource-variable/inter` (SIL Open Font License): one variable file
+per script, each fetched only when a page uses its characters, so an Apple device fetches none.
+Arabic will need its own face (IBM Plex Sans Arabic or Noto Sans Arabic) when an Arabic page exists.
+`scripts/og.py` draws the link card in the same Inter file.
 
 - `src/styles/tokens.css` is **generated**, from `docs/design-system/tokens.md` in a HomeMind-IOS
   checkout (default `../HomeMind-IOS`; override with `--source <path>` or
