@@ -1,160 +1,275 @@
 ---
 /**
- * The hero says what HomeMind is and, just as importantly, that it is not out yet. A landing page for
- * an unlaunched product should read like a statement of intent, not a waitlist funnel.
+ * What HomeMind is, in one look: the promise on the left, the real Home screen on the right. The two
+ * floating notes are drawn in HTML from the app's own badge styles, not baked into the image.
  */
-const tracks = [
-  { label: 'What is running low', note: 'by the size of your household, not a fixed number' },
-  { label: 'What expires soon', note: 'in days you can act on' },
-  { label: 'What to buy next', note: 'a list you can see the reasoning behind' },
-  { label: 'Who else is shopping', note: 'one shared household, on everyone’s phone' },
-];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const promises = ['Works offline', 'No ads, no tracking', 'Share with your household'];
 ---
 
 <section class="hero" id="top">
   <div class="shell hero__grid">
-    <div class="stack">
-      <span class="badge">
-        <span class="badge__dot" aria-hidden="true"></span>
-        In private development — no release date announced
-      </span>
-
-      <h1 class="t-display">The household’s stock, kept straight without a spreadsheet.</h1>
-
-      <p class="t-lead measure">
-        HomeMind is an iPhone app for the things you run out of: what you have, where it lives, when it
-        goes off, and what to buy next. It is built to work offline first, to need no smart hardware,
-        and to explain any number it shows you.
+    <div class="hero__copy">
+      <p class="hero__eyebrow">
+        <span class="hero__dot" aria-hidden="true"></span>
+        Coming soon to iPhone
       </p>
 
-      <ul class="list measure">
+      <h1 class="hero__title">Know what’s at home before you shop.</h1>
+
+      <p class="hero__lead">
+        HomeMind keeps track of what your household has, what goes off first and what is running
+        low, then writes the shopping list for you.
+      </p>
+
+      <p class="hero__actions">
+        <a class="button button--primary" href="#features">See how it works</a>
+        <a class="button" href="#app">View the app</a>
+      </p>
+
+      <ul class="hero__promises" role="list">
         {
-          tracks.map((item) => (
+          promises.map((promise) => (
             <li>
-              <span class="list__mark" aria-hidden="true">
-                ✓
-              </span>
-              <span>
-                <strong class="t-label">{item.label}</strong>
-                <br />
-                <span class="t-secondary">{item.note}</span>
-              </span>
+              <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+                <path d="m5 10.5 3.2 3.2L15 7" />
+              </svg>
+              {promise}
             </li>
           ))
         }
       </ul>
-
-      <p class="row">
-        <a class="button button--primary" href="#status">Where the build stands</a>
-        <a class="button" href="#app">See the app</a>
-      </p>
     </div>
 
-    <figure class="specimen card card--tinted">
-      <figcaption class="t-overline">Design system specimen — not the shipped app</figcaption>
-      <p class="t-caption">
-        Everything below is drawn from the tokens HomeMind is built with, so the page and the product
-        cannot drift apart.
-      </p>
-
-      <div class="specimen__row">
-        <div>
-          <p class="t-numeric">2 / 4</p>
-          <p class="t-label">bags of coffee</p>
-          <p class="t-caption">Running low · typical 4</p>
-        </div>
-        <span class="badge badge--primary">
-          <span class="badge__dot" aria-hidden="true"></span>
-          Expiring in 3 days
+    <div class="hero__visual">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__phone">
+        <img
+          src={`${base}/screens/home.webp`}
+          alt="HomeMind's Home screen: three items to use now, with baby spinach expiring today and whole milk tomorrow."
+          width="300"
+          height="608"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="note note--warning" aria-hidden="true">
+        <span class="note__icon">!</span>
+        <span>
+          <strong>Whole milk</strong>
+          <span>Expires tomorrow</span>
         </span>
       </div>
-
-      <div class="specimen__row">
-        <div>
-          <p class="t-secondary">Basmati rice 1&nbsp;kg</p>
-          <p class="t-caption">Pantry · 5 packs · best before 12 Mar 2027</p>
-        </div>
-        <span class="badge badge--success">
-          <span class="badge__dot" aria-hidden="true"></span>
-          In stock
+      <div class="note note--success" aria-hidden="true">
+        <svg viewBox="0 0 20 20" width="18" height="18"><path d="m5 10.5 3.2 3.2L15 7"></path></svg>
+        <span>
+          <strong>Olive oil</strong>
+          <span>Added to your list</span>
         </span>
       </div>
-
-      <div class="specimen__row">
-        <div>
-          <p class="t-secondary">Laundry detergent</p>
-          <p class="t-caption">Utility shelf · quantity not recorded</p>
-        </div>
-        <span class="badge badge--danger">
-          <span class="badge__dot" aria-hidden="true"></span>
-          Out of stock
-        </span>
-      </div>
-    </figure>
+    </div>
   </div>
 </section>
 
 <style>
   .hero {
-    padding-block: clamp(36px, 8vw, 80px) clamp(40px, 8vw, 72px);
+    overflow: hidden;
+    padding-block: clamp(40px, 7vw, 96px) clamp(48px, 8vw, 104px);
     background: var(--hm-background);
   }
 
   .hero__grid {
     display: grid;
-    gap: var(--hm-space-section);
-    align-items: start;
+    gap: clamp(48px, 7vw, 72px);
+    align-items: center;
   }
 
   @media (min-width: 60rem) {
     .hero__grid {
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.1fr 0.9fr;
     }
   }
 
-  .button {
+  .hero__copy {
+    display: grid;
+    gap: var(--hm-space-card);
+    justify-items: start;
+  }
+
+  .hero__eyebrow {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    min-block-size: 48px;
-    padding-inline: var(--hm-space-card);
-    border-radius: var(--hm-radius-field);
-    border: 1px solid var(--hm-border-input);
-    background: var(--hm-surface);
-    color: var(--hm-text-primary);
-    font-size: var(--hm-type-button-size);
-    font-weight: var(--hm-type-button-weight);
-    text-decoration: none;
-    transition: background var(--hm-duration) var(--hm-ease-out);
+    gap: var(--hm-space-inline);
+    padding: var(--hm-space-micro) var(--hm-space-component);
+    border: var(--hm-border-hairline) solid var(--hm-primary-border);
+    border-radius: var(--hm-radius-pill);
+    background: var(--hm-primary-subtle);
+    color: var(--hm-on-primary-subtle);
+    font-size: var(--hm-type-label-size);
+    font-weight: var(--hm-type-label-weight);
   }
 
-  .button:hover {
-    background: var(--hm-surface-secondary);
-  }
-
-  .button--primary {
+  .hero__dot {
+    inline-size: 8px;
+    block-size: 8px;
+    border-radius: 50%;
     background: var(--hm-primary);
-    border-color: var(--hm-primary);
-    color: var(--hm-on-primary);
   }
 
-  .button--primary:hover {
-    background: var(--hm-primary-pressed);
-    border-color: var(--hm-primary-pressed);
-    color: var(--hm-on-primary);
+  .hero__title {
+    max-width: 14ch;
+    font-size: clamp(38px, 6.4vw, 64px);
+    line-height: 1.04;
+    font-weight: var(--hm-type-display-weight);
+    letter-spacing: -0.035em;
+    text-wrap: balance;
   }
 
-  .specimen {
-    gap: var(--hm-space-card);
+  .hero__lead {
+    max-width: 34rem;
+    font-size: clamp(17px, 2.2vw, 21px);
+    line-height: 1.5;
+    color: var(--hm-text-secondary);
+    text-wrap: pretty;
   }
 
-  .specimen__row {
+  .hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--hm-space-inline);
+    gap: var(--hm-space-component);
+    margin-top: var(--hm-space-inline);
+  }
+
+  .hero__promises {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--hm-space-inline) var(--hm-space-card);
+    color: var(--hm-text-secondary);
+    font-size: var(--hm-type-body-secondary-size);
+  }
+
+  .hero__promises li {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    padding-top: var(--hm-space-card);
-    border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    gap: var(--hm-space-micro);
+  }
+
+  .hero__promises svg,
+  .note svg {
+    fill: none;
+    stroke: var(--hm-success);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ---- the phone and its notes ---- */
+
+  .hero__visual {
+    position: relative;
+    justify-self: center;
+    inline-size: min(100%, 320px);
+    padding-block: var(--hm-space-card);
+  }
+
+  .hero__glow {
+    position: absolute;
+    inset: -20% -40%;
+    background: radial-gradient(closest-side, var(--hm-primary-subtle), transparent);
+  }
+
+  .hero__phone {
+    position: relative;
+    overflow: hidden;
+    border: 9px solid var(--hm-text-primary);
+    border-radius: 46px;
+    background: var(--hm-surface);
+  }
+
+  .hero__phone img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  .note {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: var(--hm-space-inline);
+    padding: var(--hm-space-component) var(--hm-space-card) var(--hm-space-component)
+      var(--hm-space-component);
+    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    border-radius: var(--hm-radius-card);
+    background: var(--hm-surface);
+    font-size: var(--hm-type-caption-size);
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .note > span:last-child {
+    display: grid;
+    color: var(--hm-text-secondary);
+  }
+
+  .note strong {
+    color: var(--hm-text-primary);
+    font-size: var(--hm-type-label-size);
+  }
+
+  .note__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 26px;
+    block-size: 26px;
+    border-radius: 50%;
+    background: var(--hm-warning-subtle);
+    color: var(--hm-on-warning-subtle);
+    font-weight: var(--hm-type-title-weight);
+  }
+
+  .note--success svg {
+    box-sizing: content-box;
+    padding: 4px;
+    border-radius: 50%;
+    background: var(--hm-success-subtle);
+  }
+
+  .note--warning {
+    top: 22%;
+    left: -34%;
+  }
+
+  .note--success {
+    bottom: 18%;
+    right: -30%;
+  }
+
+  /* Narrow screens: keep the notes inside the page instead of hanging off the edge. */
+  @media (max-width: 40rem) {
+    .note--warning {
+      left: -8%;
+    }
+
+    .note--success {
+      right: -8%;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .note {
+      animation: rise 600ms var(--hm-ease-out) both;
+    }
+
+    .note--success {
+      animation-delay: 180ms;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
   }
 </style>

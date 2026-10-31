@@ -45,7 +45,7 @@ src/pages/index.astro              the page
 src/pages/privacy.astro            the app's privacy policy, written from what the code keeps
 src/pages/404.astro                served by GitHub Pages for unknown addresses
 src/layouts/Page.astro             document shell, metadata, canonical URL
-src/components/*.astro             header, hero, purpose, design specimen, status, FAQ, footer
+src/components/*.astro             header, hero, features, screens, how it works, privacy, FAQ, launch, footer
 src/styles/tokens.css              GENERATED — vendored design-system tokens (do not edit)
 src/styles/global.css              everything else, written against those tokens only
 vendor/design-system/tokens.md     GENERATED — verbatim copy of the design-system document

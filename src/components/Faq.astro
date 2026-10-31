@@ -37,12 +37,12 @@ const items = [
 
 <section class="section" id="faq" aria-labelledby="faq-title">
   <div class="shell stack">
-    <header class="section__head">
-      <p class="t-overline">Questions</p>
-      <h2 class="t-title" id="faq-title">Asked before we were ready to answer</h2>
+    <header class="section__head section__head--center">
+      <p class="t-overline">FAQ</p>
+      <h2 class="t-headline" id="faq-title">Questions, answered</h2>
     </header>
 
-    <div class="faq">
+    <div class="faq faq--narrow">
       {
         items.map((item) => (
           <details>
@@ -61,6 +61,11 @@ const items = [
 </section>
 
 <style>
+  .faq--narrow {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
   .faq {
     display: grid;
     gap: 0;

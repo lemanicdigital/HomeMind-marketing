@@ -1,0 +1,93 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const points = [
+  {
+    title: 'Yours without an account',
+    body: 'The whole app works on your phone alone. Signing in only adds sync and sharing.',
+  },
+  {
+    title: 'No ads, no tracking',
+    body: 'No advertising, no analytics on your shopping, and nothing sold to anyone.',
+  },
+  {
+    title: 'Gone when you say so',
+    body: 'Delete your account in Settings and it is erased from the server and every phone.',
+  },
+];
+---
+
+<section class="section" id="privacy" aria-labelledby="privacy-title">
+  <div class="shell privacy">
+    <header class="section__head">
+      <p class="t-overline">Privacy</p>
+      <h2 class="t-headline" id="privacy-title">Your kitchen is nobody’s business</h2>
+      <p class="t-lead">
+        A household inventory knows a lot about a home. HomeMind keeps it on your phone first and
+        collects only what sync needs.
+      </p>
+      <p><a href={`${base}/privacy/`}>Read the privacy policy</a></p>
+    </header>
+
+    <ul class="privacy__points" role="list">
+      {
+        points.map((point) => (
+          <li>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6Z M8.8 12l2.2 2.2 4.2-4.4" />
+            </svg>
+            <span>
+              <strong class="t-card-title">{point.title}</strong>
+              <span class="t-secondary">{point.body}</span>
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .privacy {
+    display: grid;
+    gap: var(--hm-space-section);
+    align-items: center;
+  }
+
+  @media (min-width: 60rem) {
+    .privacy {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .privacy .section__head {
+      margin-bottom: 0;
+    }
+  }
+
+  .privacy__points {
+    display: grid;
+    gap: var(--hm-space-card);
+    padding: var(--hm-space-section);
+    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    border-radius: var(--hm-radius-sheet);
+    background: var(--hm-surface);
+  }
+
+  .privacy__points li {
+    display: flex;
+    gap: var(--hm-space-component);
+  }
+
+  .privacy__points li > span {
+    display: grid;
+    gap: var(--hm-space-micro);
+  }
+
+  .privacy__points svg {
+    flex: none;
+    fill: none;
+    stroke: var(--hm-primary);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+/** The app icon's mark (a house with a tick), drawn from theme roles so it follows dark mode. */
+interface Props {
+  size?: number;
+}
+const { size = 28 } = Astro.props;
+---
+
+<svg class="logo" viewBox="0 0 64 64" width={size} height={size} aria-hidden="true">
+  <rect class="logo__tile" width="64" height="64" rx="14"></rect>
+  <path class="logo__house" d="M32 14.8 50 29.6V49.4H14V29.6Z"></path>
+  <path class="logo__tick" d="m24.5 37.4 5.4 5.4L40 32.6"></path>
+</svg>
+
+<style>
+  .logo {
+    flex: none;
+  }
+
+  .logo__tile {
+    fill: var(--hm-primary);
+  }
+
+  .logo__house {
+    fill: var(--hm-on-primary);
+    stroke: var(--hm-on-primary);
+    stroke-width: 4.5;
+    stroke-linejoin: round;
+  }
+
+  .logo__tick {
+    fill: none;
+    stroke: var(--hm-primary);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

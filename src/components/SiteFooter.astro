@@ -1,26 +1,127 @@
 ---
+import Logo from './ui/Logo.astro';
+
 const year = new Date().getFullYear();
-const privacy = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/privacy/`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const columns = [
+  {
+    title: 'Product',
+    links: [
+      { href: '#features', label: 'Features' },
+      { href: '#how', label: 'How it works' },
+      { href: '#app', label: 'Screens' },
+    ],
+  },
+  {
+    title: 'Help',
+    links: [
+      { href: '#faq', label: 'FAQ' },
+      { href: '#launch', label: 'Availability' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { href: `${base}/privacy/`, label: 'Privacy policy' },
+      { href: '#privacy', label: 'Our privacy promise' },
+    ],
+  },
+];
 ---
 
 <footer class="foot">
-  <div class="shell stack stack--tight">
-    <p class="t-label">HomeMind</p>
-    <p class="t-caption measure">
-      A household inventory app for iPhone, in private development. This page states the state of the
-      project rather than promising a date, and it sets no cookies, loads no third-party fonts and runs
-      no analytics.
-    </p>
-    <p class="t-caption">
-      © {year} HomeMind · <a href={privacy}>Privacy</a> · Design system and app: iOS repository.
-    </p>
+  <div class="shell foot__grid">
+    <div class="foot__brand">
+      <p class="foot__name"><Logo size={28} /> HomeMind</p>
+      <p class="t-secondary">
+        The household inventory for iPhone. This site sets no cookies and runs no analytics.
+      </p>
+    </div>
+    {
+      columns.map((column) => (
+        <nav class="foot__column" aria-label={column.title}>
+          <p class="t-overline">{column.title}</p>
+          <ul role="list">
+            {column.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+  <div class="shell foot__base">
+    <p class="t-caption">© {year} HomeMind. All rights reserved.</p>
   </div>
 </footer>
 
 <style>
   .foot {
-    padding-block: var(--hm-space-section);
+    padding-block: var(--hm-space-section) var(--hm-space-card);
     background: var(--hm-surface-secondary);
     border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  }
+
+  .foot__grid {
+    display: grid;
+    gap: var(--hm-space-section);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  @media (min-width: 60rem) {
+    .foot__grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  .foot__brand {
+    display: grid;
+    gap: var(--hm-space-inline);
+    align-content: start;
+    max-width: 22rem;
+  }
+
+  .foot__name {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--hm-space-inline);
+    font-size: var(--hm-type-section-title-size);
+    font-weight: var(--hm-type-title-weight);
+    letter-spacing: -0.02em;
+  }
+
+  .foot__column {
+    display: grid;
+    gap: var(--hm-space-component);
+    align-content: start;
+  }
+
+  .foot__column ul {
+    display: grid;
+    gap: var(--hm-space-inline);
+  }
+
+  .foot__column a {
+    color: var(--hm-text-secondary);
+    font-size: var(--hm-type-body-secondary-size);
+    text-decoration: none;
+  }
+
+  .foot__column a:hover {
+    color: var(--hm-text-primary);
+    text-decoration: underline;
+  }
+
+  .foot__base {
+    margin-top: var(--hm-space-section);
+    padding-top: var(--hm-space-card);
+    border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  }
+
+  /* On a tinted footer, tertiary text drops below 4.5:1; use the secondary role instead. */
+  .foot__base .t-caption {
+    color: var(--hm-text-secondary);
   }
 </style>
