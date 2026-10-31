@@ -151,7 +151,7 @@ export const de: Copy = {
     overline: "Datenschutz",
     title: "Deine Küche geht niemanden etwas an",
     lead: "Ein Haushaltsinventar weiß viel über ein Zuhause. HomeMind behält es zuerst auf deinem Telefon und erhebt nur, was die Synchronisierung braucht.",
-    policy: "Datenschutzerklärung lesen (auf Englisch)",
+    policy: "Datenschutzerklärung lesen",
     points: [
       {
         title: "Deins, ohne Konto",
@@ -228,9 +228,8 @@ export const de: Copy = {
     support: "Hilfe",
     faq: "FAQ",
     availability: "Verfügbarkeit",
-    policy: "Datenschutzerklärung",
-    promise: "Unser Datenschutzversprechen",
+    policy: "Datenschutz\u00ADerklärung",
+    promise: "Unser Datenschutz\u00ADversprechen",
     rights: "Alle Rechte vorbehalten.",
-    inEnglish: " (auf Englisch)",
   },
 };

@@ -232,8 +232,6 @@ export const en = {
     policy: "Privacy policy",
     promise: "Our privacy promise",
     rights: "All rights reserved.",
-    /** After a link to a page that is only in English so far (support, privacy policy). */
-    inEnglish: "",
   },
 };
 

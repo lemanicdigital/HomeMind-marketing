@@ -1,0 +1,118 @@
+---
+import Page from '../layouts/Page.astro';
+import SiteFooter from './SiteFooter.astro';
+import SiteHeader from './SiteHeader.astro';
+import { LANGS, type Lang, home, page, pagesFor } from '../i18n';
+import { CONTACT } from '../site';
+
+/**
+ * The App Store's support URL, in each language. Every answer quotes the app's own labels in that
+ * language (src/copy/pages/<lang>.ts), so they must change when the app's do.
+ */
+interface Props {
+  lang: Lang;
+}
+
+const lang: Lang = Astro.props.lang;
+const c = pagesFor(lang).support;
+const alternates = Object.fromEntries(LANGS.map((code) => [code, page(code, 'support/')]));
+---
+
+<Page title={c.title} description={c.description} lang={lang} alternates={alternates}>
+  <SiteHeader lang={lang} alternates={alternates} />
+  <main id="main" class="support">
+    <div class="shell stack">
+      <p class="t-overline">{c.overline}</p>
+      <h1 class="t-display">{c.heading}</h1>
+      <p class="t-lead measure">{c.lead}</p>
+
+      <nav aria-label={c.topicsLabel}>
+        <ul class="topics" role="list">
+          {
+            c.topics.map((topic) => (
+              <li>
+                <a href={`#${topic.id}`}>{topic.title}</a>
+              </li>
+            ))
+          }
+          <li><a href="#contact">{c.contact}</a></li>
+        </ul>
+      </nav>
+
+      {
+        c.topics.map((topic) => (
+          <section class="stack stack--tight" id={topic.id} aria-labelledby={`${topic.id}-title`}>
+            <h2 class="t-title" id={`${topic.id}-title`}>
+              {topic.title}
+            </h2>
+            <ul class="steps" role="list">
+              {topic.steps.map((step) => (
+                <li class="t-secondary measure">{step}</li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+
+      <section class="stack stack--tight" id="contact" aria-labelledby="contact-title">
+        <h2 class="t-title" id="contact-title">{c.contact}</h2>
+        {
+          CONTACT ? (
+            <p class="t-secondary measure">
+              {c.writeBefore}
+              <a href={`mailto:${CONTACT}`}>{CONTACT}</a>
+              {c.writeAfter}
+            </p>
+          ) : (
+            <p class="t-secondary measure">{c.noContact}</p>
+          )
+        }
+        <p class="t-secondary measure">
+          {c.policyBefore}<a href={page(lang, 'privacy/')}>{c.policyLink}</a>{c.policyAfter}
+        </p>
+      </section>
+
+      <p><a class="button" href={home(lang)}>{c.back}</a></p>
+    </div>
+  </main>
+  <SiteFooter lang={lang} />
+</Page>
+
+<style>
+  .support {
+    padding-block: clamp(36px, 8vw, 80px);
+  }
+
+  .support section {
+    padding-top: var(--hm-space-card);
+  }
+
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--hm-space-inline);
+  }
+
+  .topics a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--hm-touch-target);
+    padding-inline: var(--hm-space-component);
+    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    border-radius: var(--hm-radius-pill);
+    color: var(--hm-text-primary);
+    font-size: var(--hm-type-label-size);
+    text-decoration: none;
+  }
+
+  .topics a:hover {
+    background: var(--hm-surface-secondary);
+  }
+
+  .steps {
+    display: grid;
+    gap: var(--hm-space-inline);
+    padding-inline-start: var(--hm-space-card);
+    list-style: disc;
+  }
+</style>

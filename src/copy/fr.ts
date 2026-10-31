@@ -154,7 +154,7 @@ export const fr: Copy = {
     overline: "Confidentialité",
     title: "Votre cuisine ne regarde que vous",
     lead: "Un inventaire du foyer en dit long sur une maison. HomeMind le garde d’abord sur votre téléphone et ne collecte que ce dont la synchronisation a besoin.",
-    policy: "Lire la politique de confidentialité (en anglais)",
+    policy: "Lire la politique de confidentialité",
     points: [
       {
         title: "À vous, sans compte",
@@ -234,6 +234,5 @@ export const fr: Copy = {
     policy: "Politique de confidentialité",
     promise: "Notre engagement",
     rights: "Tous droits réservés.",
-    inEnglish: " (en anglais)",
   },
 };

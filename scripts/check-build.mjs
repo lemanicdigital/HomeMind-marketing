@@ -19,18 +19,16 @@ if (!existsSync(join(dist, "index.html"))) {
 }
 
 // Every page the site publishes. Checks below run on all of them, so a new page is covered by
-// adding it here (and to PAGES in src/site.ts, which feeds the sitemap).
+// adding it here (and to PATHS in src/pages/sitemap.xml.ts).
+const LANGS = ["en", "fr", "de", "it"];
 const pages = [
-  "index.html",
-  "fr/index.html",
-  "de/index.html",
-  "it/index.html",
   "404.html",
-  "privacy/index.html",
-  "support/index.html",
+  ...["index.html", "support/index.html", "privacy/index.html"].flatMap((page) =>
+    LANGS.map((lang) => (lang === "en" ? page : `${lang}/${page}`)),
+  ),
 ];
-// The language each page is written in; the home page's versions must also name each other.
-const LANG_OF = { "fr/index.html": "fr", "de/index.html": "de", "it/index.html": "it" };
+// The language a page is written in, from its folder: fr/support/index.html is French.
+const langOf = (page) => (LANGS.includes(page.split("/")[0]) ? page.split("/")[0] : "en");
 
 for (const page of pages) {
   if (!existsSync(join(dist, page))) {
@@ -57,10 +55,11 @@ for (const [name, doc] of docs) one(`${name} <h1> count`, count(doc, /<h1[\s>]/g
 if (count(html, /<h2[\s>]/g) < 3) fail("index.html should have several <h2> section headings");
 
 for (const [name, doc] of docs) {
-  const lang = LANG_OF[name] ?? "en";
+  const lang = langOf(name);
   if (!new RegExp(`<html lang="${lang}">`).test(doc)) fail(`${name}: <html> needs lang="${lang}"`);
-  if ((name.endsWith("index.html") && !name.includes("/")) || lang !== "en") {
-    for (const code of ["en", "fr", "de", "it", "x-default"]) {
+  // Every page but the 404 exists in every language, and must say so.
+  if (name !== "404.html") {
+    for (const code of [...LANGS, "x-default"]) {
       if (!new RegExp(`rel="alternate" hreflang="${code}"`).test(doc)) {
         fail(`${name}: missing its hreflang="${code}" alternate`);
       }
