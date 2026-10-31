@@ -1,5 +1,6 @@
 ---
 const year = new Date().getFullYear();
+const privacy = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/privacy/`;
 ---
 
 <footer class="foot">
@@ -10,7 +11,9 @@ const year = new Date().getFullYear();
       project rather than promising a date, and it sets no cookies, loads no third-party fonts and runs
       no analytics.
     </p>
-    <p class="t-caption">© {year} HomeMind · Design system and app: iOS repository.</p>
+    <p class="t-caption">
+      © {year} HomeMind · <a href={privacy}>Privacy</a> · Design system and app: iOS repository.
+    </p>
   </div>
 </footer>
 

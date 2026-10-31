@@ -1,6 +1,6 @@
 # HomeMind — marketing
 
-The public HomeMind website: one landing page, static HTML and CSS, no JavaScript shipped to the
+The public HomeMind website: one landing page and a privacy policy, static HTML and CSS, no JavaScript shipped to the
 browser, no third-party requests, no analytics, no cookies.
 
 Astro is the build tool (static output), not a runtime: `astro build` emits `dist/` and the browser
@@ -42,6 +42,7 @@ Node 22.22 or newer — Astro's minimum; `.nvmrc` names it for nvm, fnm and Volt
 
 ```
 src/pages/index.astro              the page
+src/pages/privacy.astro            the app's privacy policy, written from what the code keeps
 src/pages/404.astro                served by GitHub Pages for unknown addresses
 src/layouts/Page.astro             document shell, metadata, canonical URL
 src/components/*.astro             header, hero, purpose, design specimen, status, FAQ, footer
@@ -109,7 +110,8 @@ only the Astro pipeline can publish.
 The site is configured for a project page (`site: https://lemanicdigital.github.io`,
 `base: /HomeMind-marketing`); if it moves to a custom domain, update both in `astro.config.mjs`, adjust
 `isOwnSite()` in `scripts/check-build.mjs`, and add `public/CNAME`. There is deliberately **no sitemap
-and no RSS feed**: the site is one page plus a 404 that says so.
+and no RSS feed**: the site is one page, the privacy policy (`/privacy/`, the URL App Store Connect asks for) and a
+404 that says so.
 
 An `og:image` is the one deliberate absence in the page's metadata: when one is added, it should be a
 rendered design-system card, not a stock image. Like the custom domain above, that is an open owner
