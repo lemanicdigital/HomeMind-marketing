@@ -1,29 +1,31 @@
 ---
 import Logo from './ui/Logo.astro';
+import { href } from '../site';
 
 const year = new Date().getFullYear();
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Every link names its page: the footer is on /privacy/ and /support/ too.
 const columns = [
   {
     title: 'Product',
     links: [
-      { href: '#features', label: 'Features' },
-      { href: '#how', label: 'How it works' },
-      { href: '#app', label: 'Screens' },
+      { href: href('#features'), label: 'Features' },
+      { href: href('#how'), label: 'How it works' },
+      { href: href('#app'), label: 'Screens' },
     ],
   },
   {
     title: 'Help',
     links: [
-      { href: '#faq', label: 'FAQ' },
-      { href: '#launch', label: 'Availability' },
+      { href: href('support/'), label: 'Support' },
+      { href: href('#faq'), label: 'FAQ' },
+      { href: href('#launch'), label: 'Availability' },
     ],
   },
   {
     title: 'Legal',
     links: [
-      { href: `${base}/privacy/`, label: 'Privacy policy' },
-      { href: '#privacy', label: 'Our privacy promise' },
+      { href: href('privacy/'), label: 'Privacy policy' },
+      { href: href('#privacy'), label: 'Our privacy promise' },
     ],
   },
 ];

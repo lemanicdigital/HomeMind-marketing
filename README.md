@@ -1,6 +1,6 @@
 # HomeMind — marketing
 
-The public HomeMind website: one landing page and a privacy policy, static HTML and CSS, no JavaScript shipped to the
+The public HomeMind website: a landing page, support and a privacy policy, static HTML and CSS, no JavaScript shipped to the
 browser, no third-party requests, no analytics, no cookies.
 
 Astro is the build tool (static output), not a runtime: `astro build` emits `dist/` and the browser
@@ -43,6 +43,10 @@ Node 22.22 or newer — Astro's minimum; `.nvmrc` names it for nvm, fnm and Volt
 ```
 src/pages/index.astro              the page
 src/pages/privacy.astro            the app's privacy policy, written from what the code keeps
+src/pages/support.astro            the App Store support URL, in the app's own words
+src/pages/sitemap.xml.ts           sitemap, from PAGES in src/site.ts
+src/pages/robots.txt.ts            robots.txt, pointing at the sitemap
+src/site.ts                        shared facts: CONTACT (owner to set), PAGES, href() for links
 src/pages/404.astro                served by GitHub Pages for unknown addresses
 src/layouts/Page.astro             document shell, metadata, canonical URL
 src/components/*.astro             header, hero, features, screens, how it works, privacy, FAQ, launch, footer
@@ -51,7 +55,9 @@ src/styles/global.css              everything else, written against those tokens
 vendor/design-system/tokens.md     GENERATED — verbatim copy of the design-system document
 scripts/sync-design-tokens.mjs     regenerate both from a HomeMind-IOS checkout
 scripts/audit-styles.mjs           fail if authored CSS contains a colour literal
-scripts/check-build.mjs            assert the built page keeps its own promises
+scripts/check-build.mjs            assert every built page keeps its promises and its links resolve
+scripts/screens.py                 iPhone screenshots → public/screens/*.webp
+scripts/og.py                      draws public/og.png, the link-preview card
 astro.config.mjs                   static output, Pages base path
 ```
 
