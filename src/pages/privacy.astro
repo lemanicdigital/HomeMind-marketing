@@ -1,6 +1,8 @@
 ---
 import Page from '../layouts/Page.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { CONTACT } from '../site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const home = `${base}/`;
@@ -9,11 +11,8 @@ const home = `${base}/`;
  * The privacy policy for the TestFlight beta, written from what the code does (HomeMind-backend:
  * src/db/schema.ts, src/domain/retention.ts, the account deletion route; HomeMind-IOS: the sync
  * engine). If the code changes what it keeps, this page changes in the same pull request.
- *
- * CONTACT is the owner's to set: until it is, the page says so rather than inventing an address,
- * and it must not be given to App Store Connect.
+ * The contact address is shared with the support page; see src/site.ts.
  */
-const CONTACT = '';
 const UPDATED = '31 October 2026';
 
 const sections = [
@@ -75,6 +74,7 @@ const sections = [
   title="Privacy — HomeMind"
   description="What the HomeMind iPhone app keeps on your phone, what its server keeps when you sign in, for how long, and how to delete it."
 >
+  <SiteHeader />
   <main id="main" class="policy">
     <div class="shell stack">
       <p class="t-overline">Privacy policy · updated {UPDATED}</p>

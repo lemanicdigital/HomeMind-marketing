@@ -1,0 +1,163 @@
+---
+import Page from '../layouts/Page.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { CONTACT, href } from '../site';
+
+/**
+ * The App Store's support URL. Every answer names the app's own labels (HomeMind-IOS:
+ * SettingsScreen, SyncSettings, ReminderSettings), so they must change when those do.
+ */
+const topics = [
+  {
+    id: 'start',
+    title: 'Getting started',
+    steps: [
+      'Tap Add item on Home or Inventory. Only the name is needed; the amount, where it is kept and the best-before date can come later.',
+      'To add something with a barcode, tap the barcode button in Inventory’s search field and point the camera at the pack. Next time, scanning the same pack opens the item.',
+      'When you buy more, open the item and tap Add a pack, so each pack keeps its own best-before date.',
+    ],
+  },
+  {
+    id: 'reminders',
+    title: 'Reminders don’t arrive',
+    steps: [
+      'In HomeMind: Settings → Reminders → turn on “Remind me before things expire”, and choose the time.',
+      'In the iPhone’s Settings → Notifications → HomeMind, allow notifications. If HomeMind says notifications are off, its Open Settings button goes straight there.',
+      'Reminders only cover items with a best-before date.',
+    ],
+  },
+  {
+    id: 'barcode',
+    title: 'A barcode isn’t recognised',
+    steps: [
+      'Product names come from Open Food Facts, a free database. Not every product is in it, and the lookup needs you to be signed in.',
+      'If nothing is found, type the name you use. The barcode is still saved, so the next scan finds your item.',
+    ],
+  },
+  {
+    id: 'sync',
+    title: 'Sharing and another phone',
+    steps: [
+      'Sign in with Apple in Settings → Sync → Use more than one phone. Without signing in, everything stays on this phone only.',
+      'To share your household: Settings → Sharing → Invite someone, and send them the code. It works once, for two days.',
+      'If a change doesn’t appear on the other phone, tap Settings → Sync → Sync now. Anything the server refused is listed under “Couldn’t be saved”, with the reason.',
+    ],
+  },
+  {
+    id: 'data',
+    title: 'Your data',
+    steps: [
+      'Settings → Your data → Export everything gives you every item, pack, history entry and list entry as a JSON file.',
+      'Settings → Sync → Delete account deletes your account from the server and erases this phone’s copy. A household you shared stays with the others.',
+      'The privacy policy lists exactly what is kept, where, and for how long.',
+    ],
+  },
+];
+---
+
+<Page
+  title="Support — HomeMind"
+  description="Help with the HomeMind iPhone app: adding items, reminders, barcodes, sharing a household, exporting or deleting your data, and how to reach us."
+>
+  <SiteHeader />
+  <main id="main" class="support">
+    <div class="shell stack">
+      <p class="t-overline">Support</p>
+      <h1 class="t-display">How can we help?</h1>
+      <p class="t-lead measure">
+        Answers to the questions people ask most, using the app’s own words. If yours isn’t here, write
+        to us.
+      </p>
+
+      <nav aria-label="Topics on this page">
+        <ul class="topics" role="list">
+          {
+            topics.map((topic) => (
+              <li>
+                <a href={`#${topic.id}`}>{topic.title}</a>
+              </li>
+            ))
+          }
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      {
+        topics.map((topic) => (
+          <section class="stack stack--tight" id={topic.id} aria-labelledby={`${topic.id}-title`}>
+            <h2 class="t-title" id={`${topic.id}-title`}>
+              {topic.title}
+            </h2>
+            <ul class="steps" role="list">
+              {topic.steps.map((step) => (
+                <li class="t-secondary measure">{step}</li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+
+      <section class="stack stack--tight" id="contact" aria-labelledby="contact-title">
+        <h2 class="t-title" id="contact-title">Contact</h2>
+        {
+          CONTACT ? (
+            <p class="t-secondary measure">
+              Write to <a href={`mailto:${CONTACT}`}>{CONTACT}</a>. Say which iPhone and iOS version you
+              use, and what you expected to happen. We answer every message.
+            </p>
+          ) : (
+            <p class="t-secondary measure">
+              A contact address will be published here before the beta opens to testers.
+            </p>
+          )
+        }
+        <p class="t-secondary measure">
+          Read the <a href={href('privacy/')}>privacy policy</a> for what HomeMind keeps.
+        </p>
+      </section>
+
+      <p><a class="button" href={href('')}>Back to the HomeMind page</a></p>
+    </div>
+  </main>
+  <SiteFooter />
+</Page>
+
+<style>
+  .support {
+    padding-block: clamp(36px, 8vw, 80px);
+  }
+
+  .support section {
+    padding-top: var(--hm-space-card);
+  }
+
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--hm-space-inline);
+  }
+
+  .topics a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--hm-touch-target);
+    padding-inline: var(--hm-space-component);
+    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    border-radius: var(--hm-radius-pill);
+    color: var(--hm-text-primary);
+    font-size: var(--hm-type-label-size);
+    text-decoration: none;
+  }
+
+  .topics a:hover {
+    background: var(--hm-surface-secondary);
+  }
+
+  .steps {
+    display: grid;
+    gap: var(--hm-space-inline);
+    padding-inline-start: var(--hm-space-card);
+    list-style: disc;
+  }
+</style>

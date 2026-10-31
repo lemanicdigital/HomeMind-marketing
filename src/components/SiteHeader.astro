@@ -1,17 +1,20 @@
 ---
 import Logo from './ui/Logo.astro';
+import { href } from '../site';
 
 const links = [
-  { href: '#features', label: 'Features' },
-  { href: '#app', label: 'Screens' },
-  { href: '#privacy', label: 'Privacy' },
-  { href: '#faq', label: 'FAQ' },
+  // Every link names the home page: this header is on /privacy/ and /support/ too.
+  { href: href('#features'), label: 'Features' },
+  { href: href('#app'), label: 'Screens' },
+  { href: href('#privacy'), label: 'Privacy' },
+  { href: href('#faq'), label: 'FAQ' },
+  { href: href('support/'), label: 'Support' },
 ];
 ---
 
 <header class="bar">
   <div class="shell bar__inner">
-    <a class="brand" href="#top" aria-label="HomeMind — back to the top">
+    <a class="brand" href={href('')} aria-label="HomeMind home page">
       <Logo size={28} />
       <span class="brand__name">HomeMind</span>
     </a>
@@ -26,7 +29,7 @@ const links = [
         }
       </ul>
     </nav>
-    <a class="bar__cta" href="#launch">Coming soon</a>
+    <a class="bar__cta" href={href('#launch')}>Coming soon</a>
   </div>
 </header>
 
