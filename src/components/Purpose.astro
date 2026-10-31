@@ -6,15 +6,23 @@ const points = [
   },
   {
     title: 'Warnings you can act on',
-    body: 'Low stock and expiry are shown as days and units, with the reason beside them. No red badge that means something different every week.',
+    body: 'Low stock and expiry are shown as days and units, with the reason beside them. Reminders arrive as one short summary of what goes off soon, not one alert per item.',
   },
   {
     title: 'A shopping list with a memory',
-    body: 'Things you run out of land on the list because they ran out. You can add to it by hand, and you can see why anything on it is there.',
+    body: 'Things you run out of land on the list because they ran out. HomeMind estimates when you will need something next from how fast you used the last few, and says so.',
   },
   {
-    title: 'Receipts, if you want them',
-    body: 'A photographed receipt can fill in the detail. It is optional by design: the app must stay useful to someone who never takes a picture.',
+    title: 'Scan instead of type',
+    body: 'Point the camera at a barcode and the name fills itself in, from the open Open Food Facts database. Typing still works for everything; the camera only saves time.',
+  },
+  {
+    title: 'One household, several phones',
+    body: 'Invite the people you live with with a code that works once, for two days. Everyone sees the same items, stock and shopping list, and anyone can leave.',
+  },
+  {
+    title: 'Works without a signal',
+    body: 'The phone holds the working copy, so the app works in a basement shop. Changes sync when you are back online, retry on their own, and say so when two phones edited the same thing.',
   },
 ];
 ---
@@ -43,8 +51,8 @@ const points = [
     </div>
 
     <p class="t-caption measure">
-      All four are being built, not shipped — the honest status of each is in
-      <a href="#status">Where the build stands</a>.
+      All six are built and tested, but none has shipped: there is no public release yet. The
+      honest status is in <a href="#status">Where the build stands</a>.
     </p>
   </div>
 </section>

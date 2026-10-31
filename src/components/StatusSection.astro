@@ -4,19 +4,25 @@ const phases = [
     state: 'Complete',
     tone: 'success',
     title: 'Foundation',
-    body: 'Design system, component library, interactive showcase, documentation and CI for the iOS app — typechecked, linted, 210 tests, and a bundle export on every pull request.',
+    body: 'Design system, component library, interactive showcase, documentation and CI for the iOS app — typechecked, linted, and a bundle export on every pull request.',
   },
   {
-    state: 'In build',
+    state: 'Built, not released',
     tone: 'primary',
-    title: 'The product',
-    body: 'Inventory on-device, offline-first, with the shopping list, reminders, receipt import and multi-device sync that make the foundation worth shipping.',
+    title: 'The app',
+    body: 'Inventory on the device, the shopping list, usage-based estimates, expiry reminders, barcode scanning, household sharing and offline sync are written and covered by about 400 automated tests. Trying them on real iPhones is the next step.',
   },
   {
-    state: 'Specified',
-    tone: 'neutral',
+    state: 'Built, not live',
+    tone: 'primary',
     title: 'The service',
-    body: 'A separate backend repository holds all product logic: the API contract, the data model with owner-scoped access rules, sync and the AI worker. It boots today; the routes are documented rather than live.',
+    body: 'Sign in with Apple, sync, product names, sharing and account deletion are implemented in the backend and tested against a real Postgres engine. A test server is configured but not switched on yet.',
+  },
+  {
+    state: 'Next',
+    tone: 'neutral',
+    title: 'A beta, then receipts',
+    body: 'A TestFlight beta comes first. Receipt import follows it, and stays optional: the app has to be complete for someone who never photographs a receipt.',
   },
 ];
 ---
@@ -32,7 +38,7 @@ const phases = [
       </p>
     </header>
 
-    <ol class="grid">
+    <ol class="grid phases">
       {
         phases.map((phase) => (
           <li class="card">
@@ -50,7 +56,16 @@ const phases = [
     <p class="t-caption measure">
       If you would like to hear when there is something to try: there is no sign-up form here on
       purpose — an email address you typed into a static page has nowhere safe to go until the service
-      above exists.
+      above is live.
     </p>
   </div>
 </section>
+
+<style>
+  /* Four phases read as two pairs; three-and-one leaves the last phase looking like an orphan. */
+  @media (min-width: 40rem) {
+    .phases {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
