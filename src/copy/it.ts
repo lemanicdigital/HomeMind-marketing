@@ -26,7 +26,7 @@ export const it: Copy = {
 
   hero: {
     eyebrow: "Presto su iPhone",
-    title: "Sai cosa c’è in casa prima di fare la spesa.",
+    title: "Sai cosa c’è in casa prima della spesa.",
     lead: "HomeMind sa cosa c’è in casa, cosa scade per primo e cosa sta finendo, e scrive la lista della spesa per te.",
     primary: "Scopri come funziona",
     secondary: "Guarda l’app",
@@ -38,7 +38,6 @@ export const it: Copy = {
   },
 
   features: {
-    overline: "Funzioni",
     title: "I piccoli conti di casa, fatti per te",
     lead: "Basta comprare il quarto barattolo di qualcosa che ne hai già tre, e ritrovare il quarto una settimana dopo la scadenza.",
     items: [
@@ -70,8 +69,7 @@ export const it: Copy = {
   },
 
   screens: {
-    overline: "Uno sguardo all’app",
-    title: "Schermate tranquille per un lavoro che nessuno ama",
+    title: "Schermate calme per un lavoro noioso",
     lead: "Schermate della versione attuale su iPhone, con dati di esempio. Chiaro o scuro, come il tuo telefono. Su un iPhone in italiano l’app è in italiano.",
     items: [
       {
@@ -98,7 +96,6 @@ export const it: Copy = {
   },
 
   how: {
-    overline: "Come funziona",
     title: "Tre abitudini, nessun foglio di calcolo",
     steps: [
       {
@@ -117,8 +114,7 @@ export const it: Copy = {
   },
 
   pricing: {
-    overline: "Prezzi",
-    title: "Gratis sul tuo telefono. Un piano per tutta la casa.",
+    title: "Gratis da solo. Un piano per la casa.",
     lead: "Paghi solo ciò che richiede il nostro server: sincronizzazione e condivisione. Tutto il resto è gratis, senza limiti e senza pubblicità.",
     free: {
       name: "Gratis",
@@ -148,7 +144,6 @@ export const it: Copy = {
   },
 
   privacy: {
-    overline: "Privacy",
     title: "La tua cucina non riguarda nessun altro",
     lead: "Un inventario di casa sa molto di una famiglia. HomeMind lo tiene prima di tutto sul tuo telefono e raccoglie solo ciò che serve alla sincronizzazione.",
     policy: "Leggi l’informativa sulla privacy",
@@ -169,7 +164,6 @@ export const it: Copy = {
   },
 
   faq: {
-    overline: "FAQ",
     title: "Domande e risposte",
     items: [
       {

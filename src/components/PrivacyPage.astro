@@ -31,8 +31,8 @@ const updated = new Intl.DateTimeFormat(OG_LOCALES[lang].replace('_', '-'), {
   <SiteHeader lang={lang} alternates={alternates} />
   <main id="main" class="policy">
     <div class="shell stack">
-      <p class="t-overline">{c.overline} <time datetime={UPDATED}>{updated}</time></p>
       <h1 class="t-display">{c.heading}</h1>
+      <p class="t-caption">{c.overline} <time datetime={UPDATED}>{updated}</time></p>
       <p class="t-lead measure">{c.lead}</p>
       {
         c.original ? (

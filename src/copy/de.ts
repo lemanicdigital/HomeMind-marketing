@@ -26,7 +26,7 @@ export const de: Copy = {
 
   hero: {
     eyebrow: "Bald auf dem iPhone",
-    title: "Wissen, was zu Hause ist, bevor du einkaufst.",
+    title: "Vor dem Einkauf wissen, was da ist.",
     lead: "HomeMind weiß, was euer Haushalt da hat, was zuerst abläuft und was knapp wird – und schreibt die Einkaufsliste für dich.",
     primary: "So funktioniert’s",
     secondary: "Die App ansehen",
@@ -38,8 +38,7 @@ export const de: Copy = {
   },
 
   features: {
-    overline: "Funktionen",
-    title: "Die kleine Haushaltsrechnung, für dich erledigt",
+    title: "Die Haushaltsrechnung, für dich erledigt",
     lead: "Nie mehr das vierte Glas von etwas kaufen, von dem schon drei im Schrank stehen – und das vierte eine Woche nach Ablauf wiederfinden.",
     items: [
       {
@@ -70,8 +69,7 @@ export const de: Copy = {
   },
 
   screens: {
-    overline: "Ein Blick in die App",
-    title: "Ruhige Bildschirme für eine Aufgabe, die niemand mag",
+    title: "Ruhige Bildschirme für den Haushalt",
     lead: "Bildschirmfotos der aktuellen Version auf einem iPhone, mit Beispieldaten. Hell und dunkel wie dein Telefon. Auf einem deutschsprachigen iPhone ist die App auf Deutsch.",
     items: [
       {
@@ -98,7 +96,6 @@ export const de: Copy = {
   },
 
   how: {
-    overline: "So funktioniert’s",
     title: "Drei Gewohnheiten, keine Tabelle",
     steps: [
       {
@@ -110,15 +107,14 @@ export const de: Copy = {
         body: "Tipp nebenbei auf „Eins verbraucht“. HomeMind lernt, wie schnell euer Haushalt was aufbraucht.",
       },
       {
-        title: "Mit einer Liste einkaufen, der du traust",
+        title: "Mit verlässlicher Liste einkaufen",
         body: "Was leer ist, steht schon drauf, was als Nächstes ausgeht, wird vorgeschlagen, und nichts aus dem Schrank wird doppelt gekauft.",
       },
     ],
   },
 
   pricing: {
-    overline: "Preise",
-    title: "Gratis auf deinem Telefon. Ein Abo für den Haushalt.",
+    title: "Allein gratis. Ein Abo fürs ganze Haus.",
     lead: "Du zahlst nur, was unseren Server braucht: Synchronisierung und Teilen. Alles andere bleibt gratis, ohne Grenzen und ohne Werbung.",
     free: {
       name: "Gratis",
@@ -148,7 +144,6 @@ export const de: Copy = {
   },
 
   privacy: {
-    overline: "Datenschutz",
     title: "Deine Küche geht niemanden etwas an",
     lead: "Ein Haushaltsinventar weiß viel über ein Zuhause. HomeMind behält es zuerst auf deinem Telefon und erhebt nur, was die Synchronisierung braucht.",
     policy: "Datenschutzerklärung lesen",
@@ -169,7 +164,6 @@ export const de: Copy = {
   },
 
   faq: {
-    overline: "FAQ",
     title: "Fragen und Antworten",
     items: [
       {

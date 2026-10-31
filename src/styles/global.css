@@ -14,6 +14,21 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/*
+ * The site's type scale. The app's tokens are sized for a phone held in the hand (body 16, display
+ * 30); a page read on a desk needs larger steps. Five sizes do all the visible work: display (the
+ * hero), headline (sections, page titles, prices), title (items), body (running text, in full ink)
+ * and small (notes, captions, labels).
+ */
+:root {
+  --site-display: clamp(30px, 8.2vw, 96px);
+  --site-headline: clamp(30px, 4.6vw, 52px);
+  --site-title: 21px;
+  --site-body: 17px;
+  --site-small: 15px;
+  --site-gap: clamp(72px, 11vw, 160px);
+}
+
 body {
   margin: 0;
   background: var(--hm-background);
@@ -24,7 +39,7 @@ body {
   font-family:
     -apple-system, BlinkMacSystemFont, "Inter Variable", "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
-  font-size: var(--hm-type-body-size);
+  font-size: var(--site-body);
   line-height: 1.6;
   letter-spacing: 0;
   text-rendering: optimizeLegibility;
@@ -104,100 +119,95 @@ svg {
 /* ---- type ramp: the documented roles, fluid inside their own ceilings ---- */
 
 .t-display {
-  font-size: clamp(26px, 7vw, calc(var(--hm-type-display-size) * var(--hm-type-display-ceiling)));
-  line-height: calc(var(--hm-type-display-line) / 1);
+  font-size: var(--site-headline);
+  line-height: 1.08;
   font-weight: var(--hm-type-display-weight);
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 .t-title {
-  font-size: clamp(20px, 4.5vw, var(--hm-type-title-size));
+  font-size: var(--site-title);
   line-height: 1.25;
   font-weight: var(--hm-type-title-weight);
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
-/* Home-page section headings: larger than the app's title role, as a product page needs. */
+/* Section headings: larger than the app's title role, as a product page needs. */
 .t-headline {
-  font-size: clamp(28px, 4.2vw, 42px);
-  line-height: 1.12;
+  font-size: var(--site-headline);
+  line-height: 1.08;
   font-weight: var(--hm-type-display-weight);
   letter-spacing: -0.028em;
   text-wrap: balance;
 }
 
 .t-section {
-  font-size: var(--hm-type-section-title-size);
+  font-size: var(--site-title);
   line-height: 1.35;
   font-weight: var(--hm-type-section-title-weight);
   letter-spacing: -0.01em;
 }
 
 .t-card-title {
-  font-size: var(--hm-type-card-title-size);
+  font-size: var(--site-title);
   line-height: 1.35;
   font-weight: var(--hm-type-card-title-weight);
 }
 
 .t-lead {
-  font-size: clamp(16px, 2.6vw, 20px);
+  font-size: var(--site-title);
   line-height: 1.5;
-  color: var(--hm-text-secondary);
+  color: var(--hm-text-primary);
   text-wrap: pretty;
 }
 
 .t-body {
-  font-size: var(--hm-type-body-size);
+  font-size: var(--site-body);
   line-height: 1.6;
 }
 
+/* Running text beside a heading. Set in the full ink: grey is for notes, and a page whose running
+   text is grey reads unfinished. */
 .t-secondary {
-  font-size: var(--hm-type-body-secondary-size);
-  line-height: 1.45;
-  color: var(--hm-text-secondary);
+  font-size: var(--site-body);
+  line-height: 1.55;
+  color: var(--hm-text-primary);
 }
 
 .t-label {
-  font-size: var(--hm-type-label-size);
+  font-size: var(--site-small);
   line-height: 1.35;
   font-weight: var(--hm-type-label-weight);
 }
 
 .t-caption {
-  font-size: var(--hm-type-caption-size);
-  line-height: 1.4;
-  color: var(--hm-text-tertiary);
-}
-
-.t-overline {
-  font-size: var(--hm-type-overline-size);
-  line-height: 1.35;
-  font-weight: var(--hm-type-overline-weight);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--hm-text-tertiary);
+  font-size: var(--site-small);
+  line-height: 1.45;
+  color: var(--hm-text-secondary);
 }
 
 .t-numeric {
-  font-size: var(--hm-type-numeric-size);
-  line-height: 1.2;
+  font-size: var(--site-headline);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   font-weight: var(--hm-type-numeric-weight);
   font-variant-numeric: tabular-nums;
 }
 
 /* ---- structure ---- */
 
+/* Sections are told apart by space and by a step in background tone, never by a rule. */
 .section {
-  padding-block: clamp(40px, 8vw, 72px);
-  border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  padding-block: var(--site-gap);
 }
 
 .section__head {
   display: grid;
-  gap: var(--hm-space-between-text);
-  margin-bottom: var(--hm-space-section);
+  gap: var(--hm-space-card);
+  max-width: 44rem;
+  margin-bottom: clamp(40px, 6vw, 72px);
 }
 
 .grid {
@@ -212,7 +222,6 @@ svg {
   align-content: start;
   padding: var(--hm-space-card);
   background: var(--hm-surface);
-  border: var(--hm-border-hairline) solid var(--hm-border-subtle);
   border-radius: var(--hm-radius-card);
 }
 
@@ -229,9 +238,8 @@ svg {
   border-radius: var(--hm-radius-pill);
   background: var(--hm-neutral-subtle);
   color: var(--hm-on-neutral-subtle);
-  font-size: var(--hm-type-badge-size);
+  font-size: var(--site-small);
   font-weight: var(--hm-type-badge-weight);
-  letter-spacing: 0.02em;
 }
 
 .badge__dot {
@@ -276,16 +284,20 @@ svg {
 .list li {
   display: grid;
   grid-template-columns: 20px 1fr;
-  gap: var(--hm-space-inline);
+  gap: var(--hm-space-component);
   align-items: start;
 }
 
+/* A drawn check, not a text glyph: the same stroke as the app's icons. */
 .list__mark {
-  display: grid;
-  place-items: center;
-  block-size: 22px;
-  color: var(--hm-success);
-  font-weight: 700;
+  inline-size: 20px;
+  block-size: 20px;
+  margin-top: 4px;
+  fill: none;
+  stroke: var(--hm-success);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .row {
@@ -321,13 +333,18 @@ svg {
   min-block-size: 52px;
   padding-inline: var(--hm-space-section);
   border-radius: var(--hm-radius-pill);
-  border: 1px solid var(--hm-border-input);
   background: var(--hm-surface);
   color: var(--hm-text-primary);
-  font-size: var(--hm-type-button-size);
+  font-size: var(--site-body);
   font-weight: var(--hm-type-button-weight);
   text-decoration: none;
-  transition: background var(--hm-duration) var(--hm-ease-out);
+  transition:
+    background var(--hm-duration) var(--hm-ease-out),
+    transform var(--hm-duration) var(--hm-ease-out);
+}
+
+.button:active {
+  transform: scale(0.97);
 }
 
 .button:hover {
@@ -336,22 +353,12 @@ svg {
 
 .button--primary {
   background: var(--hm-primary);
-  border-color: var(--hm-primary);
   color: var(--hm-on-primary);
 }
 
 .button--primary:hover {
   background: var(--hm-primary-pressed);
-  border-color: var(--hm-primary-pressed);
   color: var(--hm-on-primary);
-}
-
-/* A section heading block, centred: the product-page rhythm of overline, title, one line. */
-.section__head--center {
-  justify-items: center;
-  text-align: center;
-  margin-inline: auto;
-  max-width: 44rem;
 }
 
 .section--tinted {
@@ -366,4 +373,29 @@ svg {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/*
+ * Motion, without JavaScript. Each section's parts rise into place as they scroll into view, driven
+ * by the scroll itself (animation-timeline: view()). Browsers without scroll timelines, and readers
+ * who ask for less motion, get the page as it is: the content is never hidden waiting for a script.
+ */
+@keyframes site-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Longhands on purpose: the minifier folds an `animation` shorthand and drops the timeline. */
+    main .section :is(.section__head > *, li, figure, article, details) {
+      animation-name: site-rise;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
 }

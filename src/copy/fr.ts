@@ -29,7 +29,7 @@ export const fr: Copy = {
 
   hero: {
     eyebrow: "Bientôt sur iPhone",
-    title: "Sachez ce qu’il y a à la maison avant de faire les courses.",
+    title: "Sachez ce qui reste avant les courses.",
     lead: "HomeMind sait ce que votre foyer a en réserve, ce qui périme en premier et ce qui va manquer, puis écrit la liste de courses pour vous.",
     primary: "Voir comment ça marche",
     secondary: "Voir l’app",
@@ -41,8 +41,7 @@ export const fr: Copy = {
   },
 
   features: {
-    overline: "Fonctions",
-    title: "Les petits calculs du foyer, faits pour vous",
+    title: "Les calculs du foyer, faits pour vous",
     lead: "Fini le quatrième pot de quelque chose dont vous avez déjà trois, retrouvé une semaine après la date.",
     items: [
       {
@@ -73,8 +72,7 @@ export const fr: Copy = {
   },
 
   screens: {
-    overline: "Aperçu de l’app",
-    title: "Des écrans calmes pour une corvée que personne n’aime",
+    title: "Des écrans calmes pour une corvée",
     lead: "Captures de la version actuelle sur iPhone, avec des données d’exemple. Clair ou sombre, comme votre téléphone. L’app s’affiche en français sur un iPhone réglé en français.",
     items: [
       {
@@ -101,7 +99,6 @@ export const fr: Copy = {
   },
 
   how: {
-    overline: "Comment ça marche",
     title: "Trois habitudes, aucun tableur",
     steps: [
       {
@@ -120,8 +117,7 @@ export const fr: Copy = {
   },
 
   pricing: {
-    overline: "Prix",
-    title: "Gratuit sur votre téléphone. Une offre pour tout le foyer.",
+    title: "Gratuit seul. Une offre pour le foyer.",
     lead: "Vous payez seulement ce qui a besoin de notre serveur : la synchronisation et le partage. Tout le reste est gratuit, sans limite et sans pub.",
     free: {
       name: "Gratuit",
@@ -151,7 +147,6 @@ export const fr: Copy = {
   },
 
   privacy: {
-    overline: "Confidentialité",
     title: "Votre cuisine ne regarde que vous",
     lead: "Un inventaire du foyer en dit long sur une maison. HomeMind le garde d’abord sur votre téléphone et ne collecte que ce dont la synchronisation a besoin.",
     policy: "Lire la politique de confidentialité",
@@ -172,7 +167,6 @@ export const fr: Copy = {
   },
 
   faq: {
-    overline: "FAQ",
     title: "Vos questions, nos réponses",
     items: [
       {
