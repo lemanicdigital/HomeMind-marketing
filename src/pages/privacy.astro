@@ -1,0 +1,130 @@
+---
+import Page from '../layouts/Page.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = `${base}/`;
+
+/**
+ * The privacy policy for the TestFlight beta, written from what the code does (HomeMind-backend:
+ * src/db/schema.ts, src/domain/retention.ts, the account deletion route; HomeMind-IOS: the sync
+ * engine). If the code changes what it keeps, this page changes in the same pull request.
+ *
+ * CONTACT is the owner's to set: until it is, the page says so rather than inventing an address,
+ * and it must not be given to App Store Connect.
+ */
+const CONTACT = '';
+const UPDATED = '31 October 2026';
+
+const sections = [
+  {
+    id: 'on-the-phone',
+    title: 'Without an account, nothing leaves your phone',
+    body: [
+      'HomeMind works fully without signing in. Your household, items, stock, history and shopping list are kept in a database on your iPhone, and nothing is sent anywhere.',
+      'The camera is used only to read barcodes. Camera images are processed on the phone and never stored or sent; only the barcode number is kept, on the item it belongs to.',
+      'Reminders are notifications your phone schedules for itself. No notification server is involved.',
+    ],
+  },
+  {
+    id: 'account',
+    title: 'With an account: what the server keeps',
+    body: [
+      'Signing in uses Sign in with Apple. The server keeps the stable user identifier Apple gives it, and the email address if Apple shares one (it may be a private relay address). HomeMind never sees your Apple ID password.',
+      'Each signed-in phone has a session that expires on its own; expired sessions are deleted.',
+      'To sync, the server keeps a copy of your household: its name, places, items, quantities, dates, how much you used and when, and the shopping list. If you join someone’s household, it also keeps the name you chose to show them.',
+      'When you scan a barcode while signed in, the server looks up its product name in the open Open Food Facts database. Only the barcode number is sent to Open Food Facts, not who you are. Names found are cached for 30 days; codes not found, for 7 days.',
+    ],
+  },
+  {
+    id: 'sharing',
+    title: 'Sharing a household',
+    body: [
+      'Everyone in a household sees its contents and each other’s chosen names. Invite codes are stored only as a one-way hash, work once, expire after two days, and are deleted a week after that.',
+      'A member can leave at any time, and the owner can remove a member. The household then disappears from their phone at its next sync.',
+    ],
+  },
+  {
+    id: 'logs',
+    title: 'Server logs and hosting',
+    body: [
+      'During the beta the server runs on Render, in Frankfurt (EU). Like any web server it logs each request: the time, the address requested (which can include a scanned barcode) and the IP address it came from. The hosting provider keeps these logs for its standard period.',
+      'Technical replay records, which stop a change from being applied twice, are deleted after a day.',
+    ],
+  },
+  {
+    id: 'deletion',
+    title: 'Deleting your account',
+    body: [
+      'In the app: Settings → Sync → Delete account. The server deletes your account, every session, and every household only you used. The app then erases the copy on your phone.',
+      'A household you shared stays with the people you shared it with, without you. If you owned it, it passes to the member who joined first.',
+      'Inside a household that still exists, a deleted item is kept as a marker without its stock, so that every phone learns it was deleted.',
+    ],
+  },
+  {
+    id: 'never',
+    title: 'What HomeMind does not do',
+    body: [
+      'No advertising, no analytics, no tracking across apps or websites, and no selling or sharing of your data. The app contains no third-party analytics or advertising code.',
+    ],
+  },
+];
+---
+
+<Page
+  title="Privacy — HomeMind"
+  description="What the HomeMind iPhone app keeps on your phone, what its server keeps when you sign in, for how long, and how to delete it."
+>
+  <main id="main" class="policy">
+    <div class="shell stack">
+      <p class="t-overline">Privacy policy · updated {UPDATED}</p>
+      <h1 class="t-display">What HomeMind keeps, and for how long</h1>
+      <p class="t-lead measure">
+        This covers the HomeMind iPhone app during its TestFlight beta. It is written from what the
+        app and its server actually do, and it changes when they do.
+      </p>
+
+      {
+        sections.map((section) => (
+          <section class="stack stack--tight" id={section.id} aria-labelledby={`${section.id}-title`}>
+            <h2 class="t-title" id={`${section.id}-title`}>
+              {section.title}
+            </h2>
+            {section.body.map((paragraph) => (
+              <p class="t-secondary measure">{paragraph}</p>
+            ))}
+          </section>
+        ))
+      }
+
+      <section class="stack stack--tight" id="contact" aria-labelledby="contact-title">
+        <h2 class="t-title" id="contact-title">Questions</h2>
+        {
+          CONTACT ? (
+            <p class="t-secondary measure">
+              Write to <a href={`mailto:${CONTACT}`}>{CONTACT}</a> about anything on this page, or to
+              ask what the server holds about you.
+            </p>
+          ) : (
+            <p class="t-secondary measure">
+              A contact address will be published here before the beta opens to testers.
+            </p>
+          )
+        }
+      </section>
+
+      <p><a class="button" href={home}>Back to the HomeMind page</a></p>
+    </div>
+  </main>
+  <SiteFooter />
+</Page>
+
+<style>
+  .policy {
+    padding-block: clamp(36px, 8vw, 80px);
+  }
+
+  .policy section {
+    padding-top: var(--hm-space-card);
+  }
+</style>

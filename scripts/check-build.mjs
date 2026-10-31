@@ -18,7 +18,7 @@ if (!existsSync(join(dist, "index.html"))) {
   fail("dist/index.html is missing — run `npm run build` before `npm run verify`.");
 }
 
-for (const page of ["index.html", "404.html"]) {
+for (const page of ["index.html", "404.html", "privacy/index.html"]) {
   if (!existsSync(join(dist, page))) {
     fail(`dist/${page} is missing (GitHub Pages needs 404.html at the root).`);
   }
@@ -38,6 +38,9 @@ const html = existsSync(join(dist, "index.html"))
 const notFound = existsSync(join(dist, "404.html"))
   ? readFileSync(join(dist, "404.html"), "utf8")
   : "";
+const privacy = existsSync(join(dist, "privacy", "index.html"))
+  ? readFileSync(join(dist, "privacy", "index.html"), "utf8")
+  : "";
 
 const one = (label, actual, expected) => {
   if (actual !== expected) fail(`${label}: expected ${expected}, found ${actual}`);
@@ -45,11 +48,13 @@ const one = (label, actual, expected) => {
 
 one("index.html <h1> count", count(html, /<h1[\s>]/g), 1);
 one("404.html <h1> count", count(notFound, /<h1[\s>]/g), 1);
+one("privacy/index.html <h1> count", count(privacy, /<h1[\s>]/g), 1);
 if (count(html, /<h2[\s>]/g) < 3) fail("index.html should have several <h2> section headings");
 
 for (const [name, doc] of [
   ["index.html", html],
   ["404.html", notFound],
+  ["privacy/index.html", privacy],
 ]) {
   if (!/<html lang="en">/.test(doc)) fail(`${name}: <html> needs an explicit lang`);
   if (!/<title>[^<]+<\/title>/.test(doc)) fail(`${name}: missing a <title>`);
@@ -64,6 +69,7 @@ for (const [name, doc] of [
 for (const [name, doc] of [
   ["index.html", html],
   ["404.html", notFound],
+  ["privacy/index.html", privacy],
 ]) {
   for (const tag of [...doc.matchAll(/<[^>]*>/g)].map((m) => m[0])) {
     if (/^<script[\s>]/i.test(tag)) fail(`${name}: ships a <script>`);
@@ -121,7 +127,7 @@ if (failures.length > 0) {
 }
 
 process.stdout.write(
-  `build: 2 pages, ${(bytes / 1024).toFixed(1)} KB HTML + ${(cssBytes / 1024).toFixed(1)} KB CSS, ` +
+  `build: 3 pages, ${(bytes / 1024).toFixed(1)} KB HTML + ${(cssBytes / 1024).toFixed(1)} KB CSS, ` +
     "no JavaScript, no external requests, headings/lang/canonical/anchors verified\n",
 );
 
