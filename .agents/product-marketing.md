@@ -30,7 +30,7 @@ press, word of mouth and the household invite itself.
 ## Product Overview
 
 **One-liner:** Know what's at home before you shop.
-**What it does:** HomeMind is a household inventory for iPhone. It keeps track of what a home has,
+**What it does:** Homesky is a household inventory for iPhone. It keeps track of what a home has,
 how much, and where it is kept; turns best-before dates into "use today" and "3 days left" with one
 calm morning reminder; and writes the shopping list from what ran out and what is running low.
 Everyone in a household shares one inventory and one list.
@@ -42,7 +42,7 @@ Android planned, not started.
 **Business model:**
 
 - Free, forever, on one phone: the whole app, no limits, no ads.
-- **HomeMind Household**: €14.99 a year or €1.99 a month, first month free. Adds sync across
+- **Homesky Household**: €14.99 a year or €1.99 a month, first month free. Adds sync across
   phones, sharing a household (invited people don't pay), and a copy off the phone. One plan covers
   the whole household. Sold through the App Store only.
 - If a plan ends, sync pauses; nothing is deleted from phones.
@@ -145,22 +145,22 @@ best-before, your phone.
 "solution", "never waste food again" (overclaims), "zero waste".
 **Glossary:**
 
-| Term               | Meaning                                                |
-| ------------------ | ------------------------------------------------------ |
-| Item               | One product the household keeps, such as whole milk    |
-| Pack               | One bought unit of an item with its own date and place |
-| Place              | Where things are kept: fridge, cupboard, freezer       |
-| Household          | The shared inventory and list; one plan covers it      |
-| HomeMind Household | The paid plan (sync, sharing, backup)                  |
+| Term              | Meaning                                                |
+| ----------------- | ------------------------------------------------------ |
+| Item              | One product the household keeps, such as whole milk    |
+| Pack              | One bought unit of an item with its own date and place |
+| Place             | Where things are kept: fridge, cupboard, freezer       |
+| Household         | The shared inventory and list; one plan covers it      |
+| Homesky Household | The paid plan (sync, sharing, backup)                  |
 
 ## Brand Voice
 
-| Attribute | Means                                     | Doesn't mean   | Example line                                        |
-| --------- | ----------------------------------------- | -------------- | --------------------------------------------------- |
-| Calm      | Low-key, one reminder, no urgency         | Bland          | "one calm morning note lists what needs eating"     |
-| Honest    | Says what it can't do; no inflated claims | Apologetic     | "HomeMind doesn't pretend to know what it doesn't." |
-| Concrete  | Real objects and places                   | Cute or quirky | "the shelf by the washing machine"                  |
-| Plain     | Short sentences, everyday words           | Childish       | "Run out and it lands on the shopping list."        |
+| Attribute | Means                                     | Doesn't mean   | Example line                                       |
+| --------- | ----------------------------------------- | -------------- | -------------------------------------------------- |
+| Calm      | Low-key, one reminder, no urgency         | Bland          | "one calm morning note lists what needs eating"    |
+| Honest    | Says what it can't do; no inflated claims | Apologetic     | "Homesky doesn't pretend to know what it doesn't." |
+| Concrete  | Real objects and places                   | Cute or quirky | "the shelf by the washing machine"                 |
+| Plain     | Short sentences, everyday words           | Childish       | "Run out and it lands on the shopping list."       |
 
 **Tone by context:**
 
@@ -171,7 +171,7 @@ best-before, your phone.
 - Social: **UNKNOWN** (no social presence yet).
   **Terms we own:** "know what's at home", "use soon", "a list that writes itself".
   **Never use (and why):** fake urgency or scarcity (contradicts calm); stats without a source;
-  "it's not X, it's Y" reveals and "no X, no Y, no Z" lists (read as generated). Say what HomeMind does, and keep at most one
+  "it's not X, it's Y" reveals and "no X, no Y, no Z" lists (read as generated). Say what Homesky does, and keep at most one
   absence per section ("There is no mailing list to join").
 
 ## Proof Points
@@ -192,7 +192,7 @@ best-before, your phone.
 
 **Business goal:** Launch the TestFlight beta, then the App Store release; first paying households.
 **Conversion action:** Pre-launch: read the page and come back for the beta (no capture by design).
-After launch: install from the App Store; later, start HomeMind Household.
+After launch: install from the App Store; later, start Homesky Household.
 **Current metrics:** None, by design on the site. App Store Connect will report installs and
 subscriptions once live.
 

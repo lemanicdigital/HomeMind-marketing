@@ -1,6 +1,6 @@
 # Tokens
 
-Every number in HomeMind comes from a token file in `src/design-system/tokens/`. Components read
+Every number in Homesky comes from a token file in `src/design-system/tokens/`. Components read
 them through `useTheme()` (`theme.colors.*`, `theme.spacing.*`, `theme.typography.*`, …) and never
 restate them. The tables below are generated from the source, and the contrast figures are
 measured — `npm run a11y:contrast` recomputes every ratio in CI (`tests/design-system/contrast.test.ts`).

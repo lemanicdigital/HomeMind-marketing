@@ -26,7 +26,7 @@ The owned channels are the site, the App Store product page and the app itself. 
 
 ## Readiness: is the beta worth inviting people to?
 
-HomeMind passes the Simple / Lovable / Complete test at its current scope if these hold on a real
+Homesky passes the Simple / Lovable / Complete test at its current scope if these hold on a real
 iPhone, in each language:
 
 - **Simple:** one job, "know what's at home". Recipes, meal plans and receipts stay out of scope.
@@ -45,7 +45,7 @@ Not on the list, and not a reason to wait: Android, Arabic, iPad, widgets.
 | 2   | Set `CONTACT` and deploy; support and privacy pages then show it                           | owner | `src/site.ts`                     |
 | 3   | App Store Connect record, `ascAppId` in `eas.json`, App Privacy answers                    | owner | HomeMind-IOS `docs/testflight.md` |
 | 4   | Subscription group with the yearly and monthly products, first month free                  | owner | App Store Connect                 |
-| 5   | Staging live on Render and the smoke test passing; `HOMEMIND_DEV_AUTH=false` afterwards    | owner | HomeMind-backend                  |
+| 5   | Staging live on Render and the smoke test passing; `HOMESKY_DEV_AUTH=false` afterwards     | owner | HomeMind-backend                  |
 | 6   | First `beta` build, checked on a device in all four languages (dates, units, the paywall)  | owner | `docs/testflight.md`              |
 | 7   | Ask for a rating in the app (`StoreKit` review prompt) after a household's first full week | code  | HomeMind-IOS, not built yet       |
 
@@ -61,7 +61,7 @@ shares a household, on staging.
 
 Internal testers are App Store Connect users; no Beta App Review.
 
-- Owner and anyone on the team use HomeMind for their real household for a week, in their own
+- Owner and anyone on the team use Homesky for their real household for a week, in their own
   language. Note every moment of "where is…?" or "why did it…?".
 - Read TestFlight's crash reports daily.
 
@@ -80,7 +80,7 @@ External testers by email invitation; the first build of each version goes throu
   to send feedback (TestFlight screenshot feedback, or the `CONTACT` address), and that the plan is
   free during the beta.
 - After two weeks, ask each household the same four questions, by message or in person:
-  1. What did you use HomeMind for this week?
+  1. What did you use Homesky for this week?
   2. When did it get in your way?
   3. How would you describe it to a friend? (Write the answers down word for word: they fill
      "Customer Language" in the context file.)
@@ -148,23 +148,23 @@ at 40% across the larger group, and Apple's review notes for the beta are clear.
 
 The announcement says what is true that day and nothing else. A draft, to adapt on the day:
 
-> **EN:** HomeMind is on the App Store from today in Switzerland, France, Germany, Italy, Austria and
+> **EN:** Homesky is on the App Store from today in Switzerland, France, Germany, Italy, Austria and
 > the UK. It keeps track of what a household has and when it goes off, and writes the shopping list.
-> Free on one iPhone; HomeMind Household adds sharing for €14.99 a year, first month free.
+> Free on one iPhone; Homesky Household adds sharing for €14.99 a year, first month free.
 >
-> **FR :** HomeMind est disponible dès aujourd’hui sur l’App Store en Suisse, en France, en Allemagne,
+> **FR :** Homesky est disponible dès aujourd’hui sur l’App Store en Suisse, en France, en Allemagne,
 > en Italie, en Autriche et au Royaume-Uni. L’app sait ce que contient votre foyer et ce qui périme
-> bientôt, et elle écrit la liste de courses. Gratuite sur un iPhone ; HomeMind Household ajoute le
+> bientôt, et elle écrit la liste de courses. Gratuite sur un iPhone ; Homesky Household ajoute le
 > partage pour 14,99 € par an, premier mois offert.
 >
-> **DE:** HomeMind gibt es ab heute im App Store in der Schweiz, in Deutschland, Österreich,
+> **DE:** Homesky gibt es ab heute im App Store in der Schweiz, in Deutschland, Österreich,
 > Frankreich, Italien und Grossbritannien. Die App weiss, was dein Haushalt da hat und was bald
-> abläuft, und schreibt die Einkaufsliste. Auf einem iPhone gratis; HomeMind Household bringt das
+> abläuft, und schreibt die Einkaufsliste. Auf einem iPhone gratis; Homesky Household bringt das
 > Teilen für 14,99 € im Jahr, der erste Monat ist gratis.
 >
-> **IT:** HomeMind è disponibile da oggi sull’App Store in Svizzera, Francia, Germania, Italia,
+> **IT:** Homesky è disponibile da oggi sull’App Store in Svizzera, Francia, Germania, Italia,
 > Austria e Regno Unito. Sa cosa c’è in casa e cosa scade presto, e scrive la lista della spesa.
-> Gratis su un iPhone; HomeMind Household aggiunge la condivisione a 14,99 € all’anno, primo mese
+> Gratis su un iPhone; Homesky Household aggiunge la condivisione a 14,99 € all’anno, primo mese
 > gratis.
 
 The German draft uses Swiss "ss" ("weiss", "Grossbritannien"); use "ß" for Germany and Austria.

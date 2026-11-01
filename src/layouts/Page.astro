@@ -64,7 +64,7 @@ const ogImage = new URL(asset('og.png'), Astro.site ?? Astro.url);
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="HomeMind" />
+    <meta property="og:site_name" content="Homesky" />
     {schema ? <script is:inline type="application/ld+json" set:html={jsonLd(schema)} /> : null}
     <!-- token-exempt: the browser chrome colour cannot read a CSS custom property, so these two
          values are the documented `background` roles spelled out for each appearance. -->

@@ -9,9 +9,9 @@
  */
 export const en = {
   support: {
-    title: "Support — HomeMind",
+    title: "Support — Homesky",
     description:
-      "Help with the HomeMind iPhone app: adding items, reminders, barcodes, sharing a household, exporting or deleting your data, and how to reach us.",
+      "Help with the Homesky iPhone app: adding items, reminders, barcodes, sharing a household, exporting or deleting your data, and how to reach us.",
     overline: "Support",
     heading: "How can we help?",
     lead: "Answers to the questions people ask most, using the app’s own words. If yours isn’t here, write to us.",
@@ -30,8 +30,8 @@ export const en = {
         id: "reminders",
         title: "Reminders don’t arrive",
         steps: [
-          "In HomeMind: Settings → Reminders → turn on “Remind me before things expire”, and choose the time.",
-          "In the iPhone’s Settings → Notifications → HomeMind, allow notifications. If HomeMind says notifications are off, its Open Settings button goes straight there.",
+          "In Homesky: Settings → Reminders → turn on “Remind me before things expire”, and choose the time.",
+          "In the iPhone’s Settings → Notifications → Homesky, allow notifications. If Homesky says notifications are off, its Open Settings button goes straight there.",
           "Reminders only cover items with a best-before date.",
         ],
       },
@@ -50,23 +50,23 @@ export const en = {
           "Sign in with Apple in Settings → Sync → Use more than one phone. Without signing in, everything stays on this phone only.",
           "To share your household: Settings → Sharing → Invite someone, and send them the code. It works once, for two days. They enter it under Settings → Sharing → Join a household.",
           "If a change doesn’t appear on the other phone, tap Settings → Sync → Sync now. Anything the server refused is listed under “Couldn’t be saved”, with the reason.",
-          "Sync and sharing are part of HomeMind Household. If Settings → Sync says “Sync is paused”, the plan is missing or has ended; everything on the phone still works.",
+          "Sync and sharing are part of Homesky Household. If Settings → Sync says “Sync is paused”, the plan is missing or has ended; everything on the phone still works.",
         ],
       },
       {
         id: "plan",
-        title: "HomeMind Household",
+        title: "Homesky Household",
         steps: [
-          "Settings → Sync → HomeMind Household shows the plan, its price in your currency, and when it renews. One plan covers everyone in the household; people you invite don’t pay.",
+          "Settings → Sync → Homesky Household shows the plan, its price in your currency, and when it renews. One plan covers everyone in the household; people you invite don’t pay.",
           "On a new phone or a new account, open the same screen and tap Restore purchase.",
-          "To cancel: the iPhone’s Settings → your name → Subscriptions → HomeMind. The plan runs to the end of the period you paid for. For a refund, ask Apple at reportaproblem.apple.com.",
+          "To cancel: the iPhone’s Settings → your name → Subscriptions → Homesky. The plan runs to the end of the period you paid for. For a refund, ask Apple at reportaproblem.apple.com.",
         ],
       },
       {
         id: "language",
         title: "Language",
         steps: [
-          "HomeMind speaks English, French, German and Italian, and follows your iPhone’s language. To use another one for HomeMind only: the iPhone’s Settings → HomeMind → Language.",
+          "Homesky speaks English, French, German and Italian, and follows your iPhone’s language. To use another one for Homesky only: the iPhone’s Settings → Homesky → Language.",
           "Dates, numbers and units follow your region. What you type, such as item names and places, stays exactly as you wrote it.",
         ],
       },
@@ -87,17 +87,17 @@ export const en = {
     noContact: "A contact address will be published here before the beta opens to testers.",
     policyBefore: "Read the ",
     policyLink: "privacy policy",
-    policyAfter: " for what HomeMind keeps.",
-    back: "Back to the HomeMind page",
+    policyAfter: " for what Homesky keeps.",
+    back: "Back to the Homesky page",
   },
 
   privacy: {
-    title: "Privacy — HomeMind",
+    title: "Privacy — Homesky",
     description:
-      "What the HomeMind iPhone app keeps on your phone, what its server keeps when you sign in, for how long, and how to delete it.",
+      "What the Homesky iPhone app keeps on your phone, what its server keeps when you sign in, for how long, and how to delete it.",
     overline: "Privacy policy · updated",
-    heading: "What HomeMind keeps, and for how long",
-    lead: "This covers the HomeMind iPhone app during its TestFlight beta. It is written from what the app and its server actually do, and it changes when they do.",
+    heading: "What Homesky keeps, and for how long",
+    lead: "This covers the Homesky iPhone app during its TestFlight beta. It is written from what the app and its server actually do, and it changes when they do.",
     /** Said only by the translations: which version wins if they ever differ. */
     original: "",
     sections: [
@@ -105,7 +105,7 @@ export const en = {
         id: "on-the-phone",
         title: "Without an account, nothing leaves your phone",
         body: [
-          "HomeMind works fully without signing in. Your household, items, stock, history and shopping list are kept in a database on your iPhone, and nothing is sent anywhere.",
+          "Homesky works fully without signing in. Your household, items, stock, history and shopping list are kept in a database on your iPhone, and nothing is sent anywhere.",
           "The camera is used only to read barcodes. Camera images are processed on the phone and never stored or sent; only the barcode number is kept, on the item it belongs to.",
           "Reminders are notifications your phone schedules for itself. No notification server is involved.",
         ],
@@ -114,7 +114,7 @@ export const en = {
         id: "account",
         title: "With an account: what the server keeps",
         body: [
-          "Signing in uses Sign in with Apple. The server keeps the stable user identifier Apple gives it, and the email address if Apple shares one (it may be a private relay address). HomeMind never sees your Apple ID password.",
+          "Signing in uses Sign in with Apple. The server keeps the stable user identifier Apple gives it, and the email address if Apple shares one (it may be a private relay address). Homesky never sees your Apple ID password.",
           "Each signed-in phone has a session that expires on its own; expired sessions are deleted.",
           "To sync, the server keeps a copy of your household: its name, places, items, quantities, dates, how much you used and when, and the shopping list. If you join someone’s household, it also keeps the name you chose to show them.",
           "When you scan a barcode while signed in, the server looks up its product name in the open Open Food Facts database. Only the barcode number is sent to Open Food Facts, not who you are. Names found are cached for 30 days; codes not found, for 7 days.",
@@ -130,9 +130,9 @@ export const en = {
       },
       {
         id: "subscription",
-        title: "HomeMind Household (the subscription)",
+        title: "Homesky Household (the subscription)",
         body: [
-          "The plan is bought in the app through the App Store. Apple handles the payment; HomeMind never sees your card, your Apple ID or your billing address.",
+          "The plan is bought in the app through the App Store. Apple handles the payment; Homesky never sees your card, your Apple ID or your billing address.",
           "To know who has the plan, the server keeps what Apple signs for each subscription: its transaction identifier, which plan it is, when it was bought, when it runs out, and whether it was refunded. Apple also tells the server directly when a subscription renews, ends or is refunded.",
           "A subscription is deleted a year after it runs out. If you delete your account first, the record stays without you, holding no personal details, because Apple keeps billing until you cancel it in your Apple ID’s settings; you can then restore it onto a new account.",
         ],
@@ -156,7 +156,7 @@ export const en = {
       },
       {
         id: "never",
-        title: "What HomeMind does not do",
+        title: "What Homesky does not do",
         body: [
           "No advertising, no analytics, no tracking across apps or websites, and no selling or sharing of your data. The app contains no third-party analytics or advertising code.",
         ],
@@ -166,7 +166,7 @@ export const en = {
     writeBefore: "Write to ",
     writeAfter: " about anything on this page, or to ask what the server holds about you.",
     noContact: "A contact address will be published here before the beta opens to testers.",
-    back: "Back to the HomeMind page",
+    back: "Back to the Homesky page",
   },
 };
 

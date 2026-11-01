@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "HomeMind's landing page — a static Astro site styled by a generated snapshot of the design system's tokens.",
+  "description": "Homesky's landing page — a static Astro site styled by a generated snapshot of the design system's tokens.",
   "engines": {
     "node": ">=22.22.0"
   },

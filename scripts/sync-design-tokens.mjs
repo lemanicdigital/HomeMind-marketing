@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Vendored snapshot of the HomeMind design system.
+ * Vendored snapshot of the Homesky design system.
  *
  * The marketing site is not a React Native app, so it cannot import `src/design-system`. What it can
  * do is derive its stylesheet from the *documented* tokens. Two files are produced, by the same
@@ -17,7 +17,7 @@
  *   npm run tokens:check   fail if src/styles/tokens.css no longer matches the vendored document
  *
  * The checkout is found at `../HomeMind-IOS` by default; override with `--source <path>` or
- * `HOMEMIND_DESIGN_SYSTEM_PATH`.
+ * `HOMESKY_DESIGN_SYSTEM_PATH`.
  */
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -34,7 +34,7 @@ const checkOnly = args.includes("--check");
 const sourceFlag = args.indexOf("--source");
 const sourceRoot = resolve(
   sourceFlag === -1
-    ? (process.env.HOMEMIND_DESIGN_SYSTEM_PATH ?? join(repoRoot, "../HomeMind-IOS"))
+    ? (process.env.HOMESKY_DESIGN_SYSTEM_PATH ?? join(repoRoot, "../HomeMind-IOS"))
     : args[sourceFlag + 1],
 );
 const checkoutDoc = join(sourceRoot, "docs/design-system/tokens.md");
@@ -85,7 +85,7 @@ function main() {
     process.stdout.write(
       `tokens: SKIPPED — no HomeMind-IOS checkout at ${sourceRoot}\n` +
         "        nothing was regenerated; src/styles/tokens.css and the vendor copy are unchanged.\n" +
-        "        pass --source <path> or set HOMEMIND_DESIGN_SYSTEM_PATH to refresh from the app.\n",
+        "        pass --source <path> or set HOMESKY_DESIGN_SYSTEM_PATH to refresh from the app.\n",
     );
     return;
   }
