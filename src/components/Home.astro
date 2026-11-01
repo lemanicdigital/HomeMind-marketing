@@ -12,6 +12,7 @@ import Launch from './Launch.astro';
 import SiteFooter from './SiteFooter.astro';
 
 import { LANGS, type Lang, copyFor, home } from '../i18n';
+import { homeSchema } from '../schema';
 
 /** The home page in one language; `pages/index.astro` is English, `pages/[lang]/` the others. */
 interface Props {
@@ -23,7 +24,13 @@ const { meta } = copyFor(lang);
 const alternates = Object.fromEntries(LANGS.map((code) => [code, home(code)]));
 ---
 
-<Page title={meta.title} description={meta.description} lang={lang} alternates={alternates}>
+<Page
+  title={meta.title}
+  description={meta.description}
+  lang={lang}
+  alternates={alternates}
+  schema={homeSchema(lang, Astro.site ?? Astro.url)}
+>
   <SiteHeader lang={lang} alternates={alternates} />
   <main id="main">
     <SiteHero lang={lang} />

@@ -36,7 +36,14 @@ for (const page of pages) {
   }
 }
 
-for (const file of ["robots.txt", "sitemap.xml", "og.png", "favicon.svg", ".nojekyll"]) {
+for (const file of [
+  "robots.txt",
+  "sitemap.xml",
+  "llms.txt",
+  "og.png",
+  "favicon.svg",
+  ".nojekyll",
+]) {
   if (!existsSync(join(dist, file))) fail(`dist/${file} is missing.`);
 }
 
@@ -79,7 +86,10 @@ for (const [name, doc] of docs) {
 // allowed to contain the words "analytics" or "fetch" — that is not a third-party request.
 for (const [name, doc] of docs) {
   for (const tag of [...doc.matchAll(/<[^>]*>/g)].map((m) => m[0])) {
-    if (/^<script[\s>]/i.test(tag)) fail(`${name}: ships a <script>`);
+    // JSON-LD is data the browser never runs; any other <script> breaks the no-JavaScript promise.
+    if (/^<script[\s>]/i.test(tag) && tag !== '<script type="application/ld+json">') {
+      fail(`${name}: ships a <script>`);
+    }
     if (/^<(iframe|embed|object)[\s>]/i.test(tag)) fail(`${name}: embeds a frame: ${short(tag)}`);
     if (/\son[a-z]+\s*=/i.test(tag)) fail(`${name}: inline event handler in ${short(tag)}`);
     if (/javascript:/i.test(tag)) fail(`${name}: javascript: URL in ${short(tag)}`);
@@ -127,6 +137,58 @@ for (const [name, doc] of docs) {
   }
 }
 
+// Structured data (src/schema.ts) must parse and say only what the page says: every price it
+// names is on the page, and every URL it names is a page of this site in the page's language.
+for (const [name, doc] of docs) {
+  const blocks = [...doc.matchAll(/<script type="application\/ld\+json">([^<]*)<\/script>/g)];
+  if (name === "404.html") {
+    if (blocks.length > 0) fail(`${name}: the 404 page should carry no structured data`);
+    continue;
+  }
+  one(`${name} JSON-LD blocks`, blocks.length, 1);
+  let data;
+  try {
+    data = JSON.parse(blocks[0]?.[1] ?? "");
+  } catch {
+    fail(`${name}: JSON-LD does not parse`);
+    continue;
+  }
+  if (data["@context"] !== "https://schema.org")
+    fail(`${name}: JSON-LD needs the schema.org context`);
+  const nodes = data["@graph"] ?? [];
+  const text = doc.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]*>/g, " ");
+  const types = nodes.map((node) => node["@type"]);
+  const isHome = name === "index.html" || /^[a-z]{2}\/index\.html$/.test(name);
+  for (const type of isHome ? ["WebSite", "MobileApplication"] : ["BreadcrumbList"]) {
+    if (!types.includes(type)) fail(`${name}: JSON-LD is missing its ${type}`);
+  }
+  for (const node of nodes) {
+    for (const offer of node.offers ?? []) {
+      if (offer.price === "0") continue;
+      if (!text.includes(offer.price) && !text.includes(offer.price.replace(".", ","))) {
+        fail(`${name}: JSON-LD offers ${offer.price}, which the page never shows`);
+      }
+    }
+  }
+  const canonical = /rel="canonical" href="([^"]+)"/.exec(doc)?.[1];
+  const crumbs = nodes.find((node) => node["@type"] === "BreadcrumbList")?.itemListElement ?? [];
+  if (crumbs.length > 0 && crumbs.at(-1).item !== canonical) {
+    fail(`${name}: the breadcrumb ends at ${crumbs.at(-1).item}, not the page (${canonical})`);
+  }
+  const lang = langOf(name);
+  // The WebSite node names the whole site, whose root is the English home page.
+  for (const [, url] of JSON.stringify(
+    nodes.filter((node) => node["@type"] !== "WebSite"),
+  ).matchAll(/"(https:\/\/lemanicdigital[^"]*)"/g)) {
+    const local = url.replace(/^https:\/\/[^/]+\/HomeMind-marketing\/?/, "").split("#")[0];
+    const file = local === "" || local.endsWith("/") ? `${local}index.html` : local;
+    if (!existsSync(join(dist, file))) fail(`${name}: JSON-LD names ${url}, which is not a page`);
+    if (lang !== "en" && !local.startsWith(`${lang}/`)) {
+      fail(`${name}: JSON-LD links ${url}, outside the page's language`);
+    }
+  }
+}
+
 const sitemap = read("sitemap.xml");
 for (const page of pages.filter((p) => p !== "404.html")) {
   const path = page.replace(/index\.html$/, "");
@@ -154,7 +216,7 @@ if (failures.length > 0) {
 
 process.stdout.write(
   `build: ${pages.length} pages, ${(bytes / 1024).toFixed(1)} KB HTML + ${(cssBytes / 1024).toFixed(1)} KB CSS, ` +
-    "no JavaScript, no external requests, headings/lang/canonical/links/sitemap verified\n",
+    "no JavaScript, no external requests, headings/lang/canonical/links/sitemap/JSON-LD verified\n",
 );
 
 function read(file) {

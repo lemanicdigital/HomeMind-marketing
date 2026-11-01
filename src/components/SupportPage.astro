@@ -3,6 +3,7 @@ import Page from '../layouts/Page.astro';
 import SiteFooter from './SiteFooter.astro';
 import SiteHeader from './SiteHeader.astro';
 import { LANGS, type Lang, home, page, pagesFor } from '../i18n';
+import { breadcrumbSchema } from '../schema';
 import { CONTACT } from '../site';
 
 /**
@@ -18,7 +19,13 @@ const c = pagesFor(lang).support;
 const alternates = Object.fromEntries(LANGS.map((code) => [code, page(code, 'support/')]));
 ---
 
-<Page title={c.title} description={c.description} lang={lang} alternates={alternates}>
+<Page
+  title={c.title}
+  description={c.description}
+  lang={lang}
+  alternates={alternates}
+  schema={breadcrumbSchema(lang, Astro.site ?? Astro.url, 'support/')}
+>
   <SiteHeader lang={lang} alternates={alternates} />
   <main id="main" class="support">
     <div class="shell stack">
