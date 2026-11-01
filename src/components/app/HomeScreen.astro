@@ -1,0 +1,45 @@
+---
+import Row from './Row.astro';
+import TabBar from './TabBar.astro';
+import type { Copy } from '../../copy/en';
+
+/**
+ * The app's Home screen, built from the design system's tokens rather than photographed, so it is
+ * always in the current colours. Its sky and its clock follow the time picked in the hero.
+ */
+interface Props {
+  app: Copy['app'];
+  times: string[];
+  label: string;
+}
+
+const { app, times, label } = Astro.props as Props;
+const skies = ['dawn', 'day', 'dusk', 'night'];
+---
+
+<div class="ui ui--home" data-ui role="img" aria-label={label}>
+  <div class="ui-status" aria-hidden="true">
+    {times.map((time, index) => <span class={`ui-clock ui-clock--${skies[index]}`}>{time}</span>)}
+  </div>
+  <div class="ui-sky"></div>
+  <div class="ui-head">
+    <span class="ui-head__text">
+      <span class="ui-title">{app.household}</span>
+      <span class="ui-sub">{app.date}</span>
+    </span>
+    <span class="ui-icon"><svg viewBox="0 0 24 24"><use href="#g-gear"></use></svg></span>
+  </div>
+  <div class="ui-section">
+    <span>{app.useSoon}</span><span class="ui-count">{app.soon.length}</span>
+  </div>
+  <ul class="ui-card">
+    {app.soon.map((item, index) => <Row {...item} urgent={index < 2} />)}
+  </ul>
+  <div class="ui-section">
+    <span>{app.runningOut}</span><span class="ui-count">{app.low.length}</span>
+  </div>
+  <ul class="ui-card">
+    {app.low.map((item) => <Row {...item} />)}
+  </ul>
+  <TabBar tabs={app.tabs} current="home" />
+</div>

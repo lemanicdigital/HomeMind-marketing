@@ -53,15 +53,15 @@ src/pages/robots.txt.ts            robots.txt, pointing at the sitemap
 src/site.ts                        shared facts: CONTACT (owner to set), PAGES, href() for links
 src/pages/404.astro                served by GitHub Pages for unknown addresses
 src/layouts/Page.astro             document shell, metadata, canonical URL
-src/components/*.astro             header, hero, features, screens, how it works, privacy, FAQ, launch, footer
+src/components/*.astro             header, hero, the app's screens, the day (with privacy), how it works, pricing, FAQ, launch, footer
+src/components/app/*.astro         the app's screens drawn in HTML from the tokens (styles: src/styles/app-ui.css)
 src/styles/tokens.css              GENERATED — vendored design-system tokens (do not edit)
 src/styles/global.css              everything else, written against those tokens only
 vendor/design-system/tokens.md     GENERATED — verbatim copy of the design-system document
 scripts/sync-design-tokens.mjs     regenerate both from a HomeMind-IOS checkout
 scripts/audit-styles.mjs           fail if authored CSS contains a colour literal
 scripts/check-build.mjs            assert every built page keeps its promises and its links resolve
-scripts/screens.py                 iPhone screenshots → public/screens/*.webp
-scripts/og.py                      draws public/og.png, the link-preview card
+scripts/og.mjs                     public/og.png, the link-preview card: the built hero, shot by local Chrome or Edge
 astro.config.mjs                   static output, Pages base path
 ```
 
@@ -94,7 +94,7 @@ npm run tokens:check  # fails if the stylesheet no longer matches the document i
 **Inter**, self-hosted from `@fontsource-variable/inter` (SIL Open Font License): one variable file
 per script, each fetched only when a page uses its characters, so an Apple device fetches none.
 Arabic will need its own face (IBM Plex Sans Arabic or Noto Sans Arabic) when an Arabic page exists.
-`scripts/og.py` draws the link card in the same Inter file.
+`scripts/og.mjs` photographs the built hero for the link card, so the card is always the page.
 
 - `src/styles/tokens.css` is **generated**, from `docs/design-system/tokens.md` in a HomeMind-IOS
   checkout (default `../HomeMind-IOS`; override with `--source <path>` or

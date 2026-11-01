@@ -1,35 +1,34 @@
 ---
 import { type Lang, copyFor } from '../i18n';
 
+/**
+ * The questions as filled tiles that open in place, one at a time (<details name>, no script),
+ * beside a heading that stays in view while they are read.
+ */
 interface Props {
-  lang?: Lang;
+  lang: Lang;
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang } = Astro.props;
 const c = copyFor(lang).faq;
-/**
- * The questions under their heading. Each answer opens in place (<details>, no script); the
- * questions are filled rows a tone step from the page, with no rules between them.
- */
 ---
 
-<section class="section" id="faq" aria-labelledby="faq-title">
-  <div class="shell faq">
-    <header class="section__head faq__head">
-      <h2 class="t-headline" id="faq-title">{c.title}</h2>
-    </header>
-
+<section class="faq field field--mist" id="faq" aria-labelledby="faq-title">
+  <div class="shell grid">
+    <div class="faq__head">
+      <h2 class="t-display" id="faq-title">{c.title}</h2>
+    </div>
     <div class="faq__list">
       {
         c.items.map((item) => (
-          <details>
+          <details name="faq">
             <summary>
               <span>{item.q}</span>
-              <svg class="faq__chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 5v14M5 12h14" />
               </svg>
             </summary>
-            <p class="t-secondary measure">{item.a}</p>
+            <p class="measure">{item.a}</p>
           </details>
         ))
       }
@@ -39,60 +38,89 @@ const c = copyFor(lang).faq;
 
 <style>
   .faq {
-    display: grid;
-    gap: clamp(32px, 6vw, 72px) clamp(40px, 8vw, 120px);
+    min-block-size: auto;
   }
 
   .faq__head {
-    margin-bottom: 0;
+    grid-column: 1 / span 5;
+  }
+
+  .faq__head h2 {
+    position: sticky;
+    top: 96px;
+    max-inline-size: 9ch;
   }
 
   .faq__list {
+    grid-column: 6 / -1;
     display: grid;
-    gap: var(--hm-space-inline);
-    max-width: 52rem;
+    gap: var(--tile-gap);
   }
 
   details {
-    border-radius: var(--hm-radius-card);
+    border-radius: var(--tile-radius);
     background: var(--hm-surface);
+    transition: background-color 200ms var(--ease);
+  }
+
+  details[open] {
+    background: var(--hm-sky-day);
   }
 
   summary {
     display: flex;
-    gap: var(--hm-space-card);
+    gap: 24px;
     align-items: center;
     justify-content: space-between;
-    min-block-size: 64px;
-    padding: var(--hm-space-card) var(--hm-space-section);
+    min-block-size: 76px;
+    padding: 20px clamp(20px, 3vw, 32px);
+    font-size: clamp(18px, 1.5vw, 22px);
+    font-weight: var(--hm-type-title-weight);
+    letter-spacing: -0.01em;
     cursor: pointer;
     list-style: none;
-    font-size: var(--site-body);
-    font-weight: var(--hm-type-title-weight);
   }
 
   summary::-webkit-details-marker {
     display: none;
   }
 
-  summary:hover {
-    color: var(--hm-primary);
-  }
-
-  .faq__chev {
+  summary svg {
     flex: none;
+    inline-size: 26px;
+    block-size: 26px;
+    padding: 4px;
+    border-radius: 50%;
+    background: var(--hm-text-primary);
+    color: var(--hm-text-inverse);
     fill: none;
     stroke: currentColor;
-    stroke-width: 2;
+    stroke-width: 2.6;
     stroke-linecap: round;
-    transition: transform var(--hm-duration) var(--hm-ease-out);
+    transition: transform 200ms var(--ease);
   }
 
-  details[open] .faq__chev {
+  details[open] summary svg {
     transform: rotate(45deg);
   }
 
   details p {
-    padding: 0 var(--hm-space-section) var(--hm-space-section);
+    padding: 0 clamp(20px, 3vw, 32px) clamp(20px, 3vw, 32px);
+  }
+
+  @media (max-width: 960px) {
+    .faq__head,
+    .faq__list {
+      grid-column: 1 / -1;
+    }
+
+    .faq__head {
+      padding-block-end: 32px;
+    }
+
+    .faq__head h2 {
+      position: static;
+      max-inline-size: none;
+    }
   }
 </style>

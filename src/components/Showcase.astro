@@ -1,0 +1,105 @@
+---
+import InventoryScreen from './app/InventoryScreen.astro';
+import ShoppingScreen from './app/ShoppingScreen.astro';
+import { type Lang, copyFor } from '../i18n';
+
+/**
+ * Two screens of the app on two fields, side by side: the household's things on the page's own
+ * surface, the list on blueberry. Each field is cut off at its foot, the way a phone is held.
+ */
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { showcase, app } = copyFor(lang);
+---
+
+<section class="showcase" id="app" aria-labelledby="app-title">
+  <div class="shell showcase__head">
+    <h2 class="t-display" id="app-title">{showcase.title}</h2>
+  </div>
+  <div class="showcase__pair">
+    <figure class="showcase__panel showcase__panel--surface">
+      <figcaption class="showcase__caption">
+        <span class="t-title">{showcase.inventory.name}</span>
+        <span>{showcase.inventory.fact}</span>
+      </figcaption>
+      <div class="showcase__screen grow">
+        <InventoryScreen app={app} label={showcase.inventory.alt} />
+      </div>
+    </figure>
+    <figure class="showcase__panel showcase__panel--berry">
+      <figcaption class="showcase__caption">
+        <span class="t-title">{showcase.list.name}</span>
+        <span>{showcase.list.fact}</span>
+      </figcaption>
+      <div class="showcase__screen grow">
+        <ShoppingScreen app={app} label={showcase.list.alt} />
+      </div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .showcase {
+    padding-block-start: clamp(64px, 9vw, 128px);
+    background: var(--hm-background);
+  }
+
+  .showcase__head {
+    padding-block-end: clamp(32px, 5vw, 64px);
+  }
+
+  .showcase__head h2 {
+    max-inline-size: 16ch;
+  }
+
+  .showcase__pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .showcase__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    gap: clamp(28px, 4vw, 48px);
+    block-size: clamp(620px, 52vw, 760px);
+    padding: clamp(32px, 4vw, 56px) var(--margin) 0;
+    overflow: hidden;
+  }
+
+  .showcase__panel--surface {
+    background: var(--hm-surface);
+    color: var(--hm-text-primary);
+  }
+
+  .showcase__panel--berry {
+    background: var(--hm-primary);
+    color: var(--hm-on-primary);
+  }
+
+  .showcase__caption {
+    display: grid;
+    gap: 4px;
+    justify-self: stretch;
+    max-inline-size: 34ch;
+    font-size: var(--fs-body);
+  }
+
+  .showcase__screen {
+    align-self: start;
+  }
+
+  @media (max-width: 860px) {
+    .showcase__pair {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .showcase__panel {
+      block-size: 640px;
+    }
+  }
+</style>

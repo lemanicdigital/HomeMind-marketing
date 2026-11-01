@@ -18,121 +18,143 @@ measured — `npm run a11y:contrast` recomputes every ratio in CI (`tests/design
 
 ## Colour
 
-### Starting identity
+### Identity: blueberry and saffron
 
-The identity is a deep, desaturated kitchen green on warm paper. These are the anchors the rest of
-the palette is derived from:
+The identity is a deep blueberry for everything you act on, one saffron for the one action that
+matters most (Add), cool blue-grey ink on a misty white, and a colour for every category. A
+household inventory is a list of chores; the palette's job is to make that list pleasant to look
+at and quick to read.
 
-| Intent            | Hex       | Where it lives                                                          |
-| ----------------- | --------- | ----------------------------------------------------------------------- |
-| Primary           | `#245C4F` | `palette.inkPrimary` → `primary` (light)                                |
-| Primary pressed   | `#19473D` | `primaryPressed` (light)                                                |
-| Primary subtle    | `#E5F1EB` | `primarySubtle` (light)                                                 |
-| Accent            | `#B9E4C9` | `accent` in dark, `primaryBorder`/hover greens in light                 |
-| Background        | `#F8F7F2` | `background`, `controlBackground`                                       |
-| Surface           | `#FFFFFF` | `surface`                                                               |
-| Surface secondary | `#F0F1EB` | `surfaceSecondary`, `neutralSubtle`                                     |
-| Text primary      | `#202923` | `textPrimary`, and the base of the dark-mode `night` ramp               |
-| Text secondary    | `#68736C` | `textTertiary`, `iconMuted` (light)                                     |
-| Border            | `#E2E5DF` | `surfaceTertiary`, `borderSubtle`                                       |
-| Success           | `#26734D` | `success`                                                               |
-| Warning           | `#986116` | `warning`; `warningSubtle` text is darkened to `#7E5010` to reach 4.5:1 |
-| Danger            | `#B63F3F` | `danger`                                                                |
-| Info              | `#3569A8` | `info`                                                                  |
+| Intent            | Hex       | Where it lives                                                   |
+| ----------------- | --------- | ---------------------------------------------------------------- |
+| Primary           | `#3D41C6` | `palette.berry600` → `primary`, links, selected controls (light) |
+| Primary pressed   | `#2F32A3` | `primaryPressed` (light)                                         |
+| Primary subtle    | `#EEEFFC` | `primarySubtle`, `surfaceSelected` (light)                       |
+| Accent            | `#F5B731` | `accent`: the centre Add button only, with a `#3A2600` plus      |
+| Background        | `#F4F5FA` | `background`, `controlBackground`                                |
+| Surface           | `#FFFFFF` | `surface`                                                        |
+| Surface secondary | `#ECEEF6` | `surfaceSecondary`, `neutralSubtle`                              |
+| Text primary      | `#161A33` | `textPrimary`, and the base of the dark-mode `night` ramp        |
+| Text secondary    | `#4A5072` | `textSecondary` (light)                                          |
+| Success           | `#1F7F47` | `success`                                                        |
+| Warning           | `#A85A00` | `warning`                                                        |
+| Danger            | `#C93A2E` | `danger`                                                         |
+| Info              | `#1E6AB8` | `info`                                                           |
 
-Two additions were necessary to make those anchors work as a _system_ rather than a swatch sheet:
+Three ideas carry it:
 
-1. An **ink ramp** (`ink50 … ink900`) so tints, borders and pressed states are derived, not
-   invented per screen — and so secondary text could be darkened to `#55605A`. The brief's
-   `#68736C` remains `textTertiary` and `iconMuted`, where it measures 4.60:1 on the background and
-   4.93:1 on a surface, i.e. still AA.
-2. A **night ramp** (`night900 … night50`) for dark mode. Dark surfaces are not black; they are the
-   primary text colour pushed down (`#0C1210` background, `#161F1C` surface, `#1D2724` /
-   `#26312D` raised), with the greens lightened to `#8CCDB4` / `#B9E4C9` and status hues shifted to
-   tint-with-dark-text (`onSuccess` is `#0D2A1D` on `#7BCFA3`, not white on green).
+1. **One saffron thing.** `accent` is used for the Add button and the floating-button badge,
+   nothing else, so the eye always finds the main action. Everything else you can press is
+   blueberry.
+2. **Categories have colours.** `categoryPantry` … `categoryOther` are solid tiles under a white
+   `onCategory` glyph, like Reminders' lists: pantry amber, fresh basil, beverages sky, frozen
+   glacier, cleaning lavender, bathroom coral, pet carrot, other slate. Each clears 3:1 under the
+   glyph in both themes, and the category is always also named in the row.
+3. **Home has a sky.** `skyDawn`, `skyDay`, `skyDusk` and `skyNight` wash in behind Home's title
+   (`Screen`'s `wash` prop), picked by the clock in `src/lib/sky.ts`. Body text is checked at 4.5:1
+   on all four, in both themes.
+
+Dark mode is a night sky, not a black hole: `#0D0F1F` background, `#161931` surface, `#1E2240` /
+`#282D50` raised, with blueberry lightened to `#A3A6FF` (dark text on it) and saffron to
+`#F7C04A`. Status hues become tints with dark text (`onSuccess` is `#0B2817` on `#72D69C`).
 
 ### Semantic roles
 
-75 roles, both appearances. `on*` roles are _foregrounds guaranteed on the surface named after
+90 roles, both appearances. `on*` roles are _foregrounds guaranteed on the surface named after
 them_, which is what makes the contrast test possible.
 
 | Role                | Light       | Dark        |
 | ------------------- | ----------- | ----------- |
-| `primary`           | `#245C4F`   | `#8CCDB4`   |
-| `onPrimary`         | `#FFFFFF`   | `#0B211D`   |
-| `primaryPressed`    | `#19473D`   | `#B9E4C9`   |
-| `primarySubtle`     | `#E5F1EB`   | `#15382C`   |
-| `onPrimarySubtle`   | `#19473D`   | `#B9E4C9`   |
-| `primaryBorder`     | `#B9E4C9`   | `#35806A`   |
-| `accent`            | `#B9E4C9`   | `#12342D`   |
-| `onAccent`          | `#12342D`   | `#B9E4C9`   |
-| `background`        | `#F8F7F2`   | `#0C1210`   |
-| `surface`           | `#FFFFFF`   | `#161F1C`   |
-| `surfaceSecondary`  | `#F0F1EB`   | `#1D2724`   |
-| `surfaceTertiary`   | `#E2E5DF`   | `#26312D`   |
-| `onBackground`      | `#202923`   | `#EDF1EC`   |
-| `onSurface`         | `#202923`   | `#EDF1EC`   |
-| `onSurfaceMuted`    | `#55605A`   | `#C9D2CB`   |
-| `surfacePressed`    | `#F0F1EB`   | `#1D2724`   |
-| `surfaceSelected`   | `#E5F1EB`   | `#1B4436`   |
-| `surfaceDisabled`   | `#F0F1EB`   | `#1D2724`   |
-| `overlay`           | `#2029238C` | `#000000A8` |
-| `onOverlay`         | `#F8F7F2`   | `#EDF1EC`   |
-| `skeleton`          | `#E2E5DF`   | `#26312D`   |
-| `textPrimary`       | `#202923`   | `#EDF1EC`   |
-| `textSecondary`     | `#55605A`   | `#A0ABA3`   |
-| `textTertiary`      | `#68736C`   | `#8A958C`   |
-| `textDisabled`      | `#8B958D`   | `#7D8880`   |
-| `textLink`          | `#245C4F`   | `#8CCDB4`   |
-| `textInverse`       | `#FFFFFF`   | `#202923`   |
-| `borderSubtle`      | `#E2E5DF`   | `#26312D`   |
-| `borderStrong`      | `#68736C`   | `#7D8880`   |
-| `borderInput`       | `#7B857E`   | `#5D6D63`   |
-| `borderDisabled`    | `#E2E5DF`   | `#33403A`   |
-| `borderFocus`       | `#35806A`   | `#8CCDB4`   |
-| `focusRing`         | `#35806A`   | `#8CCDB4`   |
-| `success`           | `#26734D`   | `#7BCFA3`   |
-| `onSuccess`         | `#FFFFFF`   | `#0D2A1D`   |
-| `successSubtle`     | `#E4F1E9`   | `#153526`   |
-| `onSuccessSubtle`   | `#26734D`   | `#7BCFA3`   |
-| `successBorder`     | `#BFE3CE`   | `#2F8A5C`   |
-| `warning`           | `#986116`   | `#E7B45F`   |
-| `onWarning`         | `#FFFFFF`   | `#2B1E07`   |
-| `warningSubtle`     | `#FBF0DC`   | `#3A2A11`   |
-| `onWarningSubtle`   | `#7E5010`   | `#E7B45F`   |
-| `warningBorder`     | `#F0D9AE`   | `#B87F2A`   |
-| `danger`            | `#B63F3F`   | `#EE9A95`   |
-| `onDanger`          | `#FFFFFF`   | `#2E1414`   |
-| `dangerSubtle`      | `#FBE9E9`   | `#3B1D1D`   |
-| `onDangerSubtle`    | `#B63F3F`   | `#EE9A95`   |
-| `dangerBorder`      | `#EFC7C7`   | `#C45750`   |
-| `info`              | `#3569A8`   | `#8CBEEF`   |
-| `onInfo`            | `#FFFFFF`   | `#101F31`   |
-| `infoSubtle`        | `#E6EFF8`   | `#16293D`   |
-| `onInfoSubtle`      | `#3569A8`   | `#8CBEEF`   |
-| `infoBorder`        | `#C4DAF1`   | `#4479B8`   |
-| `neutral`           | `#55605A`   | `#C9D2CB`   |
-| `onNeutral`         | `#FFFFFF`   | `#0C1210`   |
-| `neutralSubtle`     | `#F0F1EB`   | `#26312D`   |
-| `onNeutralSubtle`   | `#414C46`   | `#C9D2CB`   |
-| `controlTrackOff`   | `#7B857E`   | `#46554E`   |
-| `controlTrackOn`    | `#245C4F`   | `#57A98F`   |
-| `controlThumb`      | `#FFFFFF`   | `#EDF1EC`   |
-| `controlBackground` | `#F8F7F2`   | `#111816`   |
-| `controlBorder`     | `#7B857E`   | `#5D6D63`   |
-| `controlSelected`   | `#245C4F`   | `#8CCDB4`   |
-| `controlDisabled`   | `#E2E5DF`   | `#26312D`   |
-| `stepperBackground` | `#FFFFFF`   | `#1D2724`   |
-| `ripple`            | `#20292329` | `#FFFFFF33` |
-| `rippleOnPrimary`   | `#FFFFFF3D` | `#0B211D3D` |
-| `tabBar`            | `#FFFFFF`   | `#0F1512`   |
-| `tabBarBorder`      | `#E2E5DF`   | `#26312D`   |
-| `tabBarActive`      | `#245C4F`   | `#8CCDB4`   |
-| `tabBarInactive`    | `#68736C`   | `#7D8880`   |
-| `headerBackground`  | `#F8F7F2`   | `#0C1210`   |
-| `headerText`        | `#202923`   | `#EDF1EC`   |
-| `iconDefault`       | `#414C46`   | `#C9D2CB`   |
-| `iconMuted`         | `#68736C`   | `#A0ABA3`   |
+| `primary`           | `#3D41C6`   | `#A3A6FF`   |
+| `onPrimary`         | `#FFFFFF`   | `#0D0F1F`   |
+| `primaryPressed`    | `#2F32A3`   | `#C4C6F7`   |
+| `primarySubtle`     | `#EEEFFC`   | `#23265A`   |
+| `onPrimarySubtle`   | `#2F32A3`   | `#C4C6F7`   |
+| `primaryBorder`     | `#C4C6F7`   | `#5A5EDC`   |
+| `accent`            | `#F5B731`   | `#F7C04A`   |
+| `onAccent`          | `#3A2600`   | `#3A2600`   |
+| `background`        | `#F4F5FA`   | `#0D0F1F`   |
+| `surface`           | `#FFFFFF`   | `#161931`   |
+| `surfaceSecondary`  | `#ECEEF6`   | `#1E2240`   |
+| `surfaceTertiary`   | `#E2E5F0`   | `#282D50`   |
+| `onBackground`      | `#161A33`   | `#EEF0FA`   |
+| `onSurface`         | `#161A33`   | `#EEF0FA`   |
+| `onSurfaceMuted`    | `#4A5072`   | `#CDD0E6`   |
+| `surfacePressed`    | `#ECEEF6`   | `#1E2240`   |
+| `surfaceSelected`   | `#EEEFFC`   | `#2A2E6B`   |
+| `surfaceDisabled`   | `#ECEEF6`   | `#1E2240`   |
+| `overlay`           | `#161A338C` | `#000000A8` |
+| `onOverlay`         | `#F4F5FA`   | `#EEF0FA`   |
+| `skeleton`          | `#E2E5F0`   | `#282D50`   |
+| `textPrimary`       | `#161A33`   | `#EEF0FA`   |
+| `textSecondary`     | `#4A5072`   | `#B9BDD8`   |
+| `textTertiary`      | `#5E6485`   | `#8F95B8`   |
+| `textDisabled`      | `#8A8FAC`   | `#80869F`   |
+| `textLink`          | `#3D41C6`   | `#A3A6FF`   |
+| `textInverse`       | `#FFFFFF`   | `#161A33`   |
+| `media`             | `#000000`   | `#000000`   |
+| `onMedia`           | `#FFFFFF`   | `#FFFFFF`   |
+| `borderSubtle`      | `#E2E5F0`   | `#282D50`   |
+| `borderStrong`      | `#5E6485`   | `#80869F`   |
+| `borderInput`       | `#7A80A0`   | `#646B95`   |
+| `borderDisabled`    | `#E2E5F0`   | `#343A62`   |
+| `borderFocus`       | `#5A5EDC`   | `#A3A6FF`   |
+| `focusRing`         | `#5A5EDC`   | `#A3A6FF`   |
+| `success`           | `#1F7F47`   | `#72D69C`   |
+| `onSuccess`         | `#FFFFFF`   | `#0B2817`   |
+| `successSubtle`     | `#E3F4E9`   | `#15322A`   |
+| `onSuccessSubtle`   | `#17643A`   | `#72D69C`   |
+| `successBorder`     | `#BDE5CC`   | `#2E9A5B`   |
+| `warning`           | `#A85A00`   | `#F2B65E`   |
+| `onWarning`         | `#FFFFFF`   | `#2D1A00`   |
+| `warningSubtle`     | `#FDF0DC`   | `#38291A`   |
+| `onWarningSubtle`   | `#7F4400`   | `#F2B65E`   |
+| `warningBorder`     | `#F6D9AE`   | `#C67A1E`   |
+| `danger`            | `#C93A2E`   | `#F49A90`   |
+| `onDanger`          | `#FFFFFF`   | `#2F0F0B`   |
+| `dangerSubtle`      | `#FCEAE8`   | `#3A1D27`   |
+| `onDangerSubtle`    | `#A8291F`   | `#F49A90`   |
+| `dangerBorder`      | `#F3C6C1`   | `#D9584D`   |
+| `info`              | `#1E6AB8`   | `#8EC2F5`   |
+| `onInfo`            | `#FFFFFF`   | `#0B1E33`   |
+| `infoSubtle`        | `#E5F0FB`   | `#172A48`   |
+| `onInfoSubtle`      | `#1E6AB8`   | `#8EC2F5`   |
+| `infoBorder`        | `#C2DBF3`   | `#3A82CC`   |
+| `neutral`           | `#4A5072`   | `#CDD0E6`   |
+| `onNeutral`         | `#FFFFFF`   | `#0D0F1F`   |
+| `neutralSubtle`     | `#ECEEF6`   | `#282D50`   |
+| `onNeutralSubtle`   | `#363C5E`   | `#CDD0E6`   |
+| `controlTrackOff`   | `#7A80A0`   | `#474E7A`   |
+| `controlTrackOn`    | `#3D41C6`   | `#7F83F2`   |
+| `controlThumb`      | `#FFFFFF`   | `#EEF0FA`   |
+| `controlBackground` | `#F4F5FA`   | `#111428`   |
+| `controlBorder`     | `#7A80A0`   | `#646B95`   |
+| `controlSelected`   | `#3D41C6`   | `#A3A6FF`   |
+| `controlDisabled`   | `#E2E5F0`   | `#282D50`   |
+| `stepperBackground` | `#FFFFFF`   | `#1E2240`   |
+| `ripple`            | `#161A3329` | `#FFFFFF33` |
+| `rippleOnPrimary`   | `#FFFFFF3D` | `#14164A3D` |
+| `tabBar`            | `#FFFFFF`   | `#0F1124`   |
+| `tabBarBorder`      | `#E2E5F0`   | `#282D50`   |
+| `tabBarActive`      | `#3D41C6`   | `#A3A6FF`   |
+| `tabBarInactive`    | `#5E6485`   | `#80869F`   |
+| `headerBackground`  | `#F4F5FA`   | `#0D0F1F`   |
+| `headerText`        | `#161A33`   | `#EEF0FA`   |
+| `iconDefault`       | `#363C5E`   | `#CDD0E6`   |
+| `iconMuted`         | `#5E6485`   | `#B9BDD8`   |
+| `categoryPantry`    | `#A86C00`   | `#A86C00`   |
+| `categoryFresh`     | `#23874D`   | `#23874D`   |
+| `categoryBeverages` | `#1C7BC4`   | `#1C7BC4`   |
+| `categoryFrozen`    | `#0E8296`   | `#0E8296`   |
+| `categoryCleaning`  | `#7B4FE0`   | `#7B4FE0`   |
+| `categoryBathroom`  | `#D2466D`   | `#D2466D`   |
+| `categoryPet`       | `#D35C12`   | `#D35C12`   |
+| `categoryOther`     | `#636A8A`   | `#636A8A`   |
+| `onCategory`        | `#FFFFFF`   | `#FFFFFF`   |
+| `skyDawn`           | `#FFF1CF`   | `#2A2414`   |
+| `skyDay`            | `#E3ECFF`   | `#16233F`   |
+| `skyDusk`           | `#FBE2E6`   | `#2E1A2A`   |
+| `skyNight`          | `#E4E3FA`   | `#1D1C45`   |
 
 ### Reading the table
 
@@ -145,6 +167,8 @@ them_, which is what makes the contrast test possible.
 | Status   | `success`, `onSuccess`, `successSubtle`, `onSuccessSubtle`, `successBorder` — and the same five for `warning`, `danger`, `info`, `neutral`                                                                |
 | Controls | `controlTrackOff`, `controlTrackOn`, `controlThumb`, `controlBackground`, `controlBorder`, `controlSelected`, `controlDisabled`, `stepperBackground`, `ripple`, `rippleOnPrimary`                         |
 | Chrome   | `tabBar`, `tabBarBorder`, `tabBarActive`, `tabBarInactive`, `headerBackground`, `headerText`, `iconDefault`, `iconMuted`                                                                                  |
+| Category | `categoryPantry`, `categoryFresh`, `categoryBeverages`, `categoryFrozen`, `categoryCleaning`, `categoryBathroom`, `categoryPet`, `categoryOther`, `onCategory`                                            |
+| Sky      | `skyDawn`, `skyDay`, `skyDusk`, `skyNight`                                                                                                                                                                |
 
 Rules for using them:
 
@@ -171,58 +195,78 @@ roles to 3:1 (WCAG 1.4.11).
 
 | Pair (foreground on background)       | Light | Dark  | Required |
 | ------------------------------------- | ----- | ----- | -------- |
-| `textPrimary` on `background`         | 13.96 | 16.58 | 4.5:1    |
-| `textPrimary` on `surface`            | 14.97 | 14.75 | 4.5:1    |
-| `textPrimary` on `surfaceSecondary`   | 13.18 | 13.45 | 4.5:1    |
-| `textPrimary` on `surfaceTertiary`    | 11.77 | 11.79 | 4.5:1    |
-| `textSecondary` on `background`       | 6.10  | 7.97  | 4.5:1    |
-| `textSecondary` on `surface`          | 6.55  | 7.10  | 4.5:1    |
-| `textSecondary` on `surfaceSecondary` | 5.76  | 6.47  | 4.5:1    |
-| `textSecondary` on `surfaceTertiary`  | 5.15  | 5.67  | 4.5:1    |
-| `textTertiary` on `background`        | 4.60  | 6.09  | 4.5:1    |
-| `textTertiary` on `surface`           | 4.93  | 5.42  | 4.5:1    |
-| `textLink` on `background`            | 7.20  | 10.37 | 4.5:1    |
-| `textLink` on `surface`               | 7.72  | 9.23  | 4.5:1    |
-| `onPrimary` on `primary`              | 7.72  | 9.21  | 4.5:1    |
-| `onPrimary` on `primaryPressed`       | 10.45 | 12.01 | 4.5:1    |
-| `onPrimarySubtle` on `primarySubtle`  | 9.01  | 9.18  | 4.5:1    |
-| `onAccent` on `accent`                | 9.65  | 9.65  | 4.5:1    |
-| `onSurfaceMuted` on `surface`         | 6.55  | 10.88 | 4.5:1    |
-| `textInverse` on `primary`            | 7.72  | 8.20  | 4.5:1    |
-| `onOverlay` on `overlay`              | 13.96 | 18.39 | 4.5:1    |
-| `onSuccess` on `success`              | 5.77  | 8.27  | 4.5:1    |
-| `onWarning` on `warning`              | 5.18  | 8.59  | 4.5:1    |
-| `onDanger` on `danger`                | 5.57  | 7.90  | 4.5:1    |
-| `onInfo` on `info`                    | 5.62  | 8.50  | 4.5:1    |
-| `onSuccessSubtle` on `successSubtle`  | 4.96  | 7.20  | 4.5:1    |
-| `onWarningSubtle` on `warningSubtle`  | 6.11  | 7.30  | 4.5:1    |
-| `onDangerSubtle` on `dangerSubtle`    | 4.75  | 7.03  | 4.5:1    |
-| `onInfoSubtle` on `infoSubtle`        | 4.83  | 7.56  | 4.5:1    |
-| `onNeutralSubtle` on `neutralSubtle`  | 7.88  | 8.70  | 4.5:1    |
+| `textPrimary` on `background`         | 15.69 | 16.72 | 4.5:1    |
+| `textPrimary` on `surface`            | 17.08 | 15.18 | 4.5:1    |
+| `textPrimary` on `surfaceSecondary`   | 14.74 | 13.61 | 4.5:1    |
+| `textPrimary` on `surfaceTertiary`    | 13.58 | 11.69 | 4.5:1    |
+| `textSecondary` on `background`       | 7.19  | 10.25 | 4.5:1    |
+| `textSecondary` on `surface`          | 7.83  | 9.31  | 4.5:1    |
+| `textSecondary` on `surfaceSecondary` | 6.76  | 8.35  | 4.5:1    |
+| `textSecondary` on `surfaceTertiary`  | 6.23  | 7.17  | 4.5:1    |
+| `textTertiary` on `background`        | 5.30  | 6.48  | 4.5:1    |
+| `textTertiary` on `surface`           | 5.77  | 5.88  | 4.5:1    |
+| `textTertiary` on `surfaceSecondary`  | 4.98  | 5.27  | 4.5:1    |
+| `textLink` on `background`            | 6.96  | 8.56  | 4.5:1    |
+| `textLink` on `surface`               | 7.58  | 7.77  | 4.5:1    |
+| `onPrimary` on `primary`              | 7.58  | 8.56  | 4.5:1    |
+| `onPrimary` on `primaryPressed`       | 9.97  | 11.55 | 4.5:1    |
+| `onPrimarySubtle` on `primarySubtle`  | 8.73  | 8.53  | 4.5:1    |
+| `onAccent` on `accent`                | 8.03  | 8.64  | 4.5:1    |
+| `onSurfaceMuted` on `surface`         | 7.83  | 11.30 | 4.5:1    |
+| `textInverse` on `primary`            | 7.58  | 7.69  | 4.5:1    |
+| `onOverlay` on `overlay`              | 15.69 | 18.48 | 4.5:1    |
+| `onSuccess` on `success`              | 5.02  | 8.88  | 4.5:1    |
+| `onWarning` on `warning`              | 5.09  | 9.23  | 4.5:1    |
+| `onDanger` on `danger`                | 5.09  | 8.27  | 4.5:1    |
+| `onInfo` on `info`                    | 5.51  | 8.96  | 4.5:1    |
+| `onSuccessSubtle` on `successSubtle`  | 6.29  | 7.76  | 4.5:1    |
+| `onWarningSubtle` on `warningSubtle`  | 6.84  | 7.75  | 4.5:1    |
+| `onDangerSubtle` on `dangerSubtle`    | 6.02  | 7.13  | 4.5:1    |
+| `onInfoSubtle` on `infoSubtle`        | 4.78  | 7.65  | 4.5:1    |
+| `onNeutralSubtle` on `neutralSubtle`  | 9.23  | 8.70  | 4.5:1    |
+| `textPrimary` on `skyDawn`            | 15.24 | 13.58 | 4.5:1    |
+| `textPrimary` on `skyDay`             | 14.40 | 13.73 | 4.5:1    |
+| `textPrimary` on `skyDusk`            | 13.92 | 14.24 | 4.5:1    |
+| `textPrimary` on `skyNight`           | 13.55 | 14.17 | 4.5:1    |
+| `textSecondary` on `skyDawn`          | 6.99  | 8.33  | 4.5:1    |
+| `textSecondary` on `skyDay`           | 6.60  | 8.42  | 4.5:1    |
+| `textSecondary` on `skyDusk`          | 6.39  | 8.74  | 4.5:1    |
+| `textSecondary` on `skyNight`         | 6.22  | 8.69  | 4.5:1    |
 
 ### Interface and non-text contrast (3:1)
 
-| `borderInput` on `background` | 3.56 | 3.45 | 3:1 |
-| `borderInput` on `surface` | 3.82 | 3.07 | 3:1 |
-| `borderStrong` on `surface` | 4.93 | 4.58 | 3:1 |
-| `borderStrong` on `background` | 4.60 | 5.14 | 3:1 |
-| `borderFocus` on `background` | 4.40 | 10.37 | 3:1 |
-| `focusRing` on `background` | 4.40 | 10.37 | 3:1 |
-| `tabBarInactive` on `tabBar` | 4.93 | 5.02 | 3:1 |
-| `tabBarActive` on `tabBar` | 7.72 | 10.13 | 3:1 |
-| `headerText` on `headerBackground` | 13.96 | 16.58 | 3:1 |
-| `iconDefault` on `surface` | 8.95 | 10.88 | 3:1 |
-| `iconMuted` on `surface` | 4.93 | 7.10 | 3:1 |
-| `iconMuted` on `background` | 4.60 | 7.97 | 3:1 |
-| `success` on `surface` | 5.77 | 9.06 | 3:1 |
-| `warning` on `surface` | 5.18 | 8.90 | 3:1 |
-| `danger` on `surface` | 5.57 | 7.77 | 3:1 |
-| `info` on `surface` | 5.62 | 8.60 | 3:1 |
-| `primary` on `surface` | 7.72 | 9.23 | 3:1 |
-| `controlBorder` on `controlBackground` | 3.56 | 3.29 | 3:1 |
-| `controlSelected` on `controlBackground` | 7.20 | 9.87 | 3:1 |
-| `controlTrackOn` on `surface` | 7.72 | 6.00 | 3:1 |
-| `controlThumb` on `controlTrackOff` | 3.82 | 6.89 | 3:1 |
+| Pair                                     | Light | Dark  | Required |
+| ---------------------------------------- | ----- | ----- | -------- |
+| `borderInput` on `background`            | 3.56  | 3.69  | 3:1      |
+| `borderInput` on `surface`               | 3.87  | 3.35  | 3:1      |
+| `borderStrong` on `surface`              | 5.77  | 4.79  | 3:1      |
+| `borderStrong` on `background`           | 5.30  | 5.27  | 3:1      |
+| `borderFocus` on `background`            | 4.74  | 8.56  | 3:1      |
+| `focusRing` on `background`              | 4.74  | 8.56  | 3:1      |
+| `tabBarInactive` on `tabBar`             | 5.77  | 5.18  | 3:1      |
+| `tabBarActive` on `tabBar`               | 7.58  | 8.40  | 3:1      |
+| `headerText` on `headerBackground`       | 15.69 | 16.72 | 3:1      |
+| `iconDefault` on `surface`               | 10.69 | 11.30 | 3:1      |
+| `iconMuted` on `surface`                 | 5.77  | 9.31  | 3:1      |
+| `iconMuted` on `background`              | 5.30  | 10.25 | 3:1      |
+| `success` on `surface`                   | 5.02  | 9.70  | 3:1      |
+| `warning` on `surface`                   | 5.09  | 9.55  | 3:1      |
+| `danger` on `surface`                    | 5.09  | 8.11  | 3:1      |
+| `info` on `surface`                      | 5.51  | 9.19  | 3:1      |
+| `primary` on `surface`                   | 7.58  | 7.77  | 3:1      |
+| `controlBorder` on `controlBackground`   | 3.56  | 3.53  | 3:1      |
+| `controlSelected` on `controlBackground` | 6.96  | 8.19  | 3:1      |
+| `controlTrackOn` on `surface`            | 7.58  | 5.28  | 3:1      |
+| `controlThumb` on `controlTrackOff`      | 3.87  | 7.00  | 3:1      |
+| `onAccent` on `accent`                   | 8.03  | 8.64  | 3:1      |
+| `onCategory` on `categoryPantry`         | 4.37  | 4.37  | 3:1      |
+| `onCategory` on `categoryFresh`          | 4.52  | 4.52  | 3:1      |
+| `onCategory` on `categoryBeverages`      | 4.49  | 4.49  | 3:1      |
+| `onCategory` on `categoryFrozen`         | 4.51  | 4.51  | 3:1      |
+| `onCategory` on `categoryCleaning`       | 5.20  | 5.20  | 3:1      |
+| `onCategory` on `categoryBathroom`       | 4.34  | 4.34  | 3:1      |
+| `onCategory` on `categoryPet`            | 3.96  | 3.96  | 3:1      |
+| `onCategory` on `categoryOther`          | 5.30  | 5.30  | 3:1      |
 
 ### Documented exemptions
 
@@ -230,12 +274,12 @@ These are deliberate and are asserted as _allowed_ by the test, not ignored by i
 
 | Pair                                  | Ratio      | Why it is fine                                                                                                                       |
 | ------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `textDisabled` on `surface`           | 3.10 light | Disabled content is not required to meet 4.5:1; it is still 3:1+ so it stays legible, and a disabled control always keeps its label. |
-| `controlThumb` on `controlTrackOn`    | 2.46 dark  | The thumb is a knob, not information; the state is carried by the track colour plus the `On`/`Off` accessibility value.              |
-| `controlTrackOff` on `surface`        | 2.14 dark  | Same reasoning; the unchecked/off state is the _absence_ of colour and is named in the spoken label.                                 |
-| status `*Border` on `*Subtle` fill    | 1.20 light | Decorative tint used to group an alert, not a boundary that conveys meaning alone.                                                   |
-| `skeleton` on `surface`               | 1.27       | A loading shimmer is not content and never carries information.                                                                      |
-| `onNeutral`                           | n/a        | Reserved for a future solid neutral fill; the neutral badge uses `onNeutralSubtle` on `neutralSubtle` (7.88 light / 8.70 dark).      |
+| `textDisabled` on `surface`           | 3.18 light | Disabled content is not required to meet 4.5:1; it is still 3:1+ so it stays legible, and a disabled control always keeps its label. |
+| `controlThumb` on `controlTrackOn`    | 2.87 dark  | The thumb is a knob, not information; the state is carried by the track colour plus the `On`/`Off` accessibility value.              |
+| `controlTrackOff` on `surface`        | 2.17 dark  | Same reasoning; the unchecked/off state is the _absence_ of colour and is named in the spoken label.                                 |
+| status `*Border` on `*Subtle` fill    | 1.21 light | Decorative tint used to group an alert, not a boundary that conveys meaning alone.                                                   |
+| `skeleton` on `surface`               | 1.26       | A loading shimmer is not content and never carries information.                                                                      |
+| `onNeutral`                           | n/a        | Reserved for a future solid neutral fill; the neutral badge uses `onNeutralSubtle` on `neutralSubtle` (9.23 light / 8.70 dark).      |
 | hairline dividers (`border.hairline`) | n/a        | A 0.33pt separator is a rendering artefact of a platform boundary, not an informational border.                                      |
 
 ---
@@ -329,7 +373,8 @@ glyphs are reserved for a _selected_ state, so selection is never colour-only.
 Motion (`motion`) — durations `instant` 90 · `fast` 150 · `base` 220 · `slow` 300 ·
 `leisurely` 420; easing curves `enter` `[0.32,0.72,0,1]`, `exit` `[0.4,0,1,1]`, `standard`,
 `decelerate`; spring `damping` 22 / `stiffness` 260 / `mass` 1; offsets `small` 4 · `medium` 8 ·
-`large` 16 · `sheet` 320. `useReducedMotion()` (and `useAnimationScale()`) collapse every duration
+`large` 16 · `sheet` 320; Reanimated `springs` `snappy` (press) · `gentle` (settling) · `bouncy` (a
+small reward), and `stagger` 55 ms between blocks that appear in turn. `useReducedMotion()` (and `useAnimationScale()`) collapse every duration
 to 0 when the device asks for less motion — components never hardcode a number.
 
 Layout (`layout`) — `minTouchTarget` 44 · `minControlHeight` 48 · `controlHeight` `sm` 36 / `md`

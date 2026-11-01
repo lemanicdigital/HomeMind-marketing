@@ -30,7 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 // `new URL` rejects, and `import.meta.env.BASE_URL` has no trailing slash to rely on.
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const asset = (name: string) => `${base}/${name}`.replace(/\/{2,}/g, '/');
-// Link previews (iMessage, Slack, X) need an absolute image URL; scripts/og.py draws it.
+// Link previews (iMessage, Slack, X) need an absolute image URL; scripts/og.mjs draws it.
 const ogImage = new URL(asset('og.png'), Astro.site ?? Astro.url);
 ---
 
@@ -68,8 +68,8 @@ const ogImage = new URL(asset('og.png'), Astro.site ?? Astro.url);
     {schema ? <script is:inline type="application/ld+json" set:html={jsonLd(schema)} /> : null}
     <!-- token-exempt: the browser chrome colour cannot read a CSS custom property, so these two
          values are the documented `background` roles spelled out for each appearance. -->
-    <meta name="theme-color" content="#F8F7F2" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0C1210" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F4F5FA" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0D0F1F" media="(prefers-color-scheme: dark)" />
   </head>
   <body>
     <a class="skip-link" href="#main">{words.skip}</a>

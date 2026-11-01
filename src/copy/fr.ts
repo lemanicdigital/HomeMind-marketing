@@ -18,7 +18,6 @@ export const fr: Copy = {
     home: "Accueil de HomeMind",
     sections: "Sections de cette page",
     features: "Fonctions",
-    screens: "Écrans",
     pricing: "Prix",
     privacy: "Confidentialité",
     faq: "FAQ",
@@ -28,74 +27,65 @@ export const fr: Copy = {
   },
 
   hero: {
-    eyebrow: "Bientôt sur iPhone",
     title: "Sachez ce qui reste avant les courses.",
     lead: "HomeMind sait ce que votre foyer a en réserve, ce qui périme en premier et ce qui va manquer, puis écrit la liste de courses pour vous.",
     primary: "Voir comment ça marche",
-    secondary: "Voir l’app",
-    promises: ["Fonctionne hors ligne", "Gratuit sur un iPhone", "À partager avec votre foyer"],
+    timeLabel: "Voir l’accueil à",
+    times: [
+      {
+        label: "7:00",
+        caption:
+          "Petit-déjeuner. Une seule note tranquille dit ce qu’il faut utiliser aujourd’hui.",
+      },
+      {
+        label: "13:00",
+        caption: "Au magasin. La liste sait déjà ce qui est épuisé.",
+      },
+      {
+        label: "18:30",
+        caption: "Les courses arrivent. Scannez-les en les rangeant.",
+      },
+      {
+        label: "22:00",
+        caption: "Tard le soir. Tout reste sur votre téléphone, rien n’est mesuré.",
+      },
+    ],
     imageAlt:
-      "L’écran d’accueil de HomeMind : trois produits à utiliser maintenant, dont des pousses d’épinard qui expirent aujourd’hui et du lait entier demain.",
-    noteWarning: { name: "Lait entier", detail: "À consommer demain" },
-    noteSuccess: { name: "Huile d’olive", detail: "Ajoutée à votre liste" },
+      "L’écran d’accueil de HomeMind : les pousses d’épinards sont à consommer aujourd’hui, le lait entier demain et le yaourt grec expire dans 3 jours ; le café en grains et le liquide vaisselle sont bientôt finis.",
   },
 
-  features: {
-    title: "Les calculs du foyer, faits pour vous",
-    lead: "Fini le quatrième pot de quelque chose dont vous avez déjà trois, retrouvé une semaine après la date.",
-    items: [
+  day: {
+    chapters: [
       {
-        title: "Tout au même endroit",
-        body: "Ce que vous avez, combien, et où c’est rangé : le frigo, le placard, l’étagère à côté de la machine à laver.",
-      },
-      {
+        time: "7:00",
         title: "À consommer avant la date",
-        body: "Les dates deviennent « À consommer aujourd’hui » et « Expire dans 3 jours », et une seule note tranquille le matin dit ce qu’il faut manger.",
+        body: "Au petit-déjeuner, une seule note tranquille dit ce qu’il faut manger. Les dates deviennent « À consommer aujourd’hui » et « Expire dans 3 jours ».",
       },
       {
+        time: "13:00",
         title: "Une liste qui s’écrit toute seule",
         body: "Un produit épuisé arrive sur la liste de courses. Un produit qui va manquer est suggéré, avec la raison à côté.",
       },
       {
+        time: "18:30",
         title: "Scanner plutôt que taper",
-        body: "Visez un code-barres et le nom du produit se remplit tout seul. On peut toujours le taper aussi.",
-      },
-      {
-        title: "Un foyer, tous les téléphones",
-        body: "Invitez les personnes avec qui vous vivez. Tout le monde voit le même stock et la même liste, synchronisés.",
-      },
-      {
-        title: "Fonctionne sans réseau",
-        body: "Votre téléphone garde sa copie, donc le supermarché au sous-sol ne pose aucun problème. Tout se synchronise au retour du réseau.",
+        body: "Visez un code-barres et le nom se remplit tout seul. Seul le nom est nécessaire, et taper marche toujours.",
       },
     ],
   },
 
-  screens: {
+  showcase: {
     title: "Des écrans calmes pour une corvée",
-    lead: "Captures de la version actuelle sur iPhone, avec des données d’exemple. Clair ou sombre, comme votre téléphone. L’app s’affiche en français sur un iPhone réglé en français.",
-    items: [
-      {
-        title: "Aujourd’hui, d’un coup d’œil",
-        body: "Ce qu’il faut utiliser d’abord et ce qui va manquer. Rien d’autre ne vient distraire.",
-        alt: "L’écran d’accueil : une alerte indique que trois produits sont à utiliser ou vérifier, puis une liste « À consommer vite » avec des pousses d’épinard qui expirent aujourd’hui, du lait entier demain, un yaourt grec dans trois jours et du cheddar affiné dans neuf.",
-      },
-      {
-        title: "Tout ce que vous avez",
-        body: "Rangé par catégorie, filtré sur ce qui manque ou expire, avec recherche et scan du code-barres.",
-        alt: "L’écran Stock en mode sombre, filtré sur ce qui expire : pousses d’épinard, lait entier, yaourt grec, œufs et cheddar, chacun avec son emplacement et sa date.",
-      },
-      {
-        title: "Un produit, en toute franchise",
-        body: "Combien il en reste, quand il en faudra et pourquoi, et chaque paquet avec sa propre date.",
-        alt: "La fiche du café en grains : 250 grammes en stock, signalé bientôt fini, d’habitude environ 1000 grammes toutes les trois semaines, à racheter vers le 5 novembre, et un paquet dans le placard de la cuisine.",
-      },
-      {
-        title: "Une liste qui se remplit",
-        body: "Ce qui est épuisé s’ajoute tout seul. Ce qui va manquer est seulement suggéré ; à vous de l’ajouter.",
-        alt: "L’écran Courses : sacs poubelle, huile d’olive marquée « Épuisé », bananes et pain au levain à acheter, puis des suggestions pour ce qui va manquer.",
-      },
-    ],
+    inventory: {
+      name: "Tout ce que vous avez",
+      fact: "Rangé par catégorie, chacune avec sa couleur.",
+      alt: "L’écran Stock : huit produits, un de chaque catégorie, chacun avec sa couleur : pâtes, pousses d’épinards, café en grains, petits pois surgelés, lessive, dentifrice, pâtée pour chat et piles.",
+    },
+    list: {
+      name: "Une liste qui se remplit",
+      fact: "Ce qui est épuisé s’ajoute. Ce qui va manquer est seulement suggéré.",
+      alt: "L’écran Courses : l’huile d’olive et les sacs poubelle sont épuisés, des bananes et un pain au levain sont à acheter, puis le café en grains et le liquide vaisselle sont suggérés car bientôt finis.",
+    },
   },
 
   how: {
@@ -117,6 +107,11 @@ export const fr: Copy = {
   },
 
   pricing: {
+    sentence: {
+      before: "HomeMind Household coûte ",
+      price: "14,99 €",
+      after: " par an pour tout le foyer, ou 1,99 € par mois. Le premier mois est offert.",
+    },
     title: "Gratuit seul. Une offre pour le foyer.",
     lead: "Vous payez seulement ce qui a besoin de notre serveur : la synchronisation et le partage. Tout le reste est gratuit, quel que soit le nombre de produits.",
     free: {
@@ -147,27 +142,155 @@ export const fr: Copy = {
   },
 
   privacy: {
+    time: "22:00",
     title: "Votre cuisine ne regarde que vous",
     lead: "Un inventaire du foyer en dit long sur une maison. HomeMind le garde d’abord sur votre téléphone et ne collecte que ce dont la synchronisation a besoin.",
     policy: "Lire la politique de confidentialité",
-    points: [
+  },
+
+  app: {
+    household: "Chez nous",
+    date: "samedi 7 novembre",
+    tabs: {
+      home: "Accueil",
+      inventory: "Stock",
+      add: "Ajouter",
+      cook: "Cuisine",
+      shopping: "Courses",
+    },
+    useSoon: "À consommer vite",
+    runningOut: "Bientôt finis",
+    toBuy: "À acheter",
+    suggested: "Suggestions",
+    usedOne: "J’en ai utilisé un",
+    soon: [
       {
-        title: "À vous, sans compte",
-        body: "Toute l’app fonctionne sur votre seul téléphone. Se connecter ajoute seulement la synchronisation et le partage.",
+        name: "Pousses d’épinards",
+        detail: "Frigo · À consommer aujourd’hui",
+        qty: "1 sachet",
+        kind: "fresh",
       },
       {
-        title: "Financé par l’abonnement",
-        body: "HomeMind vit de HomeMind Household. L’app n’affiche aucune publicité, et vos courses ne sont jamais mesurées ni vendues.",
+        name: "Lait entier",
+        detail: "Frigo · À consommer demain",
+        qty: "1 brique",
+        kind: "beverages",
       },
       {
-        title: "Effacé quand vous le décidez",
-        body: "Supprimez votre compte dans les Réglages : il est effacé du serveur et de tous les téléphones.",
+        name: "Yaourt grec",
+        detail: "Frigo · Expire dans 3 jours",
+        qty: "2 pots",
+        kind: "fresh",
       },
     ],
+    low: [
+      {
+        name: "Café en grains",
+        detail: "Placard · Bientôt fini",
+        qty: "250 g",
+        kind: "beverages",
+      },
+      {
+        name: "Liquide vaisselle",
+        detail: "Sous l’évier · Bientôt fini",
+        qty: "1 flacon",
+        kind: "cleaning",
+      },
+    ],
+    count: "8 produits",
+    shelf: [
+      {
+        name: "Pâtes",
+        detail: "Placard",
+        qty: "2 paquets",
+        kind: "pantry",
+      },
+      {
+        name: "Pousses d’épinards",
+        detail: "Frigo · À consommer aujourd’hui",
+        qty: "1 sachet",
+        kind: "fresh",
+      },
+      {
+        name: "Café en grains",
+        detail: "Placard · Bientôt fini",
+        qty: "250 g",
+        kind: "beverages",
+      },
+      {
+        name: "Petits pois surgelés",
+        detail: "Congélateur",
+        qty: "1 sachet",
+        kind: "frozen",
+      },
+      {
+        name: "Lessive",
+        detail: "Étagère près de la machine à laver",
+        qty: "1 bidon",
+        kind: "cleaning",
+      },
+      {
+        name: "Dentifrice",
+        detail: "Armoire de toilette",
+        qty: "2 tubes",
+        kind: "bathroom",
+      },
+      {
+        name: "Pâtée pour chat",
+        detail: "Placard de l’entrée",
+        qty: "6 boîtes",
+        kind: "pet",
+      },
+      {
+        name: "Piles",
+        detail: "Tiroir de la cuisine",
+        qty: "4 piles",
+        kind: "other",
+      },
+    ],
+    toBuyCount: "4 à acheter",
+    buy: [
+      {
+        name: "Huile d’olive",
+        reason: "Épuisé",
+      },
+      {
+        name: "Sacs poubelle",
+        reason: "Épuisé",
+      },
+      {
+        name: "Bananes",
+        reason: "",
+      },
+      {
+        name: "Pain au levain",
+        reason: "",
+      },
+    ],
+    suggest: [
+      {
+        name: "Café en grains",
+        reason: "Bientôt fini",
+      },
+      {
+        name: "Liquide vaisselle",
+        reason: "Bientôt fini",
+      },
+    ],
+    add: {
+      label: "Nom",
+      value: "Pousses d’épinards",
+      category: "Frais",
+      place: "Frigo",
+    },
+    use: {
+      name: "Lait entier",
+      qty: "1 brique",
+    },
   },
 
   faq: {
-    title: "Vos questions, nos réponses",
+    title: "Questions et réponses",
     items: [
       {
         q: "Pourquoi l’iPhone d’abord ?",
@@ -215,6 +338,7 @@ export const fr: Copy = {
   },
 
   footer: {
+    place: "Fait au bord du Léman, en français, anglais, allemand et italien.",
     tagline: "L’inventaire du foyer pour iPhone. Ce site ne dépose aucun cookie et ne mesure rien.",
     product: "Produit",
     help: "Aide",

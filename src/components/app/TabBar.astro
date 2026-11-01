@@ -1,0 +1,43 @@
+---
+/** The app's tab bar: four tabs and the saffron Add button in the middle. */
+interface Props {
+  tabs: { home: string; inventory: string; add: string; cook: string; shopping: string };
+  current: 'home' | 'inventory' | 'shopping';
+}
+
+const { tabs, current } = Astro.props;
+const left = [
+  { key: 'home', glyph: 'home' },
+  { key: 'inventory', glyph: 'pantry' },
+] as const;
+const right = [
+  { key: 'cook', glyph: 'pot' },
+  { key: 'shopping', glyph: 'cart' },
+] as const;
+---
+
+<div class="ui-tabs">
+  {
+    left.map((tab) => (
+      <span class={`ui-tab${tab.key === current ? ' ui-tab--on' : ''}`}>
+        <svg viewBox="0 0 24 24">
+          <use href={`#g-${tab.glyph}`} />
+        </svg>
+        {tabs[tab.key]}
+      </span>
+    ))
+  }
+  <span class="ui-add" title={tabs.add}>
+    <svg viewBox="0 0 24 24"><use href="#g-plus"></use></svg>
+  </span>
+  {
+    right.map((tab) => (
+      <span class={`ui-tab${tab.key === current ? ' ui-tab--on' : ''}`}>
+        <svg viewBox="0 0 24 24">
+          <use href={`#g-${tab.glyph}`} />
+        </svg>
+        {tabs[tab.key]}
+      </span>
+    ))
+  }
+</div>

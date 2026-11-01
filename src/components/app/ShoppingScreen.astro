@@ -1,0 +1,58 @@
+---
+import TabBar from './TabBar.astro';
+import type { Copy } from '../../copy/en';
+
+/** The Shopping screen: what ran out is on the list, what runs low is only suggested. */
+interface Props {
+  app: Copy['app'];
+  label: string;
+}
+
+const { app, label } = Astro.props as Props;
+---
+
+<div class="ui ui--shopping" data-ui role="img" aria-label={label}>
+  <div class="ui-head">
+    <span class="ui-head__text">
+      <span class="ui-title">{app.tabs.shopping}</span>
+      <span class="ui-sub">{app.toBuyCount}</span>
+    </span>
+  </div>
+  <div class="ui-section">
+    <span>{app.toBuy}</span><span class="ui-count">{app.buy.length}</span>
+  </div>
+  <ul class="ui-card">
+    {
+      app.buy.map((item) => (
+        <li class="ui-row">
+          <span class="ui-box" />
+          <span class="ui-row__text">
+            <span class="ui-row__name">{item.name}</span>
+            {item.reason ? <span class="ui-row__detail">{item.reason}</span> : null}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="ui-section">
+    <span>{app.suggested}</span><span class="ui-count">{app.suggest.length}</span>
+  </div>
+  <ul class="ui-card">
+    {
+      app.suggest.map((item) => (
+        <li class="ui-row">
+          <span class="ui-plus">
+            <svg viewBox="0 0 24 24">
+              <use href="#g-plus" />
+            </svg>
+          </span>
+          <span class="ui-row__text">
+            <span class="ui-row__name">{item.name}</span>
+            <span class="ui-row__detail">{item.reason}</span>
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+  <TabBar tabs={app.tabs} current="shopping" />
+</div>
