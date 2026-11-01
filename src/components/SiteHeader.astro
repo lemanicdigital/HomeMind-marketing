@@ -21,6 +21,7 @@ const links = [
   { href: page(lang, 'support/'), label: c.support },
 ];
 
+const current = LANG_NAMES[lang as Lang];
 const languages = LANGS.map((code) => ({
   code,
   name: LANG_NAMES[code],
@@ -47,24 +48,42 @@ const languages = LANGS.map((code) => ({
       </ul>
     </nav>
     <nav class="langs" aria-label={c.language}>
-      <ul>
-        {
-          languages.map((language) => (
-            <li>
-              <a
-                href={language.href}
-                hreflang={language.code}
-                lang={language.code}
-                aria-current={language.current ? 'true' : undefined}
-                title={language.name}
-              >
-                <span aria-hidden="true">{language.code.toUpperCase()}</span>
-                <span class="visually-hidden">{language.name}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      {/* A <details> menu: opens and closes without JavaScript, which this site does not ship. */}
+      <details class="langs__menu">
+        <summary class="langs__button">
+          <svg class="langs__globe" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"></path>
+          </svg>
+          <span class="visually-hidden">{c.language}</span>
+          <span class="langs__current">{current}</span>
+          <span class="langs__code" aria-hidden="true">{lang.toUpperCase()}</span>
+          <svg class="langs__chevron" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+        </summary>
+        <ul class="langs__list">
+          {
+            languages.map((language) => (
+              <li>
+                <a
+                  href={language.href}
+                  hreflang={language.code}
+                  lang={language.code}
+                  aria-current={language.current ? 'page' : undefined}
+                >
+                  <span>{language.name}</span>
+                  {language.current ? (
+                    <svg class="langs__check" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                      <path d="m5 12.5 4.5 4.5L19 7.5" />
+                    </svg>
+                  ) : null}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
     </nav>
     <a class="bar__cta" href={home(lang, '#launch')}>{c.soon}</a>
   </div>
@@ -126,34 +145,108 @@ const languages = LANGS.map((code) => ({
     color: var(--hm-text-primary);
   }
 
-  /* The language switcher: four short codes, the current one filled. Stays on a phone too. */
-  .langs ul {
-    display: flex;
-    gap: 2px;
+  /* The language menu: one button naming the current language, opening a short list of the others
+     in their own names. Stays on a phone too, where the button shrinks to the code. */
+  .langs__menu {
+    position: relative;
   }
 
-  .langs a {
+  .langs__button {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 6px;
     min-block-size: var(--hm-touch-target);
-    min-inline-size: 36px;
+    padding-inline: var(--hm-space-component);
+    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
     border-radius: var(--hm-radius-pill);
-    color: var(--hm-text-secondary);
-    font-size: var(--hm-type-caption-size);
+    color: var(--hm-text-primary);
+    font-size: var(--hm-type-label-size);
     font-weight: var(--hm-type-label-weight);
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .langs__button::-webkit-details-marker {
+    display: none;
+  }
+
+  .langs__button:hover,
+  .langs__menu[open] .langs__button {
+    background: var(--hm-surface-secondary);
+  }
+
+  .langs svg {
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .langs__globe,
+  .langs__chevron {
+    color: var(--hm-text-secondary);
+  }
+
+  .langs__chevron {
+    transition: transform 0.15s ease;
+  }
+
+  .langs__menu[open] .langs__chevron {
+    transform: rotate(180deg);
+  }
+
+  .langs__code {
+    display: none;
     letter-spacing: 0.04em;
+  }
+
+  .langs__list {
+    position: absolute;
+    inset-block-start: calc(100% + var(--hm-space-inline));
+    inset-inline-end: 0;
+    z-index: 6;
+    display: grid;
+    gap: 2px;
+    min-inline-size: 11rem;
+    padding: var(--hm-space-micro);
+    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    border-radius: var(--hm-radius-field);
+    background: var(--hm-surface);
+  }
+
+  .langs__list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--hm-space-component);
+    min-block-size: var(--hm-touch-target);
+    padding-inline: var(--hm-space-component);
+    border-radius: var(--hm-radius-field);
+    color: var(--hm-text-primary);
+    font-size: var(--hm-type-label-size);
     text-decoration: none;
   }
 
-  .langs a:hover {
+  .langs__list a:hover {
     background: var(--hm-surface-secondary);
-    color: var(--hm-text-primary);
   }
 
-  .langs a[aria-current='true'] {
-    background: var(--hm-surface-secondary);
-    color: var(--hm-text-primary);
+  .langs__list a[aria-current='page'] {
+    background: var(--hm-surface-selected);
+    font-weight: var(--hm-type-label-weight);
+  }
+
+  .langs__check {
+    color: var(--hm-primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .langs__chevron {
+      transition: none;
+    }
   }
 
   .bar__cta {
@@ -188,6 +281,14 @@ const languages = LANGS.map((code) => ({
   @media (max-width: 26rem) {
     .bar__cta {
       display: none;
+    }
+
+    .langs__current {
+      display: none;
+    }
+
+    .langs__code {
+      display: inline;
     }
   }
 </style>
