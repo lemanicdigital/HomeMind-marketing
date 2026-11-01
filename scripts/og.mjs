@@ -15,7 +15,6 @@ import { readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { extname, join, resolve } from "node:path";
 
-const BASE = "/HomeMind-marketing";
 const DIST = resolve("dist");
 const TARGET = resolve("public/og.png");
 const BROWSERS = [
@@ -39,12 +38,9 @@ const TYPES = {
   ".png": "image/png",
 };
 
-// The built site expects to live under its base path, so serve dist/ there for the one picture.
+// Serve dist/ at the root, where the built site expects to live, for the one picture.
 const server = createServer(async (request, response) => {
-  let path = decodeURIComponent(new URL(request.url, "http://localhost").pathname).replace(
-    BASE,
-    "",
-  );
+  let path = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
   if (path.endsWith("/")) path += "index.html";
   try {
     const body = await readFile(join(DIST, path));
@@ -72,7 +68,7 @@ try {
       "--window-size=1200,630",
       "--virtual-time-budget=4000",
       `--screenshot=${TARGET}`,
-      `http://127.0.0.1:${port}${BASE}/`,
+      `http://127.0.0.1:${port}/`,
     ],
     { timeout: 60_000 },
   );

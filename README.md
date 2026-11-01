@@ -138,9 +138,9 @@ already done here (the Pages API reports `build_type: workflow`), which retires 
 the stock Jekyll workflow the settings page offers (`jekyll-gh-pages.yml`); it was removed so that
 only the Astro pipeline can publish.
 
-The site is configured for a project page (`site: https://lemanicdigital.github.io`,
-`base: /HomeMind-marketing`); if it moves to a custom domain, update both in `astro.config.mjs`, adjust
-`isOwnSite()` in `scripts/check-build.mjs`, and add `public/CNAME`. There is deliberately **no sitemap
+The site is served at its own domain, `https://homesky.app` (`site` in `astro.config.mjs`, no `base`,
+`public/CNAME`). The domain is set once in **Settings → Pages → Custom domain**, with the DNS records
+GitHub lists there; `isOwnSite()` in `scripts/check-build.mjs` names the same origin. There is deliberately **no sitemap
 and no RSS feed**: the site is one page, the privacy policy (`/privacy/`, the URL App Store Connect asks for) and a
 404 that says so.
 
