@@ -3,6 +3,7 @@ import Page from '../layouts/Page.astro';
 import SiteFooter from './SiteFooter.astro';
 import SiteHeader from './SiteHeader.astro';
 import { LANGS, type Lang, OG_LOCALES, home, page, pagesFor } from '../i18n';
+import { breadcrumbSchema } from '../schema';
 import { CONTACT } from '../site';
 
 /**
@@ -27,7 +28,13 @@ const updated = new Intl.DateTimeFormat(OG_LOCALES[lang].replace('_', '-'), {
 }).format(new Date(UPDATED));
 ---
 
-<Page title={c.title} description={c.description} lang={lang} alternates={alternates}>
+<Page
+  title={c.title}
+  description={c.description}
+  lang={lang}
+  alternates={alternates}
+  schema={breadcrumbSchema(lang, Astro.site ?? Astro.url, 'privacy/')}
+>
   <SiteHeader lang={lang} alternates={alternates} />
   <main id="main" class="policy">
     <div class="shell stack">

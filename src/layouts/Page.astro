@@ -6,6 +6,7 @@ import '../styles/tokens.css';
 import '../styles/global.css';
 
 import { type Lang, OG_LOCALES, copyFor } from '../i18n';
+import { jsonLd } from '../schema';
 
 interface Props {
   title: string;
@@ -13,9 +14,11 @@ interface Props {
   lang?: Lang;
   /** This page in every language it exists in, for hreflang. English is also the x-default. */
   alternates?: Partial<Record<Lang, string>>;
+  /** schema.org nodes for this page (src/schema.ts); data, not a script the browser runs. */
+  schema?: Record<string, unknown>[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, schema } = Astro.props;
 const lang: Lang = Astro.props.lang ?? 'en';
 const alternates = Object.entries(Astro.props.alternates ?? {}) as [Lang, string][];
 const fallback = Astro.props.alternates?.en;
@@ -62,6 +65,7 @@ const ogImage = new URL(asset('og.png'), Astro.site ?? Astro.url);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="HomeMind" />
+    {schema ? <script is:inline type="application/ld+json" set:html={jsonLd(schema)} /> : null}
     <!-- token-exempt: the browser chrome colour cannot read a CSS custom property, so these two
          values are the documented `background` roles spelled out for each appearance. -->
     <meta name="theme-color" content="#F8F7F2" media="(prefers-color-scheme: light)" />
