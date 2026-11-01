@@ -33,7 +33,7 @@ export const fr: Copy = {
     lead: "HomeMind sait ce que votre foyer a en réserve, ce qui périme en premier et ce qui va manquer, puis écrit la liste de courses pour vous.",
     primary: "Voir comment ça marche",
     secondary: "Voir l’app",
-    promises: ["Fonctionne hors ligne", "Sans pub ni pistage", "À partager avec votre foyer"],
+    promises: ["Fonctionne hors ligne", "Gratuit sur un iPhone", "À partager avec votre foyer"],
     imageAlt:
       "L’écran d’accueil de HomeMind : trois produits à utiliser maintenant, dont des pousses d’épinard qui expirent aujourd’hui et du lait entier demain.",
     noteWarning: { name: "Lait entier", detail: "À consommer demain" },
@@ -50,7 +50,7 @@ export const fr: Copy = {
       },
       {
         title: "À consommer avant la date",
-        body: "Les dates deviennent « à consommer aujourd’hui » et « encore 3 jours », et une seule note tranquille le matin dit ce qu’il faut manger.",
+        body: "Les dates deviennent « À consommer aujourd’hui » et « Expire dans 3 jours », et une seule note tranquille le matin dit ce qu’il faut manger.",
       },
       {
         title: "Une liste qui s’écrit toute seule",
@@ -92,7 +92,7 @@ export const fr: Copy = {
       },
       {
         title: "Une liste qui se remplit",
-        body: "Ce qui est épuisé s’ajoute tout seul. Ce qui va manquer est suggéré, jamais imposé.",
+        body: "Ce qui est épuisé s’ajoute tout seul. Ce qui va manquer est seulement suggéré ; à vous de l’ajouter.",
         alt: "L’écran Courses : sacs poubelle, huile d’olive marquée « Épuisé », bananes et pain au levain à acheter, puis des suggestions pour ce qui va manquer.",
       },
     ],
@@ -111,14 +111,14 @@ export const fr: Copy = {
       },
       {
         title: "Faites vos courses avec une liste fiable",
-        body: "Ce qui est épuisé y est déjà, ce qui va manquer est suggéré, et rien de ce qui est dans le placard n’est acheté deux fois.",
+        body: "Ce qui est épuisé y est déjà, et ce qui va manquer est suggéré. Ce qui reste dans le placard n’y figure pas.",
       },
     ],
   },
 
   pricing: {
     title: "Gratuit seul. Une offre pour le foyer.",
-    lead: "Vous payez seulement ce qui a besoin de notre serveur : la synchronisation et le partage. Tout le reste est gratuit, sans limite et sans pub.",
+    lead: "Vous payez seulement ce qui a besoin de notre serveur : la synchronisation et le partage. Tout le reste est gratuit, quel que soit le nombre de produits.",
     free: {
       name: "Gratuit",
       price: "0 €",
@@ -156,8 +156,8 @@ export const fr: Copy = {
         body: "Toute l’app fonctionne sur votre seul téléphone. Se connecter ajoute seulement la synchronisation et le partage.",
       },
       {
-        title: "Sans pub ni pistage",
-        body: "Aucune publicité, aucune analyse de vos courses, et rien n’est vendu à personne.",
+        title: "Financé par l’abonnement",
+        body: "HomeMind vit de HomeMind Household. L’app n’affiche aucune publicité, et vos courses ne sont jamais mesurées ni vendues.",
       },
       {
         title: "Effacé quand vous le décidez",
@@ -195,7 +195,7 @@ export const fr: Copy = {
       },
       {
         q: "Est-ce payant ?",
-        a: "Pas sur un seul téléphone : toute l’app y est gratuite, sans limite. La synchronisation et le partage ont besoin de notre serveur : c’est HomeMind Household, 14,99 € par an ou 1,99 € par mois après un mois offert. Une seule offre couvre tout le foyer. Pas de pub, pas de revente de données, aucune analyse de vos courses.",
+        a: "Pas sur un seul téléphone : toute l’app y est gratuite, sans limite. La synchronisation et le partage ont besoin de notre serveur : c’est HomeMind Household, 14,99 € par an ou 1,99 € par mois après un mois offert. Une seule offre couvre tout le foyer.",
       },
       {
         q: "Puis-je tester la bêta ?",

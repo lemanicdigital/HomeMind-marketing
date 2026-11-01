@@ -30,7 +30,7 @@ export const de: Copy = {
     lead: "HomeMind weiß, was euer Haushalt da hat, was zuerst abläuft und was knapp wird – und schreibt die Einkaufsliste für dich.",
     primary: "So funktioniert’s",
     secondary: "Die App ansehen",
-    promises: ["Funktioniert offline", "Keine Werbung, kein Tracking", "Mit dem Haushalt teilen"],
+    promises: ["Funktioniert offline", "Gratis auf einem iPhone", "Mit dem Haushalt teilen"],
     imageAlt:
       "Die Übersicht von HomeMind: drei Artikel, die jetzt dran sind – Babyspinat läuft heute ab, Vollmilch morgen.",
     noteWarning: { name: "Vollmilch", detail: "Läuft morgen ab" },
@@ -47,7 +47,7 @@ export const de: Copy = {
       },
       {
         title: "Verbrauchen, bevor es schlecht wird",
-        body: "Aus Daten wird „heute verbrauchen“ und „noch 3 Tage“, und eine ruhige Nachricht am Morgen sagt, was weg muss.",
+        body: "Aus Daten wird „Läuft heute ab“ und „Läuft in 3 Tagen ab“, und eine ruhige Nachricht am Morgen sagt, was weg muss.",
       },
       {
         title: "Eine Liste, die sich selbst schreibt",
@@ -89,7 +89,7 @@ export const de: Copy = {
       },
       {
         title: "Eine Liste, die sich füllt",
-        body: "Was leer ist, kommt von selbst dazu. Was knapp wird, wird vorgeschlagen, nie aufgezwungen.",
+        body: "Was leer ist, kommt von selbst dazu. Was knapp wird, wird nur vorgeschlagen; ob es dazukommt, entscheidest du.",
         alt: "Die Einkaufsliste: Müllbeutel, Olivenöl mit „Leer“, Bananen und ein Sauerteigbrot, darunter Vorschläge für Artikel, die knapp werden.",
       },
     ],
@@ -108,14 +108,14 @@ export const de: Copy = {
       },
       {
         title: "Mit verlässlicher Liste einkaufen",
-        body: "Was leer ist, steht schon drauf, was als Nächstes ausgeht, wird vorgeschlagen, und nichts aus dem Schrank wird doppelt gekauft.",
+        body: "Was leer ist, steht schon drauf, und was als Nächstes ausgeht, wird vorgeschlagen. Was noch im Schrank ist, bleibt weg.",
       },
     ],
   },
 
   pricing: {
     title: "Allein gratis. Ein Abo fürs ganze Haus.",
-    lead: "Du zahlst nur, was unseren Server braucht: Synchronisierung und Teilen. Alles andere bleibt gratis, ohne Grenzen und ohne Werbung.",
+    lead: "Du zahlst nur, was unseren Server braucht: Synchronisierung und Teilen. Alles andere bleibt gratis, egal wie viel du einträgst.",
     free: {
       name: "Gratis",
       price: "0 €",
@@ -153,8 +153,8 @@ export const de: Copy = {
         body: "Die ganze App funktioniert allein auf deinem Telefon. Die Anmeldung bringt nur Synchronisierung und Teilen dazu.",
       },
       {
-        title: "Keine Werbung, kein Tracking",
-        body: "Keine Werbung, keine Auswertung deiner Einkäufe, und nichts wird an irgendwen verkauft.",
+        title: "Bezahlt vom Abo",
+        body: "HomeMind lebt von HomeMind Household. Die App zeigt keine Werbung, und deine Einkäufe werden weder ausgewertet noch verkauft.",
       },
       {
         title: "Weg, wenn du es sagst",
@@ -192,7 +192,7 @@ export const de: Copy = {
       },
       {
         q: "Kostet das etwas?",
-        a: "Nicht auf einem Telefon: Dort ist die ganze App gratis, ohne Grenzen. Synchronisierung und Teilen brauchen unseren Server, das ist HomeMind Household: 14,99 € pro Jahr oder 1,99 € pro Monat nach einem Gratismonat. Ein Abo gilt für den ganzen Haushalt. Keine Werbung, kein Datenverkauf, keine Auswertung deiner Einkäufe.",
+        a: "Nicht auf einem Telefon: Dort ist die ganze App gratis, ohne Grenzen. Synchronisierung und Teilen brauchen unseren Server, das ist HomeMind Household: 14,99 € pro Jahr oder 1,99 € pro Monat nach einem Gratismonat. Ein Abo gilt für den ganzen Haushalt.",
       },
       {
         q: "Kann ich die Beta testen?",

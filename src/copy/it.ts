@@ -30,7 +30,7 @@ export const it: Copy = {
     lead: "HomeMind sa cosa c’è in casa, cosa scade per primo e cosa sta finendo, e scrive la lista della spesa per te.",
     primary: "Scopri come funziona",
     secondary: "Guarda l’app",
-    promises: ["Funziona offline", "Niente pubblicità né tracciamento", "Da condividere in casa"],
+    promises: ["Funziona offline", "Gratis su un iPhone", "Da condividere in casa"],
     imageAlt:
       "La schermata Home di HomeMind: tre prodotti da usare subito, con spinacini che scadono oggi e latte intero domani.",
     noteWarning: { name: "Latte intero", detail: "Scade domani" },
@@ -47,7 +47,7 @@ export const it: Copy = {
       },
       {
         title: "Usalo prima che scada",
-        body: "Le date diventano «da consumare oggi» e «ancora 3 giorni», e un solo avviso tranquillo al mattino dice cosa va mangiato.",
+        body: "Le date diventano «Scade oggi» e «Scade tra 3 giorni», e un solo avviso tranquillo al mattino dice cosa va mangiato.",
       },
       {
         title: "Una lista che si scrive da sola",
@@ -89,7 +89,7 @@ export const it: Copy = {
       },
       {
         title: "Una lista che si riempie",
-        body: "Quello che finisce si aggiunge da solo. Quello che sta finendo viene suggerito, mai imposto.",
+        body: "Quello che finisce si aggiunge da solo. Quello che sta finendo viene solo suggerito; decidi tu se aggiungerlo.",
         alt: "La schermata Spesa: sacchi della spazzatura, olio d’oliva segnato «Finito», banane e pane a lievitazione naturale da comprare, poi i suggerimenti per ciò che sta finendo.",
       },
     ],
@@ -108,14 +108,14 @@ export const it: Copy = {
       },
       {
         title: "Fai la spesa con una lista affidabile",
-        body: "Quello che è finito c’è già, quello che finirà dopo è suggerito, e niente di quello che hai in dispensa viene comprato due volte.",
+        body: "Quello che è finito c’è già, e quello che finirà dopo è suggerito. Quello che hai ancora in dispensa resta fuori.",
       },
     ],
   },
 
   pricing: {
     title: "Gratis da solo. Un piano per la casa.",
-    lead: "Paghi solo ciò che richiede il nostro server: sincronizzazione e condivisione. Tutto il resto è gratis, senza limiti e senza pubblicità.",
+    lead: "Paghi solo ciò che richiede il nostro server: sincronizzazione e condivisione. Tutto il resto è gratis, per quanti prodotti vuoi.",
     free: {
       name: "Gratis",
       price: "0 €",
@@ -153,8 +153,8 @@ export const it: Copy = {
         body: "Tutta l’app funziona sul solo telefono. Accedere aggiunge solo sincronizzazione e condivisione.",
       },
       {
-        title: "Niente pubblicità né tracciamento",
-        body: "Nessuna pubblicità, nessuna analisi della tua spesa, e niente viene venduto a nessuno.",
+        title: "Pagato dal piano",
+        body: "HomeMind vive di HomeMind Household. L’app non mostra pubblicità, e la tua spesa non viene mai misurata né venduta.",
       },
       {
         title: "Sparisce quando lo decidi tu",
@@ -192,7 +192,7 @@ export const it: Copy = {
       },
       {
         q: "Costa qualcosa?",
-        a: "Non su un solo telefono: lì tutta l’app è gratis, senza limiti. Sincronizzazione e condivisione richiedono il nostro server, quindi sono HomeMind Household: 14,99 € all’anno o 1,99 € al mese dopo un mese gratis. Un solo piano copre tutta la casa. Niente pubblicità, niente rivendita di dati, nessuna analisi della tua spesa.",
+        a: "Non su un solo telefono: lì tutta l’app è gratis, senza limiti. Sincronizzazione e condivisione richiedono il nostro server, quindi sono HomeMind Household: 14,99 € all’anno o 1,99 € al mese dopo un mese gratis. Un solo piano copre tutta la casa.",
       },
       {
         q: "Posso provare la beta?",
