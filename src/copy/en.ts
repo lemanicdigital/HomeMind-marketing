@@ -31,7 +31,7 @@ export const en = {
     lead: "HomeMind keeps track of what your household has, what goes off first and what is running low, then writes the shopping list for you.",
     primary: "See how it works",
     secondary: "View the app",
-    promises: ["Works offline", "No ads, no tracking", "Share with your household"],
+    promises: ["Works offline", "Free on one iPhone", "Share with your household"],
     imageAlt:
       "HomeMind's Home screen: three items to use now, with baby spinach expiring today and whole milk tomorrow.",
     noteWarning: { name: "Whole milk", detail: "Expires tomorrow" },
@@ -48,7 +48,7 @@ export const en = {
       },
       {
         title: "Use it before it goes off",
-        body: "Expiry dates turn into “use today” and “3 days left”, and one calm morning note lists what needs eating.",
+        body: "Expiry dates turn into “Expires today” and “Expires in 3 days”, and one calm morning note lists what needs eating.",
       },
       {
         title: "A list that writes itself",
@@ -90,7 +90,7 @@ export const en = {
       },
       {
         title: "A list that fills itself",
-        body: "Things that run out are added for you. Things running low are suggested, never forced.",
+        body: "Things that run out are added for you. Things running low are only suggested; you choose what to add.",
         alt: 'The Shopping screen: bin bags, olive oil marked "Ran out", bananas and a sourdough loaf to buy, followed by suggestions for items that are running low.',
       },
     ],
@@ -109,14 +109,14 @@ export const en = {
       },
       {
         title: "Shop with a list you trust",
-        body: "What ran out is already on it, what runs out next is suggested, and nothing in the cupboard is bought twice.",
+        body: "What ran out is already on it, and what runs out next is suggested. What’s still in the cupboard stays off it.",
       },
     ],
   },
 
   pricing: {
     title: "Free on your phone. One plan for the household.",
-    lead: "You pay only for what needs our server: sync and sharing. Everything else stays free, with no limits and no ads.",
+    lead: "You pay only for what needs our server: sync and sharing. Everything else is free, however much you keep track of.",
     free: {
       name: "Free",
       price: "€0",
@@ -154,8 +154,8 @@ export const en = {
         body: "The whole app works on your phone alone. Signing in only adds sync and sharing.",
       },
       {
-        title: "No ads, no tracking",
-        body: "No advertising, no analytics on your shopping, and nothing sold to anyone.",
+        title: "Paid for by the plan",
+        body: "HomeMind earns its money from HomeMind Household. The app shows no ads, and what you buy is never measured or sold.",
       },
       {
         title: "Gone when you say so",
@@ -193,15 +193,15 @@ export const en = {
       },
       {
         q: "Will it cost money?",
-        a: "Not on one phone: the whole app is free there, with no limits. Sync and sharing need our server, so they are HomeMind Household, €14.99 a year or €1.99 a month after a free month. One plan covers everyone in the household. No ads, no data resale, no analytics on your shopping.",
+        a: "Not on one phone: the whole app is free there, with no limits. Sync and sharing need our server, so they are HomeMind Household, €14.99 a year or €1.99 a month after a free month. One plan covers everyone in the household.",
       },
       {
         q: "Can I try the beta?",
         a: "Not yet. The beta will open on TestFlight, and this page is where it will be announced.",
       },
       {
-        q: "Why does this site have no cookies, fonts or analytics?",
-        a: "A site about keeping track of your kitchen should not keep track of you. Nothing third-party loads here, and nothing is measured.",
+        q: "Why does this site have no cookies or analytics?",
+        a: "A site about keeping track of your kitchen should not keep track of you. Everything here, the font included, comes from this site, and nothing is measured.",
       },
     ],
   },

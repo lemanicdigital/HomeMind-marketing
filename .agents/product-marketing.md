@@ -1,6 +1,6 @@
 # Product Marketing Context
 
-**Document version:** v1
+**Document version:** v1.1
 **Last updated:** 2026-11-01
 
 Drafted from the repos (HomeMind-marketing `src/copy/`, HomeMind-IOS `src/i18n/` and plan screen,
@@ -171,8 +171,8 @@ best-before, your phone.
 - Social: **UNKNOWN** (no social presence yet).
   **Terms we own:** "know what's at home", "use soon", "a list that writes itself".
   **Never use (and why):** fake urgency or scarcity (contradicts calm); stats without a source;
-  "it's not X, it's Y" reveals and "no X, no Y, no Z" lists (read as generated; the current hero
-  promise "No ads, no tracking" is one to revisit).
+  "it's not X, it's Y" reveals and "no X, no Y, no Z" lists (read as generated). Say what HomeMind does, and keep at most one
+  absence per section ("There is no mailing list to join").
 
 ## Proof Points
 
@@ -200,14 +200,17 @@ subscriptions once live.
 
 _Decisions and tested lessons. Newest first. Keep it to about 20 active entries._
 
-| Date       | Learning                                                                    | Evidence                                         | Applies to         | Status |
-| ---------- | --------------------------------------------------------------------------- | ------------------------------------------------ | ------------------ | ------ |
-| 2026-10-31 | German and Italian copy uses du / tu, matching the app                      | Decision; the app uses "Deine Daten"             | All copy           | active |
-| 2026-10-30 | Price: €14.99/year or €1.99/month, first month free, one plan per household | Owner decision after comparing similar apps      | Pricing, ASO, copy | active |
-| 2026-10-30 | The site is set in Inter outside Apple devices; system font on Apple        | Owner decision: Windows rendering looked unclean | Site design        | active |
+| Date       | Learning                                                                    | Evidence                                                  | Applies to         | Status |
+| ---------- | --------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------ | ------ |
+| 2026-11-01 | Quote app labels exactly as the app shows them in that language             | Site said "3 days left"; the app says "Expires in 3 days" | All copy, ASO      | active |
+| 2026-11-01 | Privacy is said as a business fact ("paid for by the plan"), not a no-list  | Copy-editing pass; negation lists read as generated       | Home, ASO          | active |
+| 2026-10-31 | German and Italian copy uses du / tu, matching the app                      | Decision; the app uses "Deine Daten"                      | All copy           | active |
+| 2026-10-30 | Price: €14.99/year or €1.99/month, first month free, one plan per household | Owner decision after comparing similar apps               | Pricing, ASO, copy | active |
+| 2026-10-30 | The site is set in Inter outside Apple devices; system font on Apple        | Owner decision: Windows rendering looked unclean          | Site design        | active |
 
 ## Changelog
 
 _Newest first. One line per revision: what changed and why._
 
+- v1.1 (2026-11-01) — Copy-editing pass: negation lists replaced, two learnings added.
 - v1 (2026-11-01) — Initial context, drafted from the repos before the beta; hard constraints first.
