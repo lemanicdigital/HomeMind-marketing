@@ -8,24 +8,19 @@ interface Props {
 const { lang = 'en' } = Astro.props;
 const c = copyFor(lang).hero;
 /**
- * What HomeMind is, in one look: the promise on the left, the real Home screen on the right. The two
- * floating notes are drawn in HTML from the app's own badge styles, not baked into the image.
+ * What HomeMind is, in one look: the promise across the full width in display type, then the
+ * supporting sentence and the actions beside the real Home screen. The two floating notes are drawn
+ * in HTML from the app's own badge styles, not baked into the image.
  */
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
 ---
 
 <section class="hero" id="top">
   <div class="shell hero__grid">
+    <h1 class="hero__title">{c.title}</h1>
+
     <div class="hero__copy">
-      <p class="hero__eyebrow">
-        <span class="hero__dot" aria-hidden="true"></span>
-        {c.eyebrow}
-      </p>
-
-      <h1 class="hero__title">{c.title}</h1>
-
-      <p class="hero__lead">{c.lead}</p>
+      <p class="hero__lead">{c.lead} <strong>{c.eyebrow}.</strong></p>
 
       <p class="hero__actions">
         <a class="button button--primary" href="#features">{c.primary}</a>
@@ -47,7 +42,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
 
     <div class="hero__visual">
-      <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__phone">
         <img
           src={`${base}/screens/home.webp`}
@@ -78,84 +72,73 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <style>
   .hero {
     overflow: hidden;
-    padding-block: clamp(40px, 7vw, 96px) clamp(48px, 8vw, 104px);
+    padding-block: clamp(40px, 6vw, 88px) var(--site-gap);
     background: var(--hm-background);
   }
 
   .hero__grid {
     display: grid;
-    gap: clamp(48px, 7vw, 72px);
-    align-items: center;
+    gap: clamp(32px, 5vw, 56px) clamp(32px, 6vw, 80px);
+    align-items: start;
   }
 
   @media (min-width: 60rem) {
     .hero__grid {
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1fr minmax(300px, 0.8fr);
     }
+
+    .hero__title {
+      grid-column: 1 / -1;
+    }
+
+    .hero__copy {
+      padding-top: var(--hm-space-section);
+    }
+  }
+
+  .hero__title {
+    font-size: var(--site-display);
+    line-height: 0.98;
+    font-weight: var(--hm-type-display-weight);
+    letter-spacing: -0.045em;
+    text-wrap: balance;
   }
 
   .hero__copy {
     display: grid;
-    gap: var(--hm-space-card);
+    gap: var(--hm-space-section);
     justify-items: start;
   }
 
-  .hero__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--hm-space-inline);
-    padding: var(--hm-space-micro) var(--hm-space-component);
-    border: var(--hm-border-hairline) solid var(--hm-primary-border);
-    border-radius: var(--hm-radius-pill);
-    background: var(--hm-primary-subtle);
-    color: var(--hm-on-primary-subtle);
-    font-size: var(--hm-type-label-size);
-    font-weight: var(--hm-type-label-weight);
-  }
-
-  .hero__dot {
-    inline-size: 8px;
-    block-size: 8px;
-    border-radius: 50%;
-    background: var(--hm-primary);
-  }
-
-  .hero__title {
-    max-width: 14ch;
-    font-size: clamp(38px, 6.4vw, 64px);
-    line-height: 1.04;
-    font-weight: var(--hm-type-display-weight);
-    letter-spacing: -0.035em;
-    text-wrap: balance;
-  }
-
   .hero__lead {
-    max-width: 34rem;
-    font-size: clamp(17px, 2.2vw, 21px);
+    max-width: 30rem;
+    font-size: var(--site-title);
     line-height: 1.5;
-    color: var(--hm-text-secondary);
     text-wrap: pretty;
+  }
+
+  .hero__lead strong {
+    color: var(--hm-primary);
+    font-weight: var(--hm-type-title-weight);
   }
 
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--hm-space-component);
-    margin-top: var(--hm-space-inline);
   }
 
   .hero__promises {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--hm-space-inline) var(--hm-space-card);
-    color: var(--hm-text-secondary);
-    font-size: var(--hm-type-body-secondary-size);
+    gap: var(--hm-space-inline) var(--hm-space-section);
+    font-size: var(--site-small);
   }
 
   .hero__promises li {
     display: inline-flex;
     align-items: center;
-    gap: var(--hm-space-micro);
+    gap: var(--hm-space-inline);
   }
 
   .hero__promises svg,
@@ -172,21 +155,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .hero__visual {
     position: relative;
     justify-self: center;
-    inline-size: min(100%, 320px);
-    padding-block: var(--hm-space-card);
-  }
-
-  .hero__glow {
-    position: absolute;
-    inset: -20% -40%;
-    background: radial-gradient(closest-side, var(--hm-primary-subtle), transparent);
+    inline-size: min(100%, 340px);
   }
 
   .hero__phone {
     position: relative;
     overflow: hidden;
-    border: 9px solid var(--hm-text-primary);
-    border-radius: 46px;
+    border: 10px solid var(--hm-text-primary);
+    border-radius: 50px;
     background: var(--hm-surface);
   }
 
@@ -203,10 +179,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     gap: var(--hm-space-inline);
     padding: var(--hm-space-component) var(--hm-space-card) var(--hm-space-component)
       var(--hm-space-component);
-    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
     border-radius: var(--hm-radius-card);
     background: var(--hm-surface);
-    font-size: var(--hm-type-caption-size);
+    font-size: var(--site-small);
     line-height: 1.3;
     white-space: nowrap;
   }
@@ -218,7 +193,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .note strong {
     color: var(--hm-text-primary);
-    font-size: var(--hm-type-label-size);
   }
 
   .note__icon {
@@ -240,40 +214,67 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .note--warning {
-    top: 22%;
-    left: -34%;
+    top: 20%;
+    left: -30%;
   }
 
   .note--success {
-    bottom: 18%;
-    right: -30%;
+    bottom: 16%;
+    right: -26%;
   }
 
   /* Narrow screens: keep the notes inside the page instead of hanging off the edge. */
   @media (max-width: 40rem) {
     .note--warning {
-      left: -8%;
+      left: 0;
     }
 
     .note--success {
-      right: -8%;
+      right: 0;
     }
   }
 
+  /* The first screen arrives in order: the promise, then what it means, then the phone and its
+     two notes. Transform and opacity only; nothing waits on a script. */
   @media (prefers-reduced-motion: no-preference) {
+    .hero__title,
+    .hero__lead,
+    .hero__actions,
+    .hero__promises,
+    .hero__phone,
     .note {
-      animation: rise 600ms var(--hm-ease-out) both;
+      animation: hero-rise 700ms var(--hm-ease-out) both;
+    }
+
+    .hero__lead {
+      animation-delay: 80ms;
+    }
+
+    .hero__actions {
+      animation-delay: 160ms;
+    }
+
+    .hero__promises {
+      animation-delay: 240ms;
+    }
+
+    .hero__phone {
+      animation-delay: 200ms;
+    }
+
+    .note--warning {
+      animation-delay: 520ms;
     }
 
     .note--success {
-      animation-delay: 180ms;
+      animation-delay: 680ms;
     }
   }
 
-  @keyframes rise {
+  @keyframes hero-rise {
     from {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(24px);
     }
   }
 </style>

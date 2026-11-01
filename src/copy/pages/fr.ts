@@ -90,7 +90,7 @@ export const fr: PagesCopy = {
     description:
       "Ce que l’app HomeMind pour iPhone garde sur votre téléphone, ce que son serveur conserve quand vous vous connectez, pendant combien de temps, et comment le supprimer.",
     overline: "Politique de confidentialité · mise à jour le",
-    heading: "Ce que HomeMind conserve, et pour combien de temps",
+    heading: "Ce que HomeMind garde, et jusqu’à quand",
     lead: "Cette politique couvre l’app HomeMind pour iPhone pendant sa bêta TestFlight. Elle décrit ce que l’app et son serveur font réellement, et elle change quand ils changent.",
     original: "Cette page traduit la version anglaise, qui fait foi en cas de différence.",
     sections: [

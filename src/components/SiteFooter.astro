@@ -46,7 +46,7 @@ const columns = [
     {
       columns.map((column) => (
         <nav class="foot__column" aria-label={column.title}>
-          <p class="t-overline">{column.title}</p>
+          <p class="foot__title">{column.title}</p>
           <ul role="list">
             {column.links.map((link) => (
               <li>
@@ -65,9 +65,13 @@ const columns = [
 
 <style>
   .foot {
-    padding-block: var(--hm-space-section) var(--hm-space-card);
+    padding-block: clamp(48px, 7vw, 96px) var(--hm-space-section);
     background: var(--hm-surface-secondary);
-    border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+  }
+
+  .foot__title {
+    font-size: var(--site-small);
+    font-weight: var(--hm-type-title-weight);
   }
 
   .foot__grid {
@@ -117,8 +121,8 @@ const columns = [
   }
 
   .foot__column a {
-    color: var(--hm-text-secondary);
-    font-size: var(--hm-type-body-secondary-size);
+    color: var(--hm-text-primary);
+    font-size: var(--site-small);
     text-decoration: none;
   }
 
@@ -128,9 +132,7 @@ const columns = [
   }
 
   .foot__base {
-    margin-top: var(--hm-space-section);
-    padding-top: var(--hm-space-card);
-    border-top: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    margin-top: clamp(40px, 6vw, 72px);
   }
 
   /* On a tinted footer, tertiary text drops below 4.5:1; use the secondary role instead. */

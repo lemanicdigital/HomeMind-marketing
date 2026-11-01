@@ -39,8 +39,7 @@ export const en = {
   },
 
   features: {
-    overline: "Features",
-    title: "The small arithmetic of a household, done for you",
+    title: "A household’s small sums, done for you",
     lead: "Stop buying a fourth jar of something you already have three of, and finding the fourth one the week after it expired.",
     items: [
       {
@@ -71,7 +70,6 @@ export const en = {
   },
 
   screens: {
-    overline: "A look at the app",
     title: "Calm screens for a chore nobody enjoys",
     lead: "Screenshots from the current build on an iPhone, with sample data. Light and dark follow your phone.",
     items: [
@@ -99,7 +97,6 @@ export const en = {
   },
 
   how: {
-    overline: "How it works",
     title: "Three habits, no spreadsheet",
     steps: [
       {
@@ -118,7 +115,6 @@ export const en = {
   },
 
   pricing: {
-    overline: "Pricing",
     title: "Free on your phone. One plan for the household.",
     lead: "You pay only for what needs our server: sync and sharing. Everything else stays free, with no limits and no ads.",
     free: {
@@ -149,7 +145,6 @@ export const en = {
   },
 
   privacy: {
-    overline: "Privacy",
     title: "Your kitchen is nobody’s business",
     lead: "A household inventory knows a lot about a home. HomeMind keeps it on your phone first and collects only what sync needs.",
     policy: "Read the privacy policy",
@@ -170,7 +165,6 @@ export const en = {
   },
 
   faq: {
-    overline: "FAQ",
     title: "Questions, answered",
     items: [
       {

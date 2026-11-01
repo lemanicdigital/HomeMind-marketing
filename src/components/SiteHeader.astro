@@ -95,7 +95,6 @@ const languages = LANGS.map((code) => ({
     top: 0;
     z-index: 5;
     background: var(--hm-header-background);
-    border-bottom: var(--hm-border-hairline) solid var(--hm-border-subtle);
   }
 
   .bar__inner {
@@ -157,8 +156,8 @@ const languages = LANGS.map((code) => ({
     gap: 6px;
     min-block-size: var(--hm-touch-target);
     padding-inline: var(--hm-space-component);
-    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
     border-radius: var(--hm-radius-pill);
+    background: var(--hm-surface-secondary);
     color: var(--hm-text-primary);
     font-size: var(--hm-type-label-size);
     font-weight: var(--hm-type-label-weight);
@@ -173,7 +172,7 @@ const languages = LANGS.map((code) => ({
 
   .langs__button:hover,
   .langs__menu[open] .langs__button {
-    background: var(--hm-surface-secondary);
+    background: var(--hm-surface-tertiary);
   }
 
   .langs svg {

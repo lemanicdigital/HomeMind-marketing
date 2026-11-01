@@ -10,10 +10,9 @@ const c = copyFor(lang).privacy;
 const points = c.points;
 ---
 
-<section class="section" id="privacy" aria-labelledby="privacy-title">
+<section class="section section--tinted" id="privacy" aria-labelledby="privacy-title">
   <div class="shell privacy">
     <header class="section__head">
-      <p class="t-overline">{c.overline}</p>
       <h2 class="t-headline" id="privacy-title">{c.title}</h2>
       <p class="t-lead">{c.lead}</p>
       <p><a href={page(lang, 'privacy/')}>{c.policy}</a></p>
@@ -57,8 +56,7 @@ const points = c.points;
   .privacy__points {
     display: grid;
     gap: var(--hm-space-card);
-    padding: var(--hm-space-section);
-    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    padding: clamp(24px, 4vw, 48px);
     border-radius: var(--hm-radius-sheet);
     background: var(--hm-surface);
   }

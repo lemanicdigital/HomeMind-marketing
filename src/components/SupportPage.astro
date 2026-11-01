@@ -22,7 +22,6 @@ const alternates = Object.fromEntries(LANGS.map((code) => [code, page(code, 'sup
   <SiteHeader lang={lang} alternates={alternates} />
   <main id="main" class="support">
     <div class="shell stack">
-      <p class="t-overline">{c.overline}</p>
       <h1 class="t-display">{c.heading}</h1>
       <p class="t-lead measure">{c.lead}</p>
 
@@ -97,16 +96,16 @@ const alternates = Object.fromEntries(LANGS.map((code) => [code, page(code, 'sup
     display: inline-flex;
     align-items: center;
     min-block-size: var(--hm-touch-target);
-    padding-inline: var(--hm-space-component);
-    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
+    padding-inline: var(--hm-space-card);
     border-radius: var(--hm-radius-pill);
+    background: var(--hm-surface-secondary);
     color: var(--hm-text-primary);
     font-size: var(--hm-type-label-size);
     text-decoration: none;
   }
 
   .topics a:hover {
-    background: var(--hm-surface-secondary);
+    background: var(--hm-surface-tertiary);
   }
 
   .steps {
