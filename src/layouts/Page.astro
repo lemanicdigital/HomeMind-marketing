@@ -23,11 +23,9 @@ const lang: Lang = Astro.props.lang ?? 'en';
 const alternates = Object.entries(Astro.props.alternates ?? {}) as [Lang, string][];
 const fallback = Astro.props.alternates?.en;
 const words = copyFor(lang).meta;
-// `Astro.url.pathname` already carries the site's base segment on a GitHub project page, so the
-// canonical URL is that path against the configured origin — joining BASE_URL in again would double it.
+// The canonical URL is the page's path against the configured origin.
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
-// Asset hrefs are joined by hand: `Astro.baseUrl` is relative (`/HomeMind-marketing/`), which
-// `new URL` rejects, and `import.meta.env.BASE_URL` has no trailing slash to rely on.
+// Asset hrefs are joined by hand, so the site keeps working if it is ever served under a base path again.
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const asset = (name: string) => `${base}/${name}`.replace(/\/{2,}/g, '/');
 // Link previews (iMessage, Slack, X) need an absolute image URL; scripts/og.mjs draws it.
