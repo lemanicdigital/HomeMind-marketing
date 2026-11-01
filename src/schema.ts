@@ -1,6 +1,6 @@
 /**
  * Structured data (schema.org JSON-LD) for each page, in the page's language. It says to search
- * engines and AI answers what the page already says to people: an iPhone app called HomeMind, free
+ * engines and AI answers what the page already says to people: an iPhone app called Homesky, free
  * on one phone, with a household plan at these prices. Nothing here may claim more than the page
  * shows; scripts/check-build.mjs checks the prices against the page text and the breadcrumb against
  * the canonical URL.
@@ -37,14 +37,14 @@ export function homeSchema(lang: Lang, site: URL): Node[] {
     {
       "@type": "WebSite",
       "@id": `${at(home("en"))}#website`,
-      name: "HomeMind",
+      name: "Homesky",
       url: at(home("en")),
       inLanguage: [...LANGS],
     },
     {
       "@type": "MobileApplication",
       "@id": `${at(home(lang))}#app`,
-      name: "HomeMind",
+      name: "Homesky",
       description: c.meta.description,
       url: at(home(lang)),
       inLanguage: [...LANGS],
@@ -62,14 +62,14 @@ export function homeSchema(lang: Lang, site: URL): Node[] {
 /** Support and privacy: one step below the home page in the same language. */
 export function breadcrumbSchema(lang: Lang, site: URL, path: "support/" | "privacy/"): Node[] {
   const at = (href: string) => new URL(href, site).href;
-  // The page's <title> without the " — HomeMind" suffix: "Aide", "Datenschutz", "Privacy".
+  // The page's <title> without the " — Homesky" suffix: "Aide", "Datenschutz", "Privacy".
   const copy = pagesFor(lang)[path === "support/" ? "support" : "privacy"];
   const title = copy.title.split(" — ")[0] ?? copy.heading;
   return [
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "HomeMind", item: at(home(lang)) },
+        { "@type": "ListItem", position: 1, name: "Homesky", item: at(home(lang)) },
         { "@type": "ListItem", position: 2, name: title, item: at(page(lang, path)) },
       ],
     },

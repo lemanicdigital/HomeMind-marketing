@@ -3,9 +3,9 @@ import type { PagesCopy } from "./en";
 /** Français. Les libellés entre guillemets sont ceux de l’app en français. */
 export const fr: PagesCopy = {
   support: {
-    title: "Aide — HomeMind",
+    title: "Aide — Homesky",
     description:
-      "De l’aide pour l’app HomeMind sur iPhone : ajouter des produits, rappels, codes-barres, partage du foyer, export ou suppression de vos données, et comment nous écrire.",
+      "De l’aide pour l’app Homesky sur iPhone : ajouter des produits, rappels, codes-barres, partage du foyer, export ou suppression de vos données, et comment nous écrire.",
     overline: "Aide",
     heading: "Comment pouvons-nous aider ?",
     lead: "Les réponses aux questions les plus fréquentes, avec les mots de l’app. Si la vôtre n’y est pas, écrivez-nous.",
@@ -24,8 +24,8 @@ export const fr: PagesCopy = {
         id: "reminders",
         title: "Les rappels n’arrivent pas",
         steps: [
-          "Dans HomeMind : Réglages → Rappels → activez « Me prévenir avant les dates », et choisissez l’heure.",
-          "Dans les Réglages de l’iPhone → Notifications → HomeMind, autorisez les notifications. Si HomeMind indique qu’elles sont désactivées, son bouton Ouvrir Réglages y mène directement.",
+          "Dans Homesky : Réglages → Rappels → activez « Me prévenir avant les dates », et choisissez l’heure.",
+          "Dans les Réglages de l’iPhone → Notifications → Homesky, autorisez les notifications. Si Homesky indique qu’elles sont désactivées, son bouton Ouvrir Réglages y mène directement.",
           "Les rappels ne concernent que les produits qui ont une date.",
         ],
       },
@@ -44,23 +44,23 @@ export const fr: PagesCopy = {
           "Connectez-vous avec Apple dans Réglages → Synchronisation → Utiliser plusieurs téléphones. Sans connexion, tout reste sur ce téléphone.",
           "Pour partager votre foyer : Réglages → Partage → Inviter quelqu’un, puis envoyez le code. Il sert une fois, pendant deux jours. L’autre personne le saisit dans Réglages → Partage → Rejoindre une maison.",
           "Si une modification n’apparaît pas sur l’autre téléphone, touchez Réglages → Synchronisation → Synchroniser. Ce que le serveur a refusé est listé sous « Non enregistré », avec la raison.",
-          "La synchronisation et le partage font partie de HomeMind Household. Si Réglages → Synchronisation affiche « Synchronisation en pause », l’offre manque ou a pris fin ; tout continue de fonctionner sur le téléphone.",
+          "La synchronisation et le partage font partie de Homesky Household. Si Réglages → Synchronisation affiche « Synchronisation en pause », l’offre manque ou a pris fin ; tout continue de fonctionner sur le téléphone.",
         ],
       },
       {
         id: "plan",
-        title: "HomeMind Household",
+        title: "Homesky Household",
         steps: [
-          "Réglages → Synchronisation → HomeMind Household montre l’offre, son prix dans votre monnaie et sa date de renouvellement. Une seule offre couvre tout le foyer ; les personnes invitées ne paient pas.",
+          "Réglages → Synchronisation → Homesky Household montre l’offre, son prix dans votre monnaie et sa date de renouvellement. Une seule offre couvre tout le foyer ; les personnes invitées ne paient pas.",
           "Sur un nouveau téléphone ou un nouveau compte, ouvrez le même écran et touchez Restaurer l’achat.",
-          "Pour résilier : Réglages de l’iPhone → votre nom → Abonnements → HomeMind. L’offre court jusqu’à la fin de la période payée. Pour un remboursement, adressez-vous à Apple sur reportaproblem.apple.com.",
+          "Pour résilier : Réglages de l’iPhone → votre nom → Abonnements → Homesky. L’offre court jusqu’à la fin de la période payée. Pour un remboursement, adressez-vous à Apple sur reportaproblem.apple.com.",
         ],
       },
       {
         id: "language",
         title: "Langue",
         steps: [
-          "HomeMind parle français, allemand, italien et anglais, et suit la langue de votre iPhone. Pour choisir une autre langue pour HomeMind seulement : Réglages de l’iPhone → HomeMind → Langue.",
+          "Homesky parle français, allemand, italien et anglais, et suit la langue de votre iPhone. Pour choisir une autre langue pour Homesky seulement : Réglages de l’iPhone → Homesky → Langue.",
           "Les dates, les nombres et les unités suivent votre région. Ce que vous tapez, comme le nom des produits et des emplacements, reste tel que vous l’avez écrit.",
         ],
       },
@@ -81,24 +81,24 @@ export const fr: PagesCopy = {
     noContact: "Une adresse de contact sera publiée ici avant l’ouverture de la bêta.",
     policyBefore: "Lisez la ",
     policyLink: "politique de confidentialité",
-    policyAfter: " pour savoir ce que HomeMind conserve.",
-    back: "Retour à la page HomeMind",
+    policyAfter: " pour savoir ce que Homesky conserve.",
+    back: "Retour à la page Homesky",
   },
 
   privacy: {
-    title: "Confidentialité — HomeMind",
+    title: "Confidentialité — Homesky",
     description:
-      "Ce que l’app HomeMind pour iPhone garde sur votre téléphone, ce que son serveur conserve quand vous vous connectez, pendant combien de temps, et comment le supprimer.",
+      "Ce que l’app Homesky pour iPhone garde sur votre téléphone, ce que son serveur conserve quand vous vous connectez, pendant combien de temps, et comment le supprimer.",
     overline: "Politique de confidentialité · mise à jour le",
-    heading: "Ce que HomeMind garde, et jusqu’à quand",
-    lead: "Cette politique couvre l’app HomeMind pour iPhone pendant sa bêta TestFlight. Elle décrit ce que l’app et son serveur font réellement, et elle change quand ils changent.",
+    heading: "Ce que Homesky garde, et jusqu’à quand",
+    lead: "Cette politique couvre l’app Homesky pour iPhone pendant sa bêta TestFlight. Elle décrit ce que l’app et son serveur font réellement, et elle change quand ils changent.",
     original: "Cette page traduit la version anglaise, qui fait foi en cas de différence.",
     sections: [
       {
         id: "on-the-phone",
         title: "Sans compte, rien ne quitte votre téléphone",
         body: [
-          "HomeMind fonctionne entièrement sans connexion. Votre foyer, vos produits, votre stock, votre historique et votre liste de courses sont gardés dans une base de données sur votre iPhone, et rien n’est envoyé nulle part.",
+          "Homesky fonctionne entièrement sans connexion. Votre foyer, vos produits, votre stock, votre historique et votre liste de courses sont gardés dans une base de données sur votre iPhone, et rien n’est envoyé nulle part.",
           "L’appareil photo sert uniquement à lire les codes-barres. Les images sont traitées sur le téléphone, jamais conservées ni envoyées ; seul le numéro du code-barres est gardé, sur le produit concerné.",
           "Les rappels sont des notifications que votre téléphone programme lui-même. Aucun serveur de notifications n’intervient.",
         ],
@@ -107,7 +107,7 @@ export const fr: PagesCopy = {
         id: "account",
         title: "Avec un compte : ce que le serveur conserve",
         body: [
-          "La connexion passe par « Se connecter avec Apple ». Le serveur conserve l’identifiant stable qu’Apple lui fournit, et l’adresse e-mail si Apple en partage une (ce peut être une adresse relais privée). HomeMind ne voit jamais le mot de passe de votre identifiant Apple.",
+          "La connexion passe par « Se connecter avec Apple ». Le serveur conserve l’identifiant stable qu’Apple lui fournit, et l’adresse e-mail si Apple en partage une (ce peut être une adresse relais privée). Homesky ne voit jamais le mot de passe de votre identifiant Apple.",
           "Chaque téléphone connecté a une session qui expire d’elle-même ; les sessions expirées sont supprimées.",
           "Pour synchroniser, le serveur garde une copie de votre foyer : son nom, ses emplacements, les produits, les quantités, les dates, ce que vous avez utilisé et quand, et la liste de courses. Si vous rejoignez le foyer de quelqu’un, il garde aussi le nom que vous avez choisi de lui montrer.",
           "Quand vous scannez un code-barres en étant connecté, le serveur cherche le nom du produit dans la base ouverte Open Food Facts. Seul le numéro du code-barres est envoyé à Open Food Facts, pas votre identité. Les noms trouvés sont gardés en cache 30 jours ; les codes introuvables, 7 jours.",
@@ -123,9 +123,9 @@ export const fr: PagesCopy = {
       },
       {
         id: "subscription",
-        title: "HomeMind Household (l’abonnement)",
+        title: "Homesky Household (l’abonnement)",
         body: [
-          "L’offre s’achète dans l’app via l’App Store. Apple gère le paiement ; HomeMind ne voit jamais votre carte, votre identifiant Apple ni votre adresse de facturation.",
+          "L’offre s’achète dans l’app via l’App Store. Apple gère le paiement ; Homesky ne voit jamais votre carte, votre identifiant Apple ni votre adresse de facturation.",
           "Pour savoir qui a l’offre, le serveur conserve ce qu’Apple signe pour chaque abonnement : son identifiant de transaction, la formule, la date d’achat, la date de fin et s’il a été remboursé. Apple informe aussi directement le serveur quand un abonnement est renouvelé, prend fin ou est remboursé.",
           "Un abonnement est supprimé un an après sa fin. Si vous supprimez votre compte avant, l’enregistrement reste sans vous, sans aucune donnée personnelle, car Apple continue de facturer tant que vous ne résiliez pas dans les réglages de votre identifiant Apple ; vous pouvez alors le restaurer sur un nouveau compte.",
         ],
@@ -149,7 +149,7 @@ export const fr: PagesCopy = {
       },
       {
         id: "never",
-        title: "Ce que HomeMind ne fait pas",
+        title: "Ce que Homesky ne fait pas",
         body: [
           "Pas de publicité, pas de statistiques, pas de pistage entre apps ou sites web, et aucune vente ni aucun partage de vos données. L’app ne contient aucun code tiers de statistiques ou de publicité.",
         ],
@@ -160,6 +160,6 @@ export const fr: PagesCopy = {
     writeAfter:
       " pour toute question sur cette page, ou pour demander ce que le serveur détient sur vous.",
     noContact: "Une adresse de contact sera publiée ici avant l’ouverture de la bêta.",
-    back: "Retour à la page HomeMind",
+    back: "Retour à la page Homesky",
   },
 };

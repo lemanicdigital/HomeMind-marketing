@@ -3,16 +3,16 @@ import type { Copy } from "./en";
 /** Deutsch, per Du wie in der App, in der Schreibung Deutschlands und Österreichs (die App selbst schreibt in der Schweiz ss). */
 export const de: Copy = {
   meta: {
-    title: "HomeMind — wissen, was zu Hause ist, bevor du einkaufst",
+    title: "Homesky — wissen, was zu Hause ist, bevor du einkaufst",
     description:
-      "HomeMind weiß, was euer Haushalt da hat, was zuerst abläuft und was knapp wird – und schreibt die Einkaufsliste für dich. Bald auf dem iPhone.",
+      "Homesky weiß, was euer Haushalt da hat, was zuerst abläuft und was knapp wird – und schreibt die Einkaufsliste für dich. Bald auf dem iPhone.",
     ogAlt:
-      "HomeMind: wissen, was zu Hause ist, bevor du einkaufst. Die Übersicht der App mit allem, was bald weg muss.",
+      "Homesky: wissen, was zu Hause ist, bevor du einkaufst. Die Übersicht der App mit allem, was bald weg muss.",
     skip: "Zum Inhalt",
   },
 
   nav: {
-    home: "HomeMind Startseite",
+    home: "Homesky Startseite",
     sections: "Bereiche dieser Seite",
     features: "Funktionen",
     pricing: "Preise",
@@ -25,7 +25,7 @@ export const de: Copy = {
 
   hero: {
     title: "Vor dem Einkauf wissen, was da ist.",
-    lead: "HomeMind weiß, was euer Haushalt da hat, was zuerst abläuft und was knapp wird – und schreibt die Einkaufsliste für dich.",
+    lead: "Homesky weiß, was euer Haushalt da hat, was zuerst abläuft und was knapp wird – und schreibt die Einkaufsliste für dich.",
     primary: "So funktioniert’s",
     timeLabel: "Übersicht um",
     times: [
@@ -47,7 +47,7 @@ export const de: Copy = {
       },
     ],
     imageAlt:
-      "Die Übersicht von HomeMind: Babyspinat läuft heute ab, Vollmilch morgen und griechischer Joghurt in 3 Tagen; Kaffeebohnen und Spülmittel werden knapp.",
+      "Die Übersicht von Homesky: Babyspinat läuft heute ab, Vollmilch morgen und griechischer Joghurt in 3 Tagen; Kaffeebohnen und Spülmittel werden knapp.",
   },
 
   day: {
@@ -89,11 +89,11 @@ export const de: Copy = {
     steps: [
       {
         title: "Erfassen, was da ist",
-        body: "Eintippen oder Strichcode scannen. Menge und Datum sind optional; HomeMind tut nicht so, als wüsste es, was es nicht weiß.",
+        body: "Eintippen oder Strichcode scannen. Menge und Datum sind optional; Homesky tut nicht so, als wüsste es, was es nicht weiß.",
       },
       {
         title: "Verbrauchen",
-        body: "Tipp nebenbei auf „Eins verbraucht“. HomeMind lernt, wie schnell euer Haushalt was aufbraucht.",
+        body: "Tipp nebenbei auf „Eins verbraucht“. Homesky lernt, wie schnell euer Haushalt was aufbraucht.",
       },
       {
         title: "Mit verlässlicher Liste einkaufen",
@@ -104,7 +104,7 @@ export const de: Copy = {
 
   pricing: {
     sentence: {
-      before: "HomeMind Household kostet ",
+      before: "Homesky Household kostet ",
       price: "14,99 €",
       after:
         " pro Jahr für den ganzen Haushalt, oder 1,99 € pro Monat. Der erste Monat ist gratis.",
@@ -123,7 +123,7 @@ export const de: Copy = {
       ],
     },
     household: {
-      name: "HomeMind Household",
+      name: "Homesky Household",
       badge: "Erster Monat gratis",
       price: "14,99 €",
       per: "pro Jahr",
@@ -141,7 +141,7 @@ export const de: Copy = {
   privacy: {
     time: "22:00",
     title: "Deine Küche geht niemanden etwas an",
-    lead: "Ein Haushaltsinventar weiß viel über ein Zuhause. HomeMind behält es zuerst auf deinem Telefon und erhebt nur, was die Synchronisierung braucht.",
+    lead: "Ein Haushaltsinventar weiß viel über ein Zuhause. Homesky behält es zuerst auf deinem Telefon und erhebt nur, was die Synchronisierung braucht.",
     policy: "Datenschutzerklärung lesen",
   },
 
@@ -315,7 +315,7 @@ export const de: Copy = {
       },
       {
         q: "Kostet das etwas?",
-        a: "Nicht auf einem Telefon: Dort ist die ganze App gratis, ohne Grenzen. Synchronisierung und Teilen brauchen unseren Server, das ist HomeMind Household: 14,99 € pro Jahr oder 1,99 € pro Monat nach einem Gratismonat. Ein Abo gilt für den ganzen Haushalt.",
+        a: "Nicht auf einem Telefon: Dort ist die ganze App gratis, ohne Grenzen. Synchronisierung und Teilen brauchen unseren Server, das ist Homesky Household: 14,99 € pro Jahr oder 1,99 € pro Monat nach einem Gratismonat. Ein Abo gilt für den ganzen Haushalt.",
       },
       {
         q: "Kann ich die Beta testen?",
@@ -330,7 +330,7 @@ export const de: Copy = {
 
   launch: {
     title: "Bald auf dem iPhone",
-    body: "HomeMind ist gerade im Test. Als Nächstes kommt eine öffentliche Beta über Apples TestFlight, angekündigt genau hier. Es gibt keinen Newsletter.",
+    body: "Homesky ist gerade im Test. Als Nächstes kommt eine öffentliche Beta über Apples TestFlight, angekündigt genau hier. Es gibt keinen Newsletter.",
     action: "Fragen und Antworten",
   },
 

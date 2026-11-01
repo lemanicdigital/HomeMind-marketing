@@ -1,6 +1,6 @@
-# HomeMind — marketing
+# Homesky — marketing
 
-The public HomeMind website: a landing page, support and a privacy policy, static HTML and CSS, no JavaScript shipped to the
+The public Homesky website: a landing page, support and a privacy policy, static HTML and CSS, no JavaScript shipped to the
 browser, no third-party requests, no analytics, no cookies.
 
 Astro is the build tool (static output), not a runtime: `astro build` emits `dist/` and the browser
@@ -8,7 +8,7 @@ downloads one HTML file plus one stylesheet. Nothing in `src/` needs a framework
 
 ## Status of the claims on the page
 
-HomeMind is **in private development**. The site is written so that nothing on it can be read as a
+Homesky is **in private development**. The site is written so that nothing on it can be read as a
 shipped feature: the hero says the product is in development, each capability is described as a design
 intent rather than a promise, the design-system section is the one part that is genuinely finished, and
 there is deliberately no waitlist form — a static page has nowhere safe to put an email address.
@@ -98,7 +98,7 @@ Arabic will need its own face (IBM Plex Sans Arabic or Noto Sans Arabic) when an
 
 - `src/styles/tokens.css` is **generated**, from `docs/design-system/tokens.md` in a HomeMind-IOS
   checkout (default `../HomeMind-IOS`; override with `--source <path>` or
-  `HOMEMIND_DESIGN_SYSTEM_PATH`). Its header records the source commit and a content hash. Editing
+  `HOMESKY_DESIGN_SYSTEM_PATH`). Its header records the source commit and a content hash. Editing
   values in it by hand is how a second, drifted identity gets born.
 - `vendor/design-system/tokens.md` is a **verbatim copy** of that document, written by the same run. It
   exists so this repository's CI can verify the snapshot on its own: CI cannot read the private app
@@ -157,6 +157,6 @@ no JavaScript, and colour pairs taken from the measured token table rather than 
 
 ## Licence
 
-No licence has been selected by the owner for any HomeMind repository, so this one is "all rights
+No licence has been selected by the owner for any Homesky repository, so this one is "all rights
 reserved" by default and contains no `LICENSE` file. Choosing one is an open owner decision, not an
 oversight.

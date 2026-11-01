@@ -4,7 +4,7 @@ import { LANGS, LANG_NAMES, copyFor, home, page, pagesFor } from "../i18n";
 
 /**
  * /llms.txt (llmstxt.org): the site as plain Markdown, for AI assistants that answer questions
- * about HomeMind. Written from the same copy as the pages, so it can't say anything they don't, and
+ * about Homesky. Written from the same copy as the pages, so it can't say anything they don't, and
  * it links every page in every language. Crawlers that don't know the file simply never ask for it.
  */
 export const GET: APIRoute = ({ site }) => {
@@ -13,7 +13,7 @@ export const GET: APIRoute = ({ site }) => {
   const { pricing } = c;
 
   const lines = [
-    "# HomeMind",
+    "# Homesky",
     "",
     `> ${c.meta.description}`,
     "",
@@ -46,7 +46,7 @@ export const GET: APIRoute = ({ site }) => {
     ...LANGS.flatMap((lang) => {
       const pages = pagesFor(lang);
       return [
-        `- [HomeMind (${LANG_NAMES[lang]})](${at(home(lang))}): ${copyFor(lang).meta.description}`,
+        `- [Homesky (${LANG_NAMES[lang]})](${at(home(lang))}): ${copyFor(lang).meta.description}`,
         `- [${pages.support.title}](${at(page(lang, "support/"))}): ${pages.support.description}`,
         `- [${pages.privacy.title}](${at(page(lang, "privacy/"))}): ${pages.privacy.description}`,
       ];

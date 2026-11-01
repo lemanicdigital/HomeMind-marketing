@@ -6,16 +6,16 @@ import type { Copy } from "./en";
  */
 export const fr: Copy = {
   meta: {
-    title: "HomeMind — sachez ce qu’il y a à la maison avant de faire les courses",
+    title: "Homesky — sachez ce qu’il y a à la maison avant de faire les courses",
     description:
-      "HomeMind sait ce que votre foyer a en réserve, ce qui périme en premier et ce qui va manquer, puis écrit la liste de courses pour vous. Bientôt sur iPhone.",
+      "Homesky sait ce que votre foyer a en réserve, ce qui périme en premier et ce qui va manquer, puis écrit la liste de courses pour vous. Bientôt sur iPhone.",
     ogAlt:
-      "HomeMind : sachez ce qu’il y a à la maison avant de faire les courses. L’écran d’accueil de l’app, avec ce qu’il faut consommer vite.",
+      "Homesky : sachez ce qu’il y a à la maison avant de faire les courses. L’écran d’accueil de l’app, avec ce qu’il faut consommer vite.",
     skip: "Aller au contenu",
   },
 
   nav: {
-    home: "Accueil de HomeMind",
+    home: "Accueil de Homesky",
     sections: "Sections de cette page",
     features: "Fonctions",
     pricing: "Prix",
@@ -28,7 +28,7 @@ export const fr: Copy = {
 
   hero: {
     title: "Sachez ce qui reste avant les courses.",
-    lead: "HomeMind sait ce que votre foyer a en réserve, ce qui périme en premier et ce qui va manquer, puis écrit la liste de courses pour vous.",
+    lead: "Homesky sait ce que votre foyer a en réserve, ce qui périme en premier et ce qui va manquer, puis écrit la liste de courses pour vous.",
     primary: "Voir comment ça marche",
     timeLabel: "Voir l’accueil à",
     times: [
@@ -51,7 +51,7 @@ export const fr: Copy = {
       },
     ],
     imageAlt:
-      "L’écran d’accueil de HomeMind : les pousses d’épinards sont à consommer aujourd’hui, le lait entier demain et le yaourt grec expire dans 3 jours ; le café en grains et le liquide vaisselle sont bientôt finis.",
+      "L’écran d’accueil de Homesky : les pousses d’épinards sont à consommer aujourd’hui, le lait entier demain et le yaourt grec expire dans 3 jours ; le café en grains et le liquide vaisselle sont bientôt finis.",
   },
 
   day: {
@@ -93,11 +93,11 @@ export const fr: Copy = {
     steps: [
       {
         title: "Ajoutez ce que vous avez",
-        body: "Tapez-le ou scannez le code-barres. Quantité et date sont facultatives ; HomeMind ne fait pas semblant de savoir ce qu’il ne sait pas.",
+        body: "Tapez-le ou scannez le code-barres. Quantité et date sont facultatives ; Homesky ne fait pas semblant de savoir ce qu’il ne sait pas.",
       },
       {
         title: "Consommez",
-        body: "Touchez « J’en ai utilisé un » au fil de l’eau. HomeMind apprend à quel rythme votre foyer consomme chaque chose.",
+        body: "Touchez « J’en ai utilisé un » au fil de l’eau. Homesky apprend à quel rythme votre foyer consomme chaque chose.",
       },
       {
         title: "Faites vos courses avec une liste fiable",
@@ -108,7 +108,7 @@ export const fr: Copy = {
 
   pricing: {
     sentence: {
-      before: "HomeMind Household coûte ",
+      before: "Homesky Household coûte ",
       price: "14,99 €",
       after: " par an pour tout le foyer, ou 1,99 € par mois. Le premier mois est offert.",
     },
@@ -126,7 +126,7 @@ export const fr: Copy = {
       ],
     },
     household: {
-      name: "HomeMind Household",
+      name: "Homesky Household",
       badge: "Premier mois offert",
       price: "14,99 €",
       per: "par an",
@@ -144,7 +144,7 @@ export const fr: Copy = {
   privacy: {
     time: "22:00",
     title: "Votre cuisine ne regarde que vous",
-    lead: "Un inventaire du foyer en dit long sur une maison. HomeMind le garde d’abord sur votre téléphone et ne collecte que ce dont la synchronisation a besoin.",
+    lead: "Un inventaire du foyer en dit long sur une maison. Homesky le garde d’abord sur votre téléphone et ne collecte que ce dont la synchronisation a besoin.",
     policy: "Lire la politique de confidentialité",
   },
 
@@ -318,7 +318,7 @@ export const fr: Copy = {
       },
       {
         q: "Est-ce payant ?",
-        a: "Pas sur un seul téléphone : toute l’app y est gratuite, sans limite. La synchronisation et le partage ont besoin de notre serveur : c’est HomeMind Household, 14,99 € par an ou 1,99 € par mois après un mois offert. Une seule offre couvre tout le foyer.",
+        a: "Pas sur un seul téléphone : toute l’app y est gratuite, sans limite. La synchronisation et le partage ont besoin de notre serveur : c’est Homesky Household, 14,99 € par an ou 1,99 € par mois après un mois offert. Une seule offre couvre tout le foyer.",
       },
       {
         q: "Puis-je tester la bêta ?",
@@ -333,7 +333,7 @@ export const fr: Copy = {
 
   launch: {
     title: "Bientôt sur iPhone",
-    body: "HomeMind est en test. Une bêta publique via TestFlight d’Apple suivra, annoncée ici même. Pas de liste de diffusion à rejoindre.",
+    body: "Homesky est en test. Une bêta publique via TestFlight d’Apple suivra, annoncée ici même. Pas de liste de diffusion à rejoindre.",
     action: "Questions et réponses",
   },
 
