@@ -1,0 +1,26 @@
+---
+import Row from './Row.astro';
+import TabBar from './TabBar.astro';
+import type { Copy } from '../../copy/en';
+
+/** The Inventory screen with one item of each kind, so all eight category colours are seen. */
+interface Props {
+  app: Copy['app'];
+  label: string;
+}
+
+const { app, label } = Astro.props as Props;
+---
+
+<div class="ui ui--inventory" data-ui role="img" aria-label={label}>
+  <div class="ui-head">
+    <span class="ui-head__text">
+      <span class="ui-title">{app.tabs.inventory}</span>
+      <span class="ui-sub">{app.count}</span>
+    </span>
+  </div>
+  <ul class="ui-card">
+    {app.shelf.map((item, index) => <Row {...item} urgent={index === 1} />)}
+  </ul>
+  <TabBar tabs={app.tabs} current="inventory" />
+</div>

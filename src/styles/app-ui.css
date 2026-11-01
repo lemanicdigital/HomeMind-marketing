@@ -1,0 +1,376 @@
+/*
+ * The app's screens, drawn in HTML from the same roles the app uses. Sizes here are the app's own
+ * (a 390 pt wide iPhone screen), not the site's type scale: these are pictures of the product, and
+ * they carry `data-ui`, so the page's rules for running text do not apply inside them.
+ */
+
+.ui {
+  position: relative;
+  inline-size: 390px;
+  max-inline-size: 100%;
+  padding: 0 16px 92px;
+  border-radius: 44px 44px 0 0;
+  background: var(--hm-background);
+  color: var(--hm-text-primary);
+  font-size: 15px;
+  line-height: 1.3;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ui :where(svg),
+.ui-piece :where(svg) {
+  inline-size: 100%;
+  block-size: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- status bar, sky and large title ---- */
+
+.ui-status {
+  display: flex;
+  block-size: 50px;
+  align-items: center;
+  padding-inline: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-clock {
+  display: none;
+}
+
+.ui-clock--dawn {
+  display: inline;
+}
+
+:root:has(#sky-day:checked) .ui-clock--dawn,
+:root:has(#sky-dusk:checked) .ui-clock--dawn,
+:root:has(#sky-night:checked) .ui-clock--dawn {
+  display: none;
+}
+
+:root:has(#sky-day:checked) .ui-clock--day,
+:root:has(#sky-dusk:checked) .ui-clock--dusk,
+:root:has(#sky-night:checked) .ui-clock--night {
+  display: inline;
+}
+
+.ui-sky {
+  position: absolute;
+  inset: 0 0 auto;
+  block-size: 230px;
+  z-index: -1;
+  background: var(--sky);
+  transition: background-color 600ms cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+.ui:not(.ui--home) {
+  padding-block-start: 28px;
+}
+
+.ui-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 4px 22px;
+}
+
+.ui-head__text {
+  display: grid;
+  gap: 4px;
+}
+
+.ui-title {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ui-sub {
+  color: var(--hm-text-secondary);
+}
+
+.ui-icon {
+  display: grid;
+  place-items: center;
+  inline-size: 40px;
+  block-size: 40px;
+  padding: 9px;
+  border-radius: 50%;
+  background: var(--hm-surface);
+  color: var(--hm-icon-default);
+}
+
+/* ---- sections and rows ---- */
+
+.ui-section {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  padding: 18px 4px 8px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.ui-count {
+  color: var(--hm-text-secondary);
+  font-weight: 600;
+}
+
+.ui-card {
+  border-radius: 16px;
+  background: var(--hm-surface);
+  overflow: hidden;
+}
+
+.ui-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-block-size: 60px;
+  padding: 10px 14px;
+}
+
+.ui-row + .ui-row {
+  box-shadow: inset 58px 1px 0 -57px var(--hm-border-subtle);
+}
+
+.ui-kind {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 32px;
+  block-size: 32px;
+  padding: 7px;
+  border-radius: 9px;
+  color: var(--hm-on-category);
+}
+
+.ui-kind--pantry {
+  background: var(--hm-category-pantry);
+}
+.ui-kind--fresh {
+  background: var(--hm-category-fresh);
+}
+.ui-kind--beverages {
+  background: var(--hm-category-beverages);
+}
+.ui-kind--frozen {
+  background: var(--hm-category-frozen);
+}
+.ui-kind--cleaning {
+  background: var(--hm-category-cleaning);
+}
+.ui-kind--bathroom {
+  background: var(--hm-category-bathroom);
+}
+.ui-kind--pet {
+  background: var(--hm-category-pet);
+}
+.ui-kind--other {
+  background: var(--hm-category-other);
+}
+
+.ui-kind svg,
+.ui-piece .ui-kind svg {
+  stroke-width: 2.1;
+}
+
+.ui-row__text {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.ui-row__name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ui-row__detail {
+  font-size: 13px;
+  color: var(--hm-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ui-warn {
+  color: var(--hm-warning);
+  font-weight: 600;
+}
+
+.ui-row__qty {
+  flex: none;
+  color: var(--hm-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-chevron {
+  flex: none;
+  inline-size: 14px;
+  block-size: 14px;
+  color: var(--hm-icon-muted);
+}
+
+.ui-box {
+  flex: none;
+  inline-size: 24px;
+  block-size: 24px;
+  border: 2px solid var(--hm-border-input);
+  border-radius: 7px;
+}
+
+.ui-plus {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 24px;
+  block-size: 24px;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--hm-primary-subtle);
+  color: var(--hm-primary);
+}
+
+.ui-plus svg {
+  stroke-width: 2.6;
+}
+
+/* ---- tab bar with the saffron Add ---- */
+
+.ui-tabs {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  block-size: 82px;
+  padding: 6px 8px 22px;
+  background: var(--hm-tab-bar);
+  box-shadow: inset 0 1px 0 var(--hm-tab-bar-border);
+}
+
+.ui-tab {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  color: var(--hm-tab-bar-inactive);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.ui-tab svg {
+  inline-size: 24px;
+  block-size: 24px;
+}
+
+.ui-tab--on {
+  color: var(--hm-tab-bar-active);
+}
+
+.ui-add {
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--hm-accent);
+  color: var(--hm-on-accent);
+}
+
+.ui-add svg {
+  stroke-width: 2.6;
+}
+
+/* ---- small pieces for "how it works" ---- */
+
+.ui-piece {
+  inline-size: min(340px, 100%);
+  padding: 16px;
+  border-radius: 20px;
+  background: var(--hm-surface);
+  color: var(--hm-text-primary);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.ui-piece .ui-row {
+  padding-inline: 0;
+}
+
+.ui-field {
+  display: grid;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--hm-control-background);
+  box-shadow: inset 0 0 0 1.5px var(--hm-border-focus);
+}
+
+.ui-field__label {
+  font-size: 13px;
+  color: var(--hm-text-secondary);
+}
+
+.ui-field__value {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.ui-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-start: 12px;
+}
+
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  background: var(--hm-surface-secondary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ui-chip .ui-kind {
+  inline-size: 24px;
+  block-size: 24px;
+  padding: 5px;
+  border-radius: 7px;
+}
+
+.ui-used {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-block-start: 12px;
+  min-block-size: 46px;
+  border-radius: 999px;
+  background: var(--hm-primary);
+  color: var(--hm-on-primary);
+  font-weight: 600;
+}
+
+.ui-used svg {
+  inline-size: 20px;
+  block-size: 20px;
+  stroke-width: 2.6;
+}

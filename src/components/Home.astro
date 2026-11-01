@@ -2,17 +2,18 @@
 import Page from '../layouts/Page.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteHero from './SiteHero.astro';
-import Features from './Features.astro';
-import Screens from './Screens.astro';
+import Showcase from './Showcase.astro';
+import Day from './Day.astro';
 import HowItWorks from './HowItWorks.astro';
 import Pricing from './Pricing.astro';
-import Privacy from './Privacy.astro';
+import Glyphs from './app/Glyphs.astro';
 import Faq from './Faq.astro';
 import Launch from './Launch.astro';
 import SiteFooter from './SiteFooter.astro';
 
 import { LANGS, type Lang, copyFor, home } from '../i18n';
 import { homeSchema } from '../schema';
+import '../styles/app-ui.css';
 
 /** The home page in one language; `pages/index.astro` is English, `pages/[lang]/` the others. */
 interface Props {
@@ -31,14 +32,14 @@ const alternates = Object.fromEntries(LANGS.map((code) => [code, home(code)]));
   alternates={alternates}
   schema={homeSchema(lang, Astro.site ?? Astro.url)}
 >
+  <Glyphs />
   <SiteHeader lang={lang} alternates={alternates} />
   <main id="main">
     <SiteHero lang={lang} />
-    <Features lang={lang} />
-    <Screens lang={lang} />
+    <Showcase lang={lang} />
+    <Day lang={lang} />
     <HowItWorks lang={lang} />
     <Pricing lang={lang} />
-    <Privacy lang={lang} />
     <Faq lang={lang} />
     <Launch lang={lang} />
   </main>

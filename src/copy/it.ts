@@ -15,7 +15,6 @@ export const it: Copy = {
     home: "Pagina iniziale di HomeMind",
     sections: "Sezioni della pagina",
     features: "Funzioni",
-    screens: "Schermate",
     pricing: "Prezzi",
     privacy: "Privacy",
     faq: "FAQ",
@@ -25,78 +24,68 @@ export const it: Copy = {
   },
 
   hero: {
-    eyebrow: "Presto su iPhone",
     title: "Sai cosa c’è in casa prima della spesa.",
     lead: "HomeMind sa cosa c’è in casa, cosa scade per primo e cosa sta finendo, e scrive la lista della spesa per te.",
     primary: "Scopri come funziona",
-    secondary: "Guarda l’app",
-    promises: ["Funziona offline", "Gratis su un iPhone", "Da condividere in casa"],
+    timeLabel: "Home alle",
+    times: [
+      {
+        label: "7:00",
+        caption: "Colazione. Un solo avviso tranquillo dice cosa usare oggi.",
+      },
+      {
+        label: "13:00",
+        caption: "Al supermercato. La lista sa già cosa è finito.",
+      },
+      {
+        label: "18:30",
+        caption: "La spesa arriva a casa. Scansionala mentre la metti via.",
+      },
+      {
+        label: "22:00",
+        caption: "Tarda sera. Tutto resta sul tuo telefono, niente viene misurato.",
+      },
+    ],
     imageAlt:
-      "La schermata Home di HomeMind: tre prodotti da usare subito, con spinacini che scadono oggi e latte intero domani.",
-    noteWarning: { name: "Latte intero", detail: "Scade domani" },
-    noteSuccess: { name: "Olio d’oliva", detail: "Aggiunto alla lista" },
+      "La schermata Home di HomeMind: gli spinacini scadono oggi, il latte intero domani e lo yogurt greco tra 3 giorni; caffè in grani e detersivo per piatti stanno finendo.",
   },
 
-  features: {
-    title: "I piccoli conti di casa, fatti per te",
-    lead: "Basta comprare il quarto barattolo di qualcosa che ne hai già tre, e ritrovare il quarto una settimana dopo la scadenza.",
-    items: [
+  day: {
+    chapters: [
       {
-        title: "Tutto in un posto",
-        body: "Cosa hai, quanto e dove sta: il frigo, la dispensa, lo scaffale accanto alla lavatrice.",
-      },
-      {
+        time: "7:00",
         title: "Usalo prima che scada",
-        body: "Le date diventano «Scade oggi» e «Scade tra 3 giorni», e un solo avviso tranquillo al mattino dice cosa va mangiato.",
+        body: "A colazione, un solo avviso tranquillo dice cosa va mangiato. Le date diventano «Scade oggi» e «Scade tra 3 giorni».",
       },
       {
+        time: "13:00",
         title: "Una lista che si scrive da sola",
         body: "Se finisce, va nella lista della spesa. Se sta finendo, viene suggerito, con il motivo accanto.",
       },
       {
+        time: "18:30",
         title: "Scansiona invece di scrivere",
-        body: "Inquadra il codice a barre e il nome del prodotto si compila da solo. Scrivere funziona sempre.",
-      },
-      {
-        title: "Una casa, tutti i telefoni",
-        body: "Invita le persone con cui vivi. Tutti vedono le stesse scorte e la stessa lista, sempre sincronizzate.",
-      },
-      {
-        title: "Funziona senza campo",
-        body: "Il telefono tiene la sua copia, quindi il supermercato interrato non è un problema. Le modifiche si sincronizzano quando torna il segnale.",
+        body: "Inquadra il codice a barre e il nome si compila da solo. Serve solo il nome, e scrivere funziona sempre.",
       },
     ],
   },
 
-  screens: {
+  showcase: {
     title: "Schermate calme per un lavoro noioso",
-    lead: "Schermate della versione attuale su iPhone, con dati di esempio. Chiaro o scuro, come il tuo telefono. Su un iPhone in italiano l’app è in italiano.",
-    items: [
-      {
-        title: "Oggi, a colpo d’occhio",
-        body: "Cosa usare prima e cosa sta finendo. Nient’altro distrae.",
-        alt: "La schermata Home: un avviso che tre prodotti sono da usare o controllare, poi la lista «Da consumare presto» con spinacini che scadono oggi, latte intero domani, yogurt greco tra tre giorni e cheddar stagionato tra nove.",
-      },
-      {
-        title: "Tutto quello che hai",
-        body: "Diviso per tipo, filtrato su cosa sta finendo o scade, con ricerca e scansione del codice a barre.",
-        alt: "La Dispensa in modalità scura, filtrata sui prodotti in scadenza: spinacini, latte intero, yogurt greco, uova e cheddar, ognuno con il posto e la scadenza.",
-      },
-      {
-        title: "Un prodotto, onestamente",
-        body: "Quanto ne resta, quando ne servirà altro e perché, e ogni confezione con la sua data.",
-        alt: "La scheda del caffè in grani: 250 grammi in casa, segnato in esaurimento, di solito circa 1000 grammi ogni tre settimane, da ricomprare verso il 5 novembre, e una confezione nel pensile della cucina.",
-      },
-      {
-        title: "Una lista che si riempie",
-        body: "Quello che finisce si aggiunge da solo. Quello che sta finendo viene solo suggerito; decidi tu se aggiungerlo.",
-        alt: "La schermata Spesa: sacchi della spazzatura, olio d’oliva segnato «Finito», banane e pane a lievitazione naturale da comprare, poi i suggerimenti per ciò che sta finendo.",
-      },
-    ],
+    inventory: {
+      name: "Tutto quello che hai",
+      fact: "Diviso per tipo, ogni tipo con il suo colore.",
+      alt: "La Dispensa: otto prodotti, uno per tipo, ognuno con il suo colore: pasta, spinacini, caffè in grani, piselli surgelati, detersivo per bucato, dentifricio, cibo per gatti e pile.",
+    },
+    list: {
+      name: "Una lista che si riempie",
+      fact: "Quello che finisce si aggiunge. Quello che sta finendo è solo suggerito.",
+      alt: "La Spesa: olio d’oliva e sacchi per rifiuti sono finiti, banane e pane di pasta madre sono da comprare, e caffè in grani e detersivo per piatti sono suggeriti perché stanno finendo.",
+    },
   },
 
   how: {
-    title: "Tre abitudini, nessun foglio di calcolo",
+    title: "Tre gesti, nessun foglio di calcolo",
     steps: [
       {
         title: "Aggiungi quello che hai",
@@ -114,6 +103,11 @@ export const it: Copy = {
   },
 
   pricing: {
+    sentence: {
+      before: "HomeMind Household costa ",
+      price: "14,99 €",
+      after: " all’anno per tutta la casa, oppure 1,99 € al mese. Il primo mese è gratis.",
+    },
     title: "Gratis da solo. Un piano per la casa.",
     lead: "Paghi solo ciò che richiede il nostro server: sincronizzazione e condivisione. Tutto il resto è gratis, per quanti prodotti vuoi.",
     free: {
@@ -144,23 +138,151 @@ export const it: Copy = {
   },
 
   privacy: {
+    time: "22:00",
     title: "La tua cucina non riguarda nessun altro",
     lead: "Un inventario di casa sa molto di una famiglia. HomeMind lo tiene prima di tutto sul tuo telefono e raccoglie solo ciò che serve alla sincronizzazione.",
     policy: "Leggi l’informativa sulla privacy",
-    points: [
+  },
+
+  app: {
+    household: "Casa nostra",
+    date: "sabato 7 novembre",
+    tabs: {
+      home: "Home",
+      inventory: "Dispensa",
+      add: "Aggiungi",
+      cook: "Cucina",
+      shopping: "Spesa",
+    },
+    useSoon: "Da consumare presto",
+    runningOut: "Stanno finendo",
+    toBuy: "Da comprare",
+    suggested: "Suggeriti",
+    usedOne: "Ne ho usato uno",
+    soon: [
       {
-        title: "Tuo, senza account",
-        body: "Tutta l’app funziona sul solo telefono. Accedere aggiunge solo sincronizzazione e condivisione.",
+        name: "Spinacini",
+        detail: "Frigo · Scade oggi",
+        qty: "1 busta",
+        kind: "fresh",
       },
       {
-        title: "Pagato dal piano",
-        body: "HomeMind vive di HomeMind Household. L’app non mostra pubblicità, e la tua spesa non viene mai misurata né venduta.",
+        name: "Latte intero",
+        detail: "Frigo · Scade domani",
+        qty: "1 cartone",
+        kind: "beverages",
       },
       {
-        title: "Sparisce quando lo decidi tu",
-        body: "Elimina l’account nelle Impostazioni e viene cancellato dal server e da ogni telefono.",
+        name: "Yogurt greco",
+        detail: "Frigo · Scade tra 3 giorni",
+        qty: "2 vasetti",
+        kind: "fresh",
       },
     ],
+    low: [
+      {
+        name: "Caffè in grani",
+        detail: "Credenza · Sta finendo",
+        qty: "250 g",
+        kind: "beverages",
+      },
+      {
+        name: "Detersivo per piatti",
+        detail: "Sotto il lavello · Sta finendo",
+        qty: "1 flacone",
+        kind: "cleaning",
+      },
+    ],
+    count: "8 prodotti",
+    shelf: [
+      {
+        name: "Pasta",
+        detail: "Credenza",
+        qty: "2 pacchi",
+        kind: "pantry",
+      },
+      {
+        name: "Spinacini",
+        detail: "Frigo · Scade oggi",
+        qty: "1 busta",
+        kind: "fresh",
+      },
+      {
+        name: "Caffè in grani",
+        detail: "Credenza · Sta finendo",
+        qty: "250 g",
+        kind: "beverages",
+      },
+      {
+        name: "Piselli surgelati",
+        detail: "Congelatore",
+        qty: "1 busta",
+        kind: "frozen",
+      },
+      {
+        name: "Detersivo per bucato",
+        detail: "Scaffale della lavatrice",
+        qty: "1 flacone",
+        kind: "cleaning",
+      },
+      {
+        name: "Dentifricio",
+        detail: "Mobiletto del bagno",
+        qty: "2 tubetti",
+        kind: "bathroom",
+      },
+      {
+        name: "Cibo per gatti",
+        detail: "Armadio dell’ingresso",
+        qty: "6 scatolette",
+        kind: "pet",
+      },
+      {
+        name: "Pile",
+        detail: "Cassetto della cucina",
+        qty: "4 pile",
+        kind: "other",
+      },
+    ],
+    toBuyCount: "4 da comprare",
+    buy: [
+      {
+        name: "Olio d’oliva",
+        reason: "Finito",
+      },
+      {
+        name: "Sacchi per rifiuti",
+        reason: "Finito",
+      },
+      {
+        name: "Banane",
+        reason: "",
+      },
+      {
+        name: "Pane di pasta madre",
+        reason: "",
+      },
+    ],
+    suggest: [
+      {
+        name: "Caffè in grani",
+        reason: "Sta finendo",
+      },
+      {
+        name: "Detersivo per piatti",
+        reason: "Sta finendo",
+      },
+    ],
+    add: {
+      label: "Nome",
+      value: "Spinacini",
+      category: "Freschi",
+      place: "Frigo",
+    },
+    use: {
+      name: "Latte intero",
+      qty: "1 cartone",
+    },
   },
 
   faq: {
@@ -212,6 +334,7 @@ export const it: Copy = {
   },
 
   footer: {
+    place: "Fatto sul lago di Ginevra, in italiano, inglese, francese e tedesco.",
     tagline: "L’inventario di casa per iPhone. Questo sito non usa cookie e non misura niente.",
     product: "Prodotto",
     help: "Aiuto",

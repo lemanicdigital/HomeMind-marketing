@@ -2,6 +2,10 @@
 import Logo from './ui/Logo.astro';
 import { type Lang, copyFor, home, page } from '../i18n';
 
+/**
+ * The footer as a row of tiles, like the app's Home: the name on ink, where it is made on saffron,
+ * and the links in three plain tiles.
+ */
 interface Props {
   lang?: Lang;
 }
@@ -14,9 +18,9 @@ const columns = [
   {
     title: c.product,
     links: [
-      { href: home(lang, '#features'), label: c.features },
-      { href: home(lang, '#how'), label: c.how },
+      { href: home(lang, '#day'), label: c.features },
       { href: home(lang, '#app'), label: c.screens },
+      { href: home(lang, '#how'), label: c.how },
     ],
   },
   {
@@ -38,16 +42,19 @@ const columns = [
 ---
 
 <footer class="foot">
-  <div class="shell foot__grid">
-    <div class="foot__brand">
-      <p class="foot__name"><Logo size={28} /> HomeMind</p>
-      <p class="t-secondary">{c.tagline}</p>
+  <div class="shell foot__tiles">
+    <div class="tile tile--ink">
+      <p class="foot__name"><Logo size={40} /> HomeMind</p>
+      <p>{c.tagline}</p>
+    </div>
+    <div class="tile tile--saffron">
+      <p class="t-title">{c.place}</p>
     </div>
     {
       columns.map((column) => (
-        <nav class="foot__column" aria-label={column.title}>
-          <p class="foot__title">{column.title}</p>
-          <ul role="list">
+        <nav class="tile" aria-label={column.title}>
+          <p class="t-title">{column.title}</p>
+          <ul>
             {column.links.map((link) => (
               <li>
                 <a href={link.href}>{link.label}</a>
@@ -58,85 +65,97 @@ const columns = [
       ))
     }
   </div>
-  <div class="shell foot__base">
-    <p class="t-caption">© {year} HomeMind. {c.rights}</p>
+  <div class="shell">
+    <p class="t-caption foot__rights">© {year} HomeMind. {c.rights}</p>
   </div>
 </footer>
 
 <style>
   .foot {
-    padding-block: clamp(48px, 7vw, 96px) var(--hm-space-section);
-    background: var(--hm-surface-secondary);
+    padding-block: var(--tile-gap) 32px;
+    background: var(--hm-background);
   }
 
-  .foot__title {
-    font-size: var(--site-small);
-    font-weight: var(--hm-type-title-weight);
-  }
-
-  .foot__grid {
+  .foot__tiles {
     display: grid;
-    gap: var(--hm-space-section);
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: 4fr 3fr repeat(3, 2fr);
+    gap: var(--tile-gap);
   }
 
-  @media (min-width: 60rem) {
-    .foot__grid {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-    }
-  }
-
-  .foot__brand {
+  .tile {
     display: grid;
-    gap: var(--hm-space-inline);
-    align-content: start;
-    max-width: 22rem;
+    align-content: space-between;
+    gap: 32px;
+    min-block-size: 260px;
+    padding: clamp(20px, 2.4vw, 32px);
+    border-radius: var(--tile-radius);
+    background: var(--hm-surface);
+  }
+
+  .tile--ink {
+    background: var(--hm-text-primary);
+    color: var(--hm-text-inverse);
+  }
+
+  .tile--saffron {
+    background: var(--hm-accent);
+    color: var(--hm-on-accent);
   }
 
   .foot__name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: clamp(28px, 2.6vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .tile ul {
+    display: grid;
+    gap: 4px;
+  }
+
+  .tile a {
     display: inline-flex;
     align-items: center;
-    gap: var(--hm-space-inline);
-    font-size: var(--hm-type-section-title-size);
-    font-weight: var(--hm-type-title-weight);
-    letter-spacing: -0.02em;
-  }
-
-  /* German compounds ("Datenschutzversprechen") are wider than a phone's column: let the column
-     shrink below its longest word, and break that word at a syllable in the page's language. */
-  .foot__column {
-    display: grid;
-    gap: var(--hm-space-component);
-    grid-template-columns: minmax(0, 1fr);
-    align-content: start;
-    min-width: 0;
-    hyphens: auto;
-    overflow-wrap: break-word;
-  }
-
-  .foot__column ul {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--hm-space-inline);
-  }
-
-  .foot__column a {
-    color: var(--hm-text-primary);
-    font-size: var(--site-small);
+    min-block-size: 36px;
     text-decoration: none;
   }
 
-  .foot__column a:hover {
-    color: var(--hm-text-primary);
+  .tile a:hover {
     text-decoration: underline;
   }
 
-  .foot__base {
-    margin-top: clamp(40px, 6vw, 72px);
+  .foot__rights {
+    padding-block-start: 24px;
   }
 
-  /* On a tinted footer, tertiary text drops below 4.5:1; use the secondary role instead. */
-  .foot__base .t-caption {
-    color: var(--hm-text-secondary);
+  @media (max-width: 1100px) {
+    .foot__tiles {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .tile--ink,
+    .tile--saffron {
+      grid-column: span 3;
+    }
+
+    .tile:not(.tile--ink, .tile--saffron) {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .foot__tiles {
+      grid-template-columns: 1fr;
+    }
+
+    .tile--ink,
+    .tile--saffron,
+    .tile:not(.tile--ink, .tile--saffron) {
+      grid-column: auto;
+      min-block-size: 0;
+    }
   }
 </style>

@@ -13,8 +13,7 @@ const c = copyFor(lang).nav;
 
 const links = [
   // Every link names the home page: this header is on /privacy/ and /support/ too.
-  { href: home(lang, '#features'), label: c.features },
-  { href: home(lang, '#app'), label: c.screens },
+  { href: home(lang, '#day'), label: c.features },
   { href: home(lang, '#pricing'), label: c.pricing },
   { href: home(lang, '#privacy'), label: c.privacy },
   { href: home(lang, '#faq'), label: c.faq },
@@ -94,7 +93,9 @@ const languages = LANGS.map((code) => ({
     position: sticky;
     top: 0;
     z-index: 5;
-    background: var(--hm-header-background);
+    /* The bar takes the hero's sky, so the first screen is one field from top to bottom. */
+    background: var(--sky);
+    transition: background-color 600ms var(--ease);
   }
 
   .bar__inner {
@@ -133,14 +134,14 @@ const languages = LANGS.map((code) => ({
     min-block-size: var(--hm-touch-target);
     padding-inline: var(--hm-space-component);
     border-radius: var(--hm-radius-pill);
-    color: var(--hm-text-secondary);
+    color: var(--hm-text-primary);
     font-size: var(--hm-type-label-size);
     font-weight: var(--hm-type-label-weight);
     text-decoration: none;
   }
 
   .nav a:hover {
-    background: var(--hm-surface-secondary);
+    background: var(--hm-surface);
     color: var(--hm-text-primary);
   }
 
@@ -157,7 +158,7 @@ const languages = LANGS.map((code) => ({
     min-block-size: var(--hm-touch-target);
     padding-inline: var(--hm-space-component);
     border-radius: var(--hm-radius-pill);
-    background: var(--hm-surface-secondary);
+    background: var(--hm-surface);
     color: var(--hm-text-primary);
     font-size: var(--hm-type-label-size);
     font-weight: var(--hm-type-label-weight);
@@ -211,7 +212,6 @@ const languages = LANGS.map((code) => ({
     gap: 2px;
     min-inline-size: 11rem;
     padding: var(--hm-space-micro);
-    border: var(--hm-border-hairline) solid var(--hm-border-subtle);
     border-radius: var(--hm-radius-field);
     background: var(--hm-surface);
   }
@@ -254,15 +254,16 @@ const languages = LANGS.map((code) => ({
     min-block-size: 40px;
     padding-inline: var(--hm-space-card);
     border-radius: var(--hm-radius-pill);
-    background: var(--hm-primary);
-    color: var(--hm-on-primary);
+    background: var(--hm-text-primary);
+    color: var(--hm-text-inverse);
     font-size: var(--hm-type-label-size);
     font-weight: var(--hm-type-label-weight);
     text-decoration: none;
   }
 
   .bar__cta:hover {
-    background: var(--hm-primary-pressed);
+    background: var(--hm-primary);
+    color: var(--hm-on-primary);
   }
 
   /* On a phone the section links go; the page is short enough to scroll, and the bar stays calm. */

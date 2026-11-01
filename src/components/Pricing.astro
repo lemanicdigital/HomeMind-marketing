@@ -1,107 +1,176 @@
 ---
 import { type Lang, copyFor } from '../i18n';
 
+/**
+ * One plan, said as one sentence, with the price on saffron, the app's Add colour. Below it, what
+ * stays free and what the plan adds, matching the app (HomeMind-IOS: PlanScreen) and the server
+ * (HomeMind-backend: domain/plan.ts). The App Store shows each country its own price, which the
+ * note says rather than listing.
+ */
 interface Props {
-  lang?: Lang;
+  lang: Lang;
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang } = Astro.props;
 const c = copyFor(lang).pricing;
-/**
- * The two plans, matching the app (HomeMind-IOS: PlanScreen) and the server
- * (HomeMind-backend: domain/plan.ts, PLAN_PRODUCTS). Prices are App Store Connect's euro tier; the
- * App Store shows each country its own, which this page says rather than listing. The plans are
- * filled surfaces, one tone step apart, with the price at headline size.
- */
-const check = 'm5 10.5 3.2 3.2L15 7';
+const check = 'm5 12.5 4.5 4.5L19 7.5';
 ---
 
-<section class="section" id="pricing" aria-labelledby="pricing-title">
-  <div class="shell">
-    <header class="section__head">
-      <h2 class="t-headline" id="pricing-title">{c.title}</h2>
-      <p class="t-lead">{c.lead}</p>
-    </header>
+<section class="pricing field field--clear" id="pricing" aria-labelledby="pricing-title">
+  <div class="shell stack">
+    <h2 class="t-display pricing__title" id="pricing-title">{c.title}</h2>
+    <p class="pricing__sentence rise">
+      {c.sentence.before}<span class="pricing__price">{c.sentence.price}</span>{c.sentence.after}
+    </p>
 
-    <div class="plans">
-      <article class="plan" aria-labelledby="plan-free">
-        <h3 class="t-section" id="plan-free">{c.free.name}</h3>
-        <p class="plan__price"><span class="t-numeric">{c.free.price}</span></p>
-        <p class="t-secondary">{c.free.tagline}</p>
-        <ul class="list" role="list">
+    <div class="pricing__plans">
+      <div class="plan" aria-labelledby="plan-free">
+        <p class="plan__head">
+          <span class="t-title" id="plan-free">{c.free.name}</span>
+          <span class="plan__amount">{c.free.price}</span>
+        </p>
+        <p>{c.free.tagline}</p>
+        <ul class="plan__list">
           {
             c.free.items.map((line) => (
               <li>
-                <svg class="list__mark" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d={check} />
-                </svg>
-                <span class="t-body">{line}</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d={check} /></svg>
+                {line}
               </li>
             ))
           }
         </ul>
-      </article>
+      </div>
 
-      <article class="plan plan--featured" aria-labelledby="plan-household">
-        <h3 class="t-section" id="plan-household">{c.household.name}</h3>
-        <p class="plan__price">
-          <span class="t-numeric">{c.household.price}</span>
-          <span class="t-secondary">{c.household.per}</span>
+      <div class="plan plan--household" aria-labelledby="plan-household">
+        <p class="plan__head">
+          <span class="t-title" id="plan-household">{c.household.name}</span>
+          <span class="plan__amount">{c.household.price} <span class="plan__per">{c.household.per}</span></span>
         </p>
-        <p class="plan__trial">{c.household.badge}</p>
-        <p class="t-secondary">{c.household.tagline}</p>
-        <ul class="list" role="list">
+        <p>{c.household.badge}. {c.household.tagline}</p>
+        <ul class="plan__list">
           {
             [c.household.everything, ...c.household.items].map((line) => (
               <li>
-                <svg class="list__mark" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d={check} />
-                </svg>
-                <span class="t-body">{line}</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d={check} /></svg>
+                {line}
               </li>
             ))
           }
         </ul>
-        <p class="t-caption plans__note">{c.note}</p>
-      </article>
+      </div>
     </div>
+
+    <p class="pricing__note measure">{c.lead} {c.note}</p>
   </div>
 </section>
 
 <style>
-  .plans {
+  .pricing {
+    min-block-size: auto;
+  }
+
+  .pricing__title {
+    max-inline-size: 18ch;
+  }
+
+  /* The plan as a sentence: the price is the one word that gets a block of colour. */
+  .pricing__sentence {
+    max-inline-size: 38ch;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .pricing__price {
+    /* The price is set at twice the sentence, so it reads first and the sentence explains it. */
+    display: inline-block;
+    margin-block: 0.08em;
+    padding: 0 0.18em;
+    border-radius: 0.16em;
+    font-size: 2em;
+    line-height: 1.1;
+    vertical-align: -0.08em;
+    background: var(--hm-accent);
+    color: var(--hm-on-accent);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pricing__plans {
     display: grid;
-    gap: var(--hm-space-screen-gutter);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    grid-template-columns: 5fr 7fr;
+    gap: var(--tile-gap);
   }
 
   .plan {
     display: grid;
-    gap: var(--hm-space-card);
     align-content: start;
-    padding: clamp(24px, 4vw, 48px);
-    border-radius: var(--hm-radius-sheet);
+    gap: 16px;
+    padding: clamp(24px, 3vw, 40px);
+    border-radius: var(--tile-radius);
     background: var(--hm-surface);
   }
 
-  .plan--featured {
-    background: var(--hm-primary-subtle);
+  .plan--household {
+    background: var(--hm-primary);
+    color: var(--hm-on-primary);
   }
 
-  .plan__price {
+  .plan__head {
     display: flex;
-    gap: var(--hm-space-inline);
+    flex-wrap: wrap;
     align-items: baseline;
-    margin-block: var(--hm-space-inline);
+    justify-content: space-between;
+    gap: 8px 16px;
   }
 
-  .plan__trial {
-    margin-top: calc(-1 * var(--hm-space-inline));
-    color: var(--hm-primary);
-    font-weight: var(--hm-type-title-weight);
+  .plan__amount {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
   }
 
-  .plans__note {
-    margin-top: var(--hm-space-inline);
+  .plan__per {
+    font-size: var(--fs-small);
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  .plan__list {
+    display: grid;
+    gap: 10px;
+    margin-block-start: 8px;
+  }
+
+  .plan__list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .plan__list svg {
+    flex: none;
+    inline-size: 22px;
+    block-size: 22px;
+    margin-block-start: 3px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .pricing__note {
+    font-size: var(--fs-small);
+  }
+
+  @media (max-width: 860px) {
+    .pricing__plans {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

@@ -15,7 +15,6 @@ export const de: Copy = {
     home: "HomeMind Startseite",
     sections: "Bereiche dieser Seite",
     features: "Funktionen",
-    screens: "Bildschirme",
     pricing: "Preise",
     privacy: "Datenschutz",
     faq: "FAQ",
@@ -25,74 +24,64 @@ export const de: Copy = {
   },
 
   hero: {
-    eyebrow: "Bald auf dem iPhone",
     title: "Vor dem Einkauf wissen, was da ist.",
     lead: "HomeMind weiß, was euer Haushalt da hat, was zuerst abläuft und was knapp wird – und schreibt die Einkaufsliste für dich.",
     primary: "So funktioniert’s",
-    secondary: "Die App ansehen",
-    promises: ["Funktioniert offline", "Gratis auf einem iPhone", "Mit dem Haushalt teilen"],
+    timeLabel: "Übersicht um",
+    times: [
+      {
+        label: "7:00",
+        caption: "Frühstück. Eine ruhige Nachricht sagt, was heute weg muss.",
+      },
+      {
+        label: "13:00",
+        caption: "Im Laden. Die Liste weiß schon, was leer ist.",
+      },
+      {
+        label: "18:30",
+        caption: "Der Einkauf kommt heim. Scanne ihn beim Einräumen.",
+      },
+      {
+        label: "22:00",
+        caption: "Später Abend. Alles bleibt auf deinem Telefon, nichts wird gemessen.",
+      },
+    ],
     imageAlt:
-      "Die Übersicht von HomeMind: drei Artikel, die jetzt dran sind – Babyspinat läuft heute ab, Vollmilch morgen.",
-    noteWarning: { name: "Vollmilch", detail: "Läuft morgen ab" },
-    noteSuccess: { name: "Olivenöl", detail: "Auf die Liste gesetzt" },
+      "Die Übersicht von HomeMind: Babyspinat läuft heute ab, Vollmilch morgen und griechischer Joghurt in 3 Tagen; Kaffeebohnen und Spülmittel werden knapp.",
   },
 
-  features: {
-    title: "Die Haushaltsrechnung, für dich erledigt",
-    lead: "Nie mehr das vierte Glas von etwas kaufen, von dem schon drei im Schrank stehen – und das vierte eine Woche nach Ablauf wiederfinden.",
-    items: [
+  day: {
+    chapters: [
       {
-        title: "Alles an einem Ort",
-        body: "Was du hast, wie viel und wo es steht: Kühlschrank, Vorratsschrank, das Regal neben der Waschmaschine.",
-      },
-      {
+        time: "7:00",
         title: "Verbrauchen, bevor es schlecht wird",
-        body: "Aus Daten wird „Läuft heute ab“ und „Läuft in 3 Tagen ab“, und eine ruhige Nachricht am Morgen sagt, was weg muss.",
+        body: "Beim Frühstück sagt eine ruhige Nachricht, was weg muss. Aus Daten wird „Läuft heute ab“ und „Läuft in 3 Tagen ab“.",
       },
       {
+        time: "13:00",
         title: "Eine Liste, die sich selbst schreibt",
         body: "Was leer ist, landet auf der Einkaufsliste. Was knapp wird, wird vorgeschlagen, mit dem Grund daneben.",
       },
       {
+        time: "18:30",
         title: "Scannen statt tippen",
-        body: "Kamera auf den Strichcode, und der Produktname steht da. Tippen geht natürlich auch.",
-      },
-      {
-        title: "Ein Haushalt, alle Telefone",
-        body: "Lade die Leute ein, mit denen du wohnst. Alle sehen denselben Vorrat und dieselbe Liste, immer synchron.",
-      },
-      {
-        title: "Funktioniert ohne Empfang",
-        body: "Dein Telefon hat die Daten selbst, der Supermarkt im Untergeschoss ist also kein Problem. Synchronisiert wird, sobald du wieder Netz hast.",
+        body: "Kamera auf den Strichcode, und der Name steht da. Nur der Name ist nötig, und Tippen geht immer.",
       },
     ],
   },
 
-  screens: {
+  showcase: {
     title: "Ruhige Bildschirme für den Haushalt",
-    lead: "Bildschirmfotos der aktuellen Version auf einem iPhone, mit Beispieldaten. Hell und dunkel wie dein Telefon. Auf einem deutschsprachigen iPhone ist die App auf Deutsch.",
-    items: [
-      {
-        title: "Heute, auf einen Blick",
-        body: "Was zuerst verbraucht werden sollte und was knapp wird. Sonst nichts, was ablenkt.",
-        alt: "Die Übersicht: ein Hinweis, dass drei Artikel jetzt verbraucht oder geprüft werden sollten, darunter „Bald verbrauchen“ mit Babyspinat (läuft heute ab), Vollmilch (morgen), griechischem Joghurt (in drei Tagen) und reifem Cheddar (in neun).",
-      },
-      {
-        title: "Alles, was du hast",
-        body: "Nach Art sortiert, auf Knappes oder Ablaufendes gefiltert, durchsuchbar und per Strichcode auffindbar.",
-        alt: "Der Vorrat im dunklen Modus, gefiltert auf Ablaufendes: Babyspinat, Vollmilch, griechischer Joghurt, Eier und Cheddar, jeweils mit Ort und Ablaufdatum.",
-      },
-      {
-        title: "Ein Artikel, ehrlich",
-        body: "Wie viel noch da ist, wann du mehr brauchst und warum, und jede Packung mit eigenem Datum.",
-        alt: "Die Detailansicht für Kaffeebohnen: 250 Gramm vorrätig und als knapp markiert, normalerweise etwa 1000 Gramm alle drei Wochen, wieder nötig um den 5. November, eine Packung im Küchenschrank.",
-      },
-      {
-        title: "Eine Liste, die sich füllt",
-        body: "Was leer ist, kommt von selbst dazu. Was knapp wird, wird nur vorgeschlagen; ob es dazukommt, entscheidest du.",
-        alt: "Die Einkaufsliste: Müllbeutel, Olivenöl mit „Leer“, Bananen und ein Sauerteigbrot, darunter Vorschläge für Artikel, die knapp werden.",
-      },
-    ],
+    inventory: {
+      name: "Alles, was du hast",
+      fact: "Nach Art sortiert, jede Art in ihrer Farbe.",
+      alt: "Der Vorrat: acht Artikel, einer pro Art, jeder in seiner Farbe: Nudeln, Babyspinat, Kaffeebohnen, Tiefkühlerbsen, Waschmittel, Zahnpasta, Katzenfutter und Batterien.",
+    },
+    list: {
+      name: "Eine Liste, die sich füllt",
+      fact: "Was leer ist, kommt dazu. Was knapp wird, wird nur vorgeschlagen.",
+      alt: "Der Einkauf: Olivenöl und Müllbeutel sind leer, Bananen und ein Sauerteigbrot sind zu kaufen, und Kaffeebohnen und Spülmittel werden vorgeschlagen, weil sie knapp werden.",
+    },
   },
 
   how: {
@@ -114,6 +103,12 @@ export const de: Copy = {
   },
 
   pricing: {
+    sentence: {
+      before: "HomeMind Household kostet ",
+      price: "14,99 €",
+      after:
+        " pro Jahr für den ganzen Haushalt, oder 1,99 € pro Monat. Der erste Monat ist gratis.",
+    },
     title: "Allein gratis. Ein Abo fürs ganze Haus.",
     lead: "Du zahlst nur, was unseren Server braucht: Synchronisierung und Teilen. Alles andere bleibt gratis, egal wie viel du einträgst.",
     free: {
@@ -144,23 +139,151 @@ export const de: Copy = {
   },
 
   privacy: {
+    time: "22:00",
     title: "Deine Küche geht niemanden etwas an",
     lead: "Ein Haushaltsinventar weiß viel über ein Zuhause. HomeMind behält es zuerst auf deinem Telefon und erhebt nur, was die Synchronisierung braucht.",
     policy: "Datenschutzerklärung lesen",
-    points: [
+  },
+
+  app: {
+    household: "Unser Zuhause",
+    date: "Samstag, 7. November",
+    tabs: {
+      home: "Übersicht",
+      inventory: "Vorrat",
+      add: "Hinzufügen",
+      cook: "Kochen",
+      shopping: "Einkauf",
+    },
+    useSoon: "Bald verbrauchen",
+    runningOut: "Wird knapp",
+    toBuy: "Zu kaufen",
+    suggested: "Vorschläge",
+    usedOne: "Eins verbraucht",
+    soon: [
       {
-        title: "Deins, ohne Konto",
-        body: "Die ganze App funktioniert allein auf deinem Telefon. Die Anmeldung bringt nur Synchronisierung und Teilen dazu.",
+        name: "Babyspinat",
+        detail: "Kühlschrank · Läuft heute ab",
+        qty: "1 Beutel",
+        kind: "fresh",
       },
       {
-        title: "Bezahlt vom Abo",
-        body: "HomeMind lebt von HomeMind Household. Die App zeigt keine Werbung, und deine Einkäufe werden weder ausgewertet noch verkauft.",
+        name: "Vollmilch",
+        detail: "Kühlschrank · Läuft morgen ab",
+        qty: "1 Packung",
+        kind: "beverages",
       },
       {
-        title: "Weg, wenn du es sagst",
-        body: "Lösch dein Konto in den Einstellungen, und es verschwindet vom Server und von jedem Telefon.",
+        name: "Griechischer Joghurt",
+        detail: "Kühlschrank · Läuft in 3 Tagen ab",
+        qty: "2 Becher",
+        kind: "fresh",
       },
     ],
+    low: [
+      {
+        name: "Kaffeebohnen",
+        detail: "Küchenschrank · Wird knapp",
+        qty: "250 g",
+        kind: "beverages",
+      },
+      {
+        name: "Spülmittel",
+        detail: "Unter der Spüle · Wird knapp",
+        qty: "1 Flasche",
+        kind: "cleaning",
+      },
+    ],
+    count: "8 Artikel",
+    shelf: [
+      {
+        name: "Nudeln",
+        detail: "Küchenschrank",
+        qty: "2 Packungen",
+        kind: "pantry",
+      },
+      {
+        name: "Babyspinat",
+        detail: "Kühlschrank · Läuft heute ab",
+        qty: "1 Beutel",
+        kind: "fresh",
+      },
+      {
+        name: "Kaffeebohnen",
+        detail: "Küchenschrank · Wird knapp",
+        qty: "250 g",
+        kind: "beverages",
+      },
+      {
+        name: "Tiefkühlerbsen",
+        detail: "Tiefkühler",
+        qty: "1 Beutel",
+        kind: "frozen",
+      },
+      {
+        name: "Waschmittel",
+        detail: "Regal bei der Waschmaschine",
+        qty: "1 Flasche",
+        kind: "cleaning",
+      },
+      {
+        name: "Zahnpasta",
+        detail: "Badezimmerschrank",
+        qty: "2 Tuben",
+        kind: "bathroom",
+      },
+      {
+        name: "Katzenfutter",
+        detail: "Flurschrank",
+        qty: "6 Dosen",
+        kind: "pet",
+      },
+      {
+        name: "Batterien",
+        detail: "Küchenschublade",
+        qty: "4 Stück",
+        kind: "other",
+      },
+    ],
+    toBuyCount: "4 zu kaufen",
+    buy: [
+      {
+        name: "Olivenöl",
+        reason: "Leer",
+      },
+      {
+        name: "Müllbeutel",
+        reason: "Leer",
+      },
+      {
+        name: "Bananen",
+        reason: "",
+      },
+      {
+        name: "Sauerteigbrot",
+        reason: "",
+      },
+    ],
+    suggest: [
+      {
+        name: "Kaffeebohnen",
+        reason: "Wird knapp",
+      },
+      {
+        name: "Spülmittel",
+        reason: "Wird knapp",
+      },
+    ],
+    add: {
+      label: "Name",
+      value: "Babyspinat",
+      category: "Frisch",
+      place: "Kühlschrank",
+    },
+    use: {
+      name: "Vollmilch",
+      qty: "1 Packung",
+    },
   },
 
   faq: {
@@ -212,6 +335,7 @@ export const de: Copy = {
   },
 
   footer: {
+    place: "Gemacht am Genfersee, auf Deutsch, Englisch, Französisch und Italienisch.",
     tagline: "Das Haushaltsinventar fürs iPhone. Diese Seite setzt keine Cookies und misst nichts.",
     product: "Produkt",
     help: "Hilfe",

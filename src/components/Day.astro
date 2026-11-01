@@ -1,0 +1,224 @@
+---
+import Row from './app/Row.astro';
+import { type Lang, copyFor, page } from '../i18n';
+
+/**
+ * The household's day, as four flat fields in the app's sky colours: breakfast, the shop, the
+ * shopping coming home, and the night. Each chapter carries the piece of the app it is about, cut
+ * from the same tokens as the app. The night is the privacy chapter, because that is when a home
+ * is most its own.
+ */
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { day, privacy, app } = copyFor(lang);
+const [dawn, noon, dusk] = day.chapters;
+---
+
+<div id="day">
+  <section class="chapter field field--dawn" aria-labelledby="dawn-title">
+    <div class="shell grid chapter__grid">
+      <p class="t-giant chapter__time" aria-hidden="true">{dawn.time}</p>
+      <div class="chapter__text stack stack--tight">
+        <h2 class="t-display rise" id="dawn-title">{dawn.title}</h2>
+        <p class="t-statement rise rise--2">{dawn.body}</p>
+      </div>
+      <div class="chapter__piece grow">
+        <div class="ui-piece" data-ui role="img" aria-label={app.soon.map((item) => `${item.name}: ${item.detail}`).join('. ')}>
+          <p class="ui-section"><span>{app.useSoon}</span><span class="ui-count">{app.soon.length}</span></p>
+          <ul class="ui-card">
+            {app.soon.map((item, index) => <Row {...item} urgent={index < 2} />)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter chapter--flip field field--day" aria-labelledby="noon-title">
+    <div class="shell grid chapter__grid">
+      <p class="t-giant chapter__time" aria-hidden="true">{noon.time}</p>
+      <div class="chapter__text stack stack--tight">
+        <h2 class="t-display rise" id="noon-title">{noon.title}</h2>
+        <p class="t-statement rise rise--2">{noon.body}</p>
+      </div>
+      <div class="chapter__piece grow">
+        <div class="ui-piece" data-ui role="img" aria-label={[...app.buy, ...app.suggest].map((item) => item.reason ? `${item.name}: ${item.reason}` : item.name).join('. ')}>
+          <p class="ui-section"><span>{app.toBuy}</span><span class="ui-count">{app.buy.length}</span></p>
+          <ul class="ui-card ui-card--quiet">
+            {
+              app.buy.map((item) => (
+                <li class="ui-row">
+                  <span class="ui-box" />
+                  <span class="ui-row__text">
+                    <span class="ui-row__name">{item.name}</span>
+                    {item.reason ? <span class="ui-row__detail">{item.reason}</span> : null}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="ui-section"><span>{app.suggested}</span><span class="ui-count">{app.suggest.length}</span></p>
+          <ul class="ui-card ui-card--quiet">
+            {
+              app.suggest.map((item) => (
+                <li class="ui-row">
+                  <span class="ui-plus"><svg viewBox="0 0 24 24"><use href="#g-plus" /></svg></span>
+                  <span class="ui-row__text">
+                    <span class="ui-row__name">{item.name}</span>
+                    <span class="ui-row__detail">{item.reason}</span>
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter field field--dusk" aria-labelledby="dusk-title">
+    <div class="shell grid chapter__grid">
+      <p class="t-giant chapter__time" aria-hidden="true">{dusk.time}</p>
+      <div class="chapter__text stack stack--tight">
+        <h2 class="t-display rise" id="dusk-title">{dusk.title}</h2>
+        <p class="t-statement rise rise--2">{dusk.body}</p>
+      </div>
+      <div class="chapter__piece grow">
+        <div class="ui-piece ui-scan" data-ui role="img" aria-label={`${app.add.label}: ${app.add.value}. ${app.add.category}, ${app.add.place}.`}>
+          <div class="ui-viewfinder" aria-hidden="true">
+            <svg class="ui-barcode" viewBox="0 0 120 48" preserveAspectRatio="none">
+              {
+                [2, 6, 9, 14, 17, 19, 24, 29, 31, 36, 40, 43, 47, 52, 55, 58, 63, 67, 70, 74, 79, 82, 86, 90, 93, 98, 101, 105, 109, 112, 116].map(
+                  (x, index) => <rect x={x} y="0" width={index % 3 === 0 ? 2.6 : 1.4} height="48" />,
+                )
+              }
+            </svg>
+          </div>
+          <div class="ui-field">
+            <span class="ui-field__label">{app.add.label}</span>
+            <span class="ui-field__value">{app.add.value}</span>
+          </div>
+          <div class="ui-chips">
+            <span class="ui-chip">
+              <span class="ui-kind ui-kind--fresh"><svg viewBox="0 0 24 24"><use href="#g-fresh" /></svg></span>
+              {app.add.category}
+            </span>
+            <span class="ui-chip">{app.add.place}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter chapter--night field field--night" id="privacy" aria-labelledby="privacy-title">
+    <div class="shell grid chapter__grid">
+      <p class="t-giant chapter__time" aria-hidden="true">{privacy.time}</p>
+      <div class="chapter__text chapter__text--wide stack">
+        <h2 class="t-display rise" id="privacy-title">{privacy.title}</h2>
+        <p class="t-statement rise rise--2">{privacy.lead}</p>
+        <p class="rise rise--3">
+          <a class="button night__button" href={page(lang, 'privacy/')}>
+            {privacy.policy}
+            <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .chapter {
+    display: grid;
+    align-items: center;
+  }
+
+  .chapter__grid {
+    align-items: center;
+    row-gap: clamp(28px, 4vw, 56px);
+  }
+
+  /* The time is the chapter's picture of itself: set as large as the page allows, at the margin. */
+  .chapter__time {
+    grid-column: 1 / -1;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(88px, 17vw, 300px);
+    line-height: 0.8;
+  }
+
+  .chapter__text {
+    grid-column: 1 / span 7;
+  }
+
+  .chapter__text--wide {
+    grid-column: 1 / span 9;
+    justify-items: start;
+    align-items: flex-start;
+  }
+
+  .chapter__piece {
+    grid-column: 9 / -1;
+    display: grid;
+    justify-items: end;
+  }
+
+  .chapter--flip .chapter__time {
+    text-align: end;
+  }
+
+  .chapter--flip .chapter__text {
+    grid-column: 6 / -1;
+    grid-row: 2;
+  }
+
+  .chapter--flip .chapter__piece {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+    justify-items: start;
+  }
+
+  /* The pieces of the app keep the app's own light-or-dark surfaces, on any chapter. */
+  .ui-card--quiet {
+    background: var(--hm-surface-secondary);
+  }
+
+  .ui-scan {
+    display: grid;
+    gap: 12px;
+  }
+
+  .ui-viewfinder {
+    display: grid;
+    place-items: center;
+    block-size: 132px;
+    border-radius: 14px;
+    background: var(--hm-text-primary);
+    color: var(--hm-surface);
+  }
+
+  .ui-scan .ui-barcode {
+    inline-size: 60%;
+    block-size: 56px;
+    fill: currentColor;
+    stroke: none;
+  }
+
+  .night__button {
+    background: var(--on-night);
+    color: var(--night);
+  }
+
+  @media (max-width: 960px) {
+    .chapter__text,
+    .chapter__text--wide,
+    .chapter__piece,
+    .chapter--flip .chapter__text,
+    .chapter--flip .chapter__piece {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      justify-items: start;
+    }
+  }
+</style>

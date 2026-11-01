@@ -1,0 +1,38 @@
+---
+/** One list row as the app draws it: category tile, name, where and when, amount, chevron. */
+interface Props {
+  name: string;
+  detail?: string;
+  qty?: string;
+  kind: string;
+  /** Status words in the detail ("Expires today") take the warning colour, as in the app. */
+  urgent?: boolean;
+}
+
+const { name, detail, qty, kind, urgent = false } = Astro.props;
+const [place, status] = (detail ?? '').split(' · ');
+---
+
+<li class="ui-row">
+  <span class={`ui-kind ui-kind--${kind}`}>
+    <svg viewBox="0 0 24 24"><use href={`#g-${kind}`}></use></svg>
+  </span>
+  <span class="ui-row__text">
+    <span class="ui-row__name">{name}</span>
+    {
+      detail ? (
+        <span class="ui-row__detail">
+          {status ? (
+            <>
+              {place} · <span class={urgent ? 'ui-warn' : undefined}>{status}</span>
+            </>
+          ) : (
+            place
+          )}
+        </span>
+      ) : null
+    }
+  </span>
+  {qty ? <span class="ui-row__qty">{qty}</span> : null}
+  <svg class="ui-chevron" viewBox="0 0 24 24"><use href="#g-chevron"></use></svg>
+</li>

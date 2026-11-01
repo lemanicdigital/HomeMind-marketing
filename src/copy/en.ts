@@ -16,7 +16,6 @@ export const en = {
     home: "HomeMind home page",
     sections: "Sections of this page",
     features: "Features",
-    screens: "Screens",
     pricing: "Pricing",
     privacy: "Privacy",
     faq: "FAQ",
@@ -26,74 +25,64 @@ export const en = {
   },
 
   hero: {
-    eyebrow: "Coming soon to iPhone",
     title: "Know what’s at home before you shop.",
     lead: "HomeMind keeps track of what your household has, what goes off first and what is running low, then writes the shopping list for you.",
     primary: "See how it works",
-    secondary: "View the app",
-    promises: ["Works offline", "Free on one iPhone", "Share with your household"],
+    timeLabel: "See Home at",
+    times: [
+      {
+        label: "7:00",
+        caption: "Breakfast. One calm note lists what needs using today.",
+      },
+      {
+        label: "13:00",
+        caption: "At the shop. The list already knows what ran out.",
+      },
+      {
+        label: "18:30",
+        caption: "The shopping comes home. Scan it in as you put it away.",
+      },
+      {
+        label: "22:00",
+        caption: "Late evening. Everything stays on your phone; nothing is measured.",
+      },
+    ],
     imageAlt:
-      "HomeMind's Home screen: three items to use now, with baby spinach expiring today and whole milk tomorrow.",
-    noteWarning: { name: "Whole milk", detail: "Expires tomorrow" },
-    noteSuccess: { name: "Olive oil", detail: "Added to your list" },
+      "HomeMind’s Home screen: baby spinach expires today, whole milk tomorrow and Greek yoghurt in 3 days; coffee beans and dish soap are running out.",
   },
 
-  features: {
-    title: "A household’s small sums, done for you",
-    lead: "Stop buying a fourth jar of something you already have three of, and finding the fourth one the week after it expired.",
-    items: [
+  day: {
+    chapters: [
       {
-        title: "Everything in one place",
-        body: "What you have, how much and where it lives: the fridge, the cupboard, the shelf by the washing machine.",
-      },
-      {
+        time: "7:00",
         title: "Use it before it goes off",
-        body: "Expiry dates turn into “Expires today” and “Expires in 3 days”, and one calm morning note lists what needs eating.",
+        body: "At breakfast, one calm note lists what needs eating. Dates read “Expires today” and “Expires in 3 days”.",
       },
       {
+        time: "13:00",
         title: "A list that writes itself",
         body: "Run out and it lands on the shopping list. Running low and it is suggested, with the reason beside it.",
       },
       {
+        time: "18:30",
         title: "Scan instead of typing",
-        body: "Point the camera at a barcode and the product name fills itself in. Typing always works too.",
-      },
-      {
-        title: "One household, every phone",
-        body: "Invite the people you live with. Everyone sees the same stock and the same list, kept in sync.",
-      },
-      {
-        title: "Works without a signal",
-        body: "Your phone keeps the working copy, so the basement shop is no problem. Changes sync when you are back.",
+        body: "Point the camera at a barcode and the name fills itself in. Only the name is needed, and typing always works too.",
       },
     ],
   },
 
-  screens: {
+  showcase: {
     title: "Calm screens for a chore nobody enjoys",
-    lead: "Screenshots from the current build on an iPhone, with sample data. Light and dark follow your phone.",
-    items: [
-      {
-        title: "Today, in one look",
-        body: "What to use first and what is running out. Nothing else competes for attention.",
-        alt: 'The Home screen: a warning that three items need using or checking now, then a "Use soon" list with baby spinach expiring today, whole milk tomorrow, Greek yoghurt in three days and mature cheddar in nine.',
-      },
-      {
-        title: "Everything you have",
-        body: "Grouped by kind, filtered to what is low or expiring, searchable, and scannable by barcode.",
-        alt: "The Inventory screen in dark mode, filtered to expiring items: baby spinach, whole milk, Greek yoghurt, eggs and cheddar, each with where it is kept and when it expires.",
-      },
-      {
-        title: "One item, honestly",
-        body: "How much is left, when you will need more and why, and each pack with its own date.",
-        alt: "The detail screen for coffee beans: 250 grams on hand and marked running low, usually about 1000 grams every three weeks, needed again around 5 November, and one pack in the kitchen cupboard.",
-      },
-      {
-        title: "A list that fills itself",
-        body: "Things that run out are added for you. Things running low are only suggested; you choose what to add.",
-        alt: 'The Shopping screen: bin bags, olive oil marked "Ran out", bananas and a sourdough loaf to buy, followed by suggestions for items that are running low.',
-      },
-    ],
+    inventory: {
+      name: "Everything you have",
+      fact: "Grouped by kind, each kind in its own colour.",
+      alt: "The Inventory screen: eight items, one of each kind, each in its own colour: pasta, baby spinach, coffee beans, frozen peas, laundry liquid, toothpaste, cat food and batteries.",
+    },
+    list: {
+      name: "A list that fills itself",
+      fact: "What ran out is added. What runs low is only suggested.",
+      alt: "The Shopping screen: olive oil and bin bags ran out, bananas and a sourdough loaf are to buy, and coffee beans and dish soap are suggested because they are running low.",
+    },
   },
 
   how: {
@@ -115,7 +104,12 @@ export const en = {
   },
 
   pricing: {
-    title: "Free on your phone. One plan for the household.",
+    sentence: {
+      before: "HomeMind Household is ",
+      price: "€14.99",
+      after: " a year for the whole household, or €1.99 a month. The first month is free.",
+    },
+    title: "Free alone. One plan to share.",
     lead: "You pay only for what needs our server: sync and sharing. Everything else is free, however much you keep track of.",
     free: {
       name: "Free",
@@ -145,23 +139,151 @@ export const en = {
   },
 
   privacy: {
+    time: "22:00",
     title: "Your kitchen is nobody’s business",
     lead: "A household inventory knows a lot about a home. HomeMind keeps it on your phone first and collects only what sync needs.",
     policy: "Read the privacy policy",
-    points: [
+  },
+
+  app: {
+    household: "Our home",
+    date: "Saturday 7 November",
+    tabs: {
+      home: "Home",
+      inventory: "Inventory",
+      add: "Add",
+      cook: "Cook",
+      shopping: "Shopping",
+    },
+    useSoon: "Use soon",
+    runningOut: "Running out",
+    toBuy: "To buy",
+    suggested: "Suggested",
+    usedOne: "Used one",
+    soon: [
       {
-        title: "Yours without an account",
-        body: "The whole app works on your phone alone. Signing in only adds sync and sharing.",
+        name: "Baby spinach",
+        detail: "Fridge · Expires today",
+        qty: "1 bag",
+        kind: "fresh",
       },
       {
-        title: "Paid for by the plan",
-        body: "HomeMind earns its money from HomeMind Household. The app shows no ads, and what you buy is never measured or sold.",
+        name: "Whole milk",
+        detail: "Fridge · Expires tomorrow",
+        qty: "1 carton",
+        kind: "beverages",
       },
       {
-        title: "Gone when you say so",
-        body: "Delete your account in Settings and it is erased from the server and every phone.",
+        name: "Greek yoghurt",
+        detail: "Fridge · Expires in 3 days",
+        qty: "2 pots",
+        kind: "fresh",
       },
     ],
+    low: [
+      {
+        name: "Coffee beans",
+        detail: "Kitchen cupboard · Running low",
+        qty: "250 g",
+        kind: "beverages",
+      },
+      {
+        name: "Dish soap",
+        detail: "Under the sink · Running low",
+        qty: "1 bottle",
+        kind: "cleaning",
+      },
+    ],
+    count: "8 items",
+    shelf: [
+      {
+        name: "Pasta",
+        detail: "Kitchen cupboard",
+        qty: "2 packs",
+        kind: "pantry",
+      },
+      {
+        name: "Baby spinach",
+        detail: "Fridge · Expires today",
+        qty: "1 bag",
+        kind: "fresh",
+      },
+      {
+        name: "Coffee beans",
+        detail: "Kitchen cupboard · Running low",
+        qty: "250 g",
+        kind: "beverages",
+      },
+      {
+        name: "Frozen peas",
+        detail: "Freezer",
+        qty: "1 bag",
+        kind: "frozen",
+      },
+      {
+        name: "Laundry liquid",
+        detail: "Shelf by the washing machine",
+        qty: "1 bottle",
+        kind: "cleaning",
+      },
+      {
+        name: "Toothpaste",
+        detail: "Bathroom cabinet",
+        qty: "2 tubes",
+        kind: "bathroom",
+      },
+      {
+        name: "Cat food",
+        detail: "Hall cupboard",
+        qty: "6 tins",
+        kind: "pet",
+      },
+      {
+        name: "Batteries",
+        detail: "Kitchen drawer",
+        qty: "4 pieces",
+        kind: "other",
+      },
+    ],
+    toBuyCount: "4 to buy",
+    buy: [
+      {
+        name: "Olive oil",
+        reason: "Ran out",
+      },
+      {
+        name: "Bin bags",
+        reason: "Ran out",
+      },
+      {
+        name: "Bananas",
+        reason: "",
+      },
+      {
+        name: "Sourdough loaf",
+        reason: "",
+      },
+    ],
+    suggest: [
+      {
+        name: "Coffee beans",
+        reason: "Running low",
+      },
+      {
+        name: "Dish soap",
+        reason: "Running low",
+      },
+    ],
+    add: {
+      label: "Name",
+      value: "Baby spinach",
+      category: "Fresh",
+      place: "Fridge",
+    },
+    use: {
+      name: "Whole milk",
+      qty: "1 carton",
+    },
   },
 
   faq: {
@@ -213,6 +335,7 @@ export const en = {
   },
 
   footer: {
+    place: "Made by Lake Geneva, in English, French, German and Italian.",
     tagline: "The household inventory for iPhone. This site sets no cookies and runs no analytics.",
     product: "Product",
     help: "Help",
