@@ -1,15 +1,25 @@
 ---
-/** The app icon's mark (a house with a tick), drawn from theme roles so it follows dark mode. */
+/**
+ * The app icon's mark, the sky window: an arched window (home) whose round head is the sky, with the
+ * sun rising on its sill. Same geometry as brand/homesky-symbol.svg, drawn here from theme roles so
+ * it follows dark mode.
+ */
 interface Props {
   size?: number;
 }
 const { size = 28 } = Astro.props;
 ---
 
-<svg class="logo" viewBox="0 0 64 64" width={size} height={size} aria-hidden="true">
-  <rect class="logo__tile" width="64" height="64" rx="14"></rect>
-  <path class="logo__house" d="M32 14.8 50 29.6V49.4H14V29.6Z"></path>
-  <path class="logo__tick" d="m24.5 37.4 5.4 5.4L40 32.6"></path>
+<svg class="logo" viewBox="0 0 256 256" width={size} height={size} aria-hidden="true">
+  <rect class="logo__tile" width="256" height="256" rx="56"></rect>
+  <g transform="translate(5.12 5.12) scale(0.96)">
+    <path
+      class="logo__frame"
+      fill-rule="evenodd"
+      d="M56 116A72 72 0 0 1 200 116V200A12 12 0 0 1 188 212H68A12 12 0 0 1 56 200ZM80 188H176V116A48 48 0 0 0 80 116Z"
+    ></path>
+    <path class="logo__sun" d="M94 188A34 34 0 0 1 162 188Z"></path>
+  </g>
 </svg>
 
 <style>
@@ -21,18 +31,22 @@ const { size = 28 } = Astro.props;
     fill: var(--hm-primary);
   }
 
-  .logo__house {
+  .logo__frame {
     fill: var(--hm-on-primary);
-    stroke: var(--hm-on-primary);
-    stroke-width: 4.5;
-    stroke-linejoin: round;
   }
 
-  .logo__tick {
-    fill: none;
-    stroke: var(--hm-primary);
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+  .logo__sun {
+    fill: var(--hm-accent);
+  }
+
+  /* Dark mode matches the dark app icon: a night tile, the frame in the light primary. */
+  @media (prefers-color-scheme: dark) {
+    .logo__tile {
+      fill: var(--hm-primary-subtle);
+    }
+
+    .logo__frame {
+      fill: var(--hm-primary);
+    }
   }
 </style>
