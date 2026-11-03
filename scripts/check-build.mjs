@@ -181,7 +181,7 @@ for (const [name, doc] of docs) {
   // The WebSite node names the whole site, whose root is the English home page.
   for (const [, url] of JSON.stringify(
     nodes.filter((node) => node["@type"] !== "WebSite"),
-  ).matchAll(/"(https:\/\/homesky\.app[^"]*)"/g)) {
+  ).matchAll(/"(https:\/\/domalba\.app[^"]*)"/g)) {
     const local = url.replace(/^https:\/\/[^/]+\/?/, "").split("#")[0];
     const file = local === "" || local.endsWith("/") ? `${local}index.html` : local;
     if (!existsSync(join(dist, file))) fail(`${name}: JSON-LD names ${url}, which is not a page`);
@@ -194,7 +194,7 @@ for (const [name, doc] of docs) {
 const sitemap = read("sitemap.xml");
 for (const page of pages.filter((p) => p !== "404.html")) {
   const path = page.replace(/index\.html$/, "");
-  if (!sitemap.includes(`https://homesky.app/${path}</loc>`)) {
+  if (!sitemap.includes(`https://domalba.app/${path}</loc>`)) {
     fail(`sitemap.xml does not list ${page}`);
   }
 }
@@ -231,7 +231,7 @@ function idsOf(doc) {
 
 /** `<link>` tags that point at this site's own origin are not third parties. */
 function isOwnSite(tag) {
-  return /href="https:\/\/homesky\.app\//.test(tag);
+  return /href="https:\/\/domalba\.app\//.test(tag);
 }
 
 function fetchedExternals(doc) {
@@ -240,7 +240,7 @@ function fetchedExternals(doc) {
     // Only tags the browser fetches are a request; an <a href> is a link the reader chooses.
     if (!/^<(script|link|img|iframe|source|video|audio|style)[\s>]/i.test(tag)) continue;
     for (const [, url] of tag.matchAll(/(?:href|src)="(https?:\/\/[^"]*)"/g)) {
-      if (url.startsWith("https://homesky.app/")) continue;
+      if (url.startsWith("https://domalba.app/")) continue;
       found.push(url);
     }
   }

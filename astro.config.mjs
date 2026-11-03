@@ -7,7 +7,7 @@ import { defineConfig } from "astro/config";
  */
 export default defineConfig({
   output: "static",
-  site: "https://homesky.app",
+  site: "https://domalba.app",
   trailingSlash: "ignore",
   build: { inlineStylesheets: "auto" },
 });
