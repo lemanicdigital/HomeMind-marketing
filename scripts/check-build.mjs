@@ -120,14 +120,14 @@ for (const file of cssFiles) {
 }
 
 // Links and assets must resolve on every page, including a section of another page
-// (/HomeMind-marketing/#faq from the privacy page), or the site is decorative rather than usable.
+// (/#faq from the privacy page), or the site is decorative rather than usable.
 for (const [name, doc] of docs) {
   for (const [, anchor] of doc.matchAll(/href="#([^"]+)"/g)) {
     if (!idsOf(doc).has(anchor)) fail(`${name}: link to #${anchor} has no matching id`);
   }
   for (const [, ref] of doc.matchAll(/(?:href|src)="(\/[^"]*)"/g)) {
     const [path, fragment] = ref.split("#");
-    const local = path.replace(/^\/HomeMind-marketing\/?/, "").replace(/^\/+/, "");
+    const local = path.replace(/^\/+/, "");
     const file = local === "" || local.endsWith("/") ? `${local}index.html` : local;
     if (!existsSync(join(dist, file))) {
       fail(`${name}: ${ref} does not resolve to a file in dist/`);
@@ -181,8 +181,8 @@ for (const [name, doc] of docs) {
   // The WebSite node names the whole site, whose root is the English home page.
   for (const [, url] of JSON.stringify(
     nodes.filter((node) => node["@type"] !== "WebSite"),
-  ).matchAll(/"(https:\/\/lemanicdigital[^"]*)"/g)) {
-    const local = url.replace(/^https:\/\/[^/]+\/HomeMind-marketing\/?/, "").split("#")[0];
+  ).matchAll(/"(https:\/\/domalba\.app[^"]*)"/g)) {
+    const local = url.replace(/^https:\/\/[^/]+\/?/, "").split("#")[0];
     const file = local === "" || local.endsWith("/") ? `${local}index.html` : local;
     if (!existsSync(join(dist, file))) fail(`${name}: JSON-LD names ${url}, which is not a page`);
     if (lang !== "en" && !local.startsWith(`${lang}/`)) {
@@ -194,7 +194,7 @@ for (const [name, doc] of docs) {
 const sitemap = read("sitemap.xml");
 for (const page of pages.filter((p) => p !== "404.html")) {
   const path = page.replace(/index\.html$/, "");
-  if (!sitemap.includes(`/HomeMind-marketing/${path}</loc>`)) {
+  if (!sitemap.includes(`https://domalba.app/${path}</loc>`)) {
     fail(`sitemap.xml does not list ${page}`);
   }
 }
@@ -229,9 +229,9 @@ function idsOf(doc) {
   return new Set([...doc.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
 }
 
-/** `<link>` tags that point at this site's own GitHub Pages origin are not third parties. */
+/** `<link>` tags that point at this site's own origin are not third parties. */
 function isOwnSite(tag) {
-  return /href="https?:\/\/[^"]*lemanicdigital\.github\.io\/HomeMind-marketing/.test(tag);
+  return /href="https:\/\/domalba\.app\//.test(tag);
 }
 
 function fetchedExternals(doc) {
@@ -240,7 +240,7 @@ function fetchedExternals(doc) {
     // Only tags the browser fetches are a request; an <a href> is a link the reader chooses.
     if (!/^<(script|link|img|iframe|source|video|audio|style)[\s>]/i.test(tag)) continue;
     for (const [, url] of tag.matchAll(/(?:href|src)="(https?:\/\/[^"]*)"/g)) {
-      if (url.includes("lemanicdigital.github.io/HomeMind-marketing")) continue;
+      if (url.startsWith("https://domalba.app/")) continue;
       found.push(url);
     }
   }
