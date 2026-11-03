@@ -4,16 +4,16 @@
  */
 export const en = {
   meta: {
-    title: "Homesky — know what’s at home before you shop",
+    title: "Domalba — know what’s at home before you shop",
     description:
-      "Homesky keeps track of what your household has, what goes off first and what is running low, then writes the shopping list for you. Coming soon to iPhone.",
+      "Domalba keeps track of what your household has, what goes off first and what is running low, then writes the shopping list for you. Coming soon to iPhone.",
     ogAlt:
-      "Homesky: know what’s at home before you shop. The app’s Home screen, listing what to use soon.",
+      "Domalba: know what’s at home before you shop. The app’s Home screen, listing what to use soon.",
     skip: "Skip to content",
   },
 
   nav: {
-    home: "Homesky home page",
+    home: "Domalba home page",
     sections: "Sections of this page",
     features: "Features",
     pricing: "Pricing",
@@ -26,7 +26,7 @@ export const en = {
 
   hero: {
     title: "Know what’s at home before you shop.",
-    lead: "Homesky keeps track of what your household has, what goes off first and what is running low, then writes the shopping list for you.",
+    lead: "Domalba keeps track of what your household has, what goes off first and what is running low, then writes the shopping list for you.",
     primary: "See how it works",
     timeLabel: "See Home at",
     times: [
@@ -48,7 +48,7 @@ export const en = {
       },
     ],
     imageAlt:
-      "Homesky’s Home screen: baby spinach expires today, whole milk tomorrow and Greek yoghurt in 3 days; coffee beans and dish soap are running out.",
+      "Domalba’s Home screen: baby spinach expires today, whole milk tomorrow and Greek yoghurt in 3 days; coffee beans and dish soap are running out.",
   },
 
   day: {
@@ -90,11 +90,11 @@ export const en = {
     steps: [
       {
         title: "Add what you have",
-        body: "Type it or scan the barcode. A count and a date are optional; Homesky is honest about what it does not know.",
+        body: "Type it or scan the barcode. A count and a date are optional; Domalba is honest about what it does not know.",
       },
       {
         title: "Use things up",
-        body: "Tap “used one” as you go. Homesky learns how fast your household gets through each thing.",
+        body: "Tap “used one” as you go. Domalba learns how fast your household gets through each thing.",
       },
       {
         title: "Shop with a list you trust",
@@ -105,7 +105,7 @@ export const en = {
 
   pricing: {
     sentence: {
-      before: "Homesky Household is ",
+      before: "Domalba Household is ",
       price: "€14.99",
       after: " a year for the whole household, or €1.99 a month. The first month is free.",
     },
@@ -123,7 +123,7 @@ export const en = {
       ],
     },
     household: {
-      name: "Homesky Household",
+      name: "Domalba Household",
       badge: "First month free",
       price: "€14.99",
       per: "a year",
@@ -141,7 +141,7 @@ export const en = {
   privacy: {
     time: "22:00",
     title: "Your kitchen is nobody’s business",
-    lead: "A household inventory knows a lot about a home. Homesky keeps it on your phone first and collects only what sync needs.",
+    lead: "A household inventory knows a lot about a home. Domalba keeps it on your phone first and collects only what sync needs.",
     policy: "Read the privacy policy",
   },
 
@@ -315,7 +315,7 @@ export const en = {
       },
       {
         q: "Will it cost money?",
-        a: "Not on one phone: the whole app is free there, with no limits. Sync and sharing need our server, so they are Homesky Household, €14.99 a year or €1.99 a month after a free month. One plan covers everyone in the household.",
+        a: "Not on one phone: the whole app is free there, with no limits. Sync and sharing need our server, so they are Domalba Household, €14.99 a year or €1.99 a month after a free month. One plan covers everyone in the household.",
       },
       {
         q: "Can I try the beta?",
@@ -330,7 +330,7 @@ export const en = {
 
   launch: {
     title: "Coming soon to iPhone",
-    body: "Homesky is in testing now. A public beta through Apple’s TestFlight comes next, and it will be announced right here. There is no mailing list to join.",
+    body: "Domalba is in testing now. A public beta through Apple’s TestFlight comes next, and it will be announced right here. There is no mailing list to join.",
     action: "Questions and answers",
   },
 

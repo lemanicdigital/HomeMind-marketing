@@ -1,4 +1,4 @@
-"""Writes the Homesky logo masters in this folder. Run: python brand/make-brand.py path/to/Inter-SemiBold.ttf
+"""Writes the Domalba logo masters in this folder. Run: python brand/make-brand.py path/to/Inter-SemiBold.ttf
 
 Needs `pip install fonttools` and Inter SemiBold (SIL Open Font Licence, which allows logo use;
 https://github.com/rsms/inter). The wordmark is outlined to paths, so the SVGs depend on no font.
@@ -28,7 +28,7 @@ SUN = "M94 188A34 34 0 0 1 162 188Z"
 
 def svg(w, h, body):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" '
-            f'role="img"><title>Homesky</title>{body}</svg>\n')
+            f'role="img"><title>Domalba</title>{body}</svg>\n')
 
 
 def mark(frame, sun, glass=None):
@@ -48,11 +48,11 @@ def app_tile(top, bottom, frame, glass, rx=0, scale=0.88):
 
 
 def wordmark(font_path, size, fill, tracking=-0.01):
-    """'homesky' in Inter SemiBold, outlined, baseline at y 0. Returns (svg body, width)."""
+    """'domalba' in Inter SemiBold, outlined, baseline at y 0. Returns (svg body, width)."""
     font = TTFont(font_path)
     glyphs, cmap, scale = font.getGlyphSet(), font.getBestCmap(), size / font["head"].unitsPerEm
     x, parts = 0.0, []
-    for ch in "homesky":
+    for ch in "domalba":
         glyph = glyphs[cmap[ord(ch)]]
         pen = SVGPathPen(glyphs)
         glyph.draw(TransformPen(pen, (scale, 0, 0, -scale, x, 0)))
@@ -63,12 +63,12 @@ def wordmark(font_path, size, fill, tracking=-0.01):
 
 def main(font_path):
     files = {
-        "homesky-symbol": (256, mark(BERRY_600, SAFFRON)),
-        "homesky-symbol-reversed": (256, mark("#FFFFFF", SAFFRON)),
-        "homesky-symbol-black": (256, mark("#000000", "#000000")),
-        "homesky-symbol-white": (256, mark("#FFFFFF", "#FFFFFF")),
-        "homesky-app-icon": (256, app_tile(BERRY_500, BERRY_800, "#FFFFFF", (BERRY_800, BERRY_400))),
-        "homesky-app-icon-dark": (256, app_tile(NIGHT_SKY, NIGHT, BERRY_300, (NIGHT, BERRY_800))),
+        "domalba-symbol": (256, mark(BERRY_600, SAFFRON)),
+        "domalba-symbol-reversed": (256, mark("#FFFFFF", SAFFRON)),
+        "domalba-symbol-black": (256, mark("#000000", "#000000")),
+        "domalba-symbol-white": (256, mark("#FFFFFF", "#FFFFFF")),
+        "domalba-app-icon": (256, app_tile(BERRY_500, BERRY_800, "#FFFFFF", (BERRY_800, BERRY_400))),
+        "domalba-app-icon-dark": (256, app_tile(NIGHT_SKY, NIGHT, BERRY_300, (NIGHT, BERRY_800))),
     }
     for name, (w, body) in files.items():
         (HERE / f"{name}.svg").write_text(svg(w, 256, body), encoding="utf-8", newline="\n")
@@ -82,7 +82,7 @@ def main(font_path):
                                     ("-white", "#FFFFFF", "#FFFFFF", "#FFFFFF")):
         text, width = wordmark(font_path, 132, ink)
         body = mark(frame, sun) + f'<g transform="translate(232 212)">{text}</g>'
-        (HERE / f"homesky-horizontal{suffix}.svg").write_text(
+        (HERE / f"domalba-horizontal{suffix}.svg").write_text(
             svg(int(232 + width + 12), 256, body), encoding="utf-8", newline="\n")
 
 

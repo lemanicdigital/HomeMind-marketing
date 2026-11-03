@@ -1,4 +1,4 @@
-# Homesky logo
+# Domalba logo
 
 **The sky window.** An arched window, the shape of home, whose round head is the dome of the sky,
 with the sun rising on its sill. It is the morning the app greets you with: Home at breakfast, when
@@ -8,13 +8,13 @@ the day's list is written. One idea, two colours, readable at 16 px.
 
 | File                                                           | Use                                                                        |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `homesky-symbol.svg`                                           | The mark on light backgrounds. The master.                                 |
-| `homesky-symbol-reversed.svg`                                  | The mark on blueberry or dark backgrounds.                                 |
-| `homesky-symbol-black.svg`, `-white`                           | One colour: print, engraving, embossing, fax-grade copies.                 |
-| `homesky-horizontal.svg`                                       | Mark and wordmark, on light backgrounds.                                   |
-| `homesky-horizontal-reversed.svg`                              | Mark and wordmark, on blueberry or dark backgrounds.                       |
-| `homesky-horizontal-black.svg`, `-white`                       | Lockup in one colour.                                                      |
-| `homesky-app-icon.svg`, `-dark.svg`                            | The iOS icon's artwork; `homesky-app-icon-1024.png` is the App Store size. |
+| `domalba-symbol.svg`                                           | The mark on light backgrounds. The master.                                 |
+| `domalba-symbol-reversed.svg`                                  | The mark on blueberry or dark backgrounds.                                 |
+| `domalba-symbol-black.svg`, `-white`                           | One colour: print, engraving, embossing, fax-grade copies.                 |
+| `domalba-horizontal.svg`                                       | Mark and wordmark, on light backgrounds.                                   |
+| `domalba-horizontal-reversed.svg`                              | Mark and wordmark, on blueberry or dark backgrounds.                       |
+| `domalba-horizontal-black.svg`, `-white`                       | Lockup in one colour.                                                      |
+| `domalba-app-icon.svg`, `-dark.svg`                            | The iOS icon's artwork; `domalba-app-icon-1024.png` is the App Store size. |
 | `../public/favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | The website's icons.                                                       |
 
 `make-brand.py` writes every SVG here from one geometry, and `HomeMind-IOS/scripts/make-icons.py`
@@ -44,7 +44,7 @@ references are not set yet.
 
 The wordmark is Inter SemiBold, lowercase, tracked −1 %, outlined to paths. Inter is under the SIL
 Open Font Licence, which allows use in a logo. In running text the product's name is written
-"Homesky", with a capital H.
+"Domalba", with a capital H.
 
 ## Space and size
 
