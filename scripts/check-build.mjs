@@ -42,6 +42,8 @@ for (const file of [
   "llms.txt",
   "og.png",
   "favicon.svg",
+  "favicon.ico",
+  "apple-touch-icon.png",
   ".nojekyll",
 ]) {
   if (!existsSync(join(dist, file))) fail(`dist/${file} is missing.`);
